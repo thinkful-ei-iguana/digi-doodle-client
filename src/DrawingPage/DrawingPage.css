@@ -1,5 +1,24 @@
-.canvas-container {
-    width: 100px;
-    height: 100px;
+.dumbutton1 {
+    margin-top: 3%;
+    width: 25px;
+    height: 25px;
+    background-color: red;
+}
+.dumbutton2 {
+    margin-top: 3%;
+    width: 25px;
+    height: 25px;
     background-color: blue;
 }
+.dumbutton3 {
+    margin-top: 3%;
+    width: 25px;
+    height: 25px;
+    background-color: green;
+}
+
+.dummy-container {
+    display: inline-block;
+    margin-top: 3%;
+}
+
