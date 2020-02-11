@@ -12,10 +12,12 @@
   text-align: justify;
   width: 420px;
   color: #222222;
+  
 }
 
+
+
 .start-button {
-  
     height: 6vh;
     width: 15vh;
     min-height: max-content;
@@ -25,12 +27,12 @@
     background: -webkit-linear-gradient(
       to right,
       #6FF567,
-      #F4FF5E
+      #F55440
     ); /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(
       to right,
       #6FF567,
-      #F4FF5E
+      #F55440
     ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     border-radius: 12px;
     font-size: 1.2rem;
