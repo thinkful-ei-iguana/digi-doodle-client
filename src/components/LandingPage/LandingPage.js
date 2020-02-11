@@ -16,14 +16,11 @@ class LandingPage extends React.Component {
           <img className="logo" src={Logo} alt="logo" />
         </div>
         <div className="about-container">
-          <p className="about-text">lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum</p>
-
+          <p className="about-text">
+            lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+          </p>
         </div>
-
         <button className="start-button">Draw</button>
-
-
-
       </div>
     );
   }

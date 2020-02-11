@@ -6,11 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-
-      <Route exact path='/' component={LandingPage}>
-        </Route>
-        
-
+      <Route exact path='/' component={LandingPage} />
     </div>
   );
 }
