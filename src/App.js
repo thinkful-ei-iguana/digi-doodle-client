@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import { Tools } from 'react-sketch'
 import LandingPage from './components/LandingPage/LandingPage';
 import AppContext from './Context/AppContext'
 import './App.css';
@@ -68,7 +67,7 @@ changeColorBrown = () => {
 handleEraser = () => {
   this.setState({
     color: 'white',
-    eraser: 15,
+    eraser: 20,
   })
 }
 
@@ -84,7 +83,8 @@ componentDidMount() {
         <div className="App">
           <Route exact path='/' component={LandingPage} />
           <Route path='/guess' component={GuessingPage} />
-          <Route path='/draw' render={(routeProps) => {
+          <Route path='/draw' 
+          render={(routeProps) => {
             return <DrawingPage {...routeProps} 
               changeColorRed={this.changeColorRed} 
               changeColorBlue={this.changeColorBlue} 
