@@ -9,7 +9,6 @@ const DigiDoodleApiService = {
             },
             body: JSON.stringify({ username })
         }).then(res =>
-            
             !res.ok ?
             res.json().then(event => Promise.reject(event)) 
             : res.json()

@@ -8,7 +8,9 @@ class SignUpForm extends React.Component {
     this.state = {
       username: '',
       greeting: false,
-      error: null
+      error: {
+        error: ''
+      },
     };
   }
 
@@ -20,32 +22,49 @@ class SignUpForm extends React.Component {
     });
   }
 
+
   handleSubmit = (event) => {
     let username = this.state.username;
+    if (username.length < 4 || username.length > 10) {
+      return this.setState({
+        error: {
+          error: 'Please choose a username between 4 and 10 characters'
+        }
+      })
+      // return alert("Please choose a username between 4 and 10 characters.")
+    }
     event.preventDefault();
-    this.setState({error: null})
+    this.setState({
+      error: {
+        error: ''
+      },
+    })
+
     DigiDoodleApiService.createUserName(username).catch(error => {
       this.setState({
-        error: error
+        error: {
+          error: error.message
+        }
       })
     })
   }
 
-
-
   render() {
+    const username = this.state.username;
     const greeting = this.state.greeting;
-    const error = this.state.error;
-    let errorMessage
+    let error = this.state.error.error;
     let message;
+    let errorMessage;
 
+    if (error) {
+      errorMessage = <h1>{this.state.error.error}!</h1>
+    }
     if (greeting) {
-      message = <h1>Hello, {this.state.username}!</h1>
+      message = <h1>Hello, {username}!</h1>
     }
 
     if (error) {
-      errorMessage = <h1>{this.state.error.error}</h1>
-
+      error = <h1>{this.state.error.error}</h1>
     }
 
     return (
@@ -53,9 +72,10 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
-        {errorMessage}
+
         <div className="sign-up-form">
           <form>
+            {errorMessage}
             {message}
             <p>Enter your username:</p>
             <input
