@@ -1,12 +1,78 @@
 import React, { Component } from 'react'
 import Canvas from '../Utils/Canvas/Canvas'
 import Colors from '../Utils/Colors/Colors'
-import AppContext from '../Context/AppContext'
 import './DrawingPage.css'
 import '../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
-    static contextType = AppContext;
+    constructor() {
+    super()
+    this.state = {
+        color: '',
+        eraser: 3,
+    }
+  }
+
+changeColorRed = () => {
+  this.setState({
+      color: 'red',
+      eraser: 3,
+  })
+}
+changeColorBlue = () => {
+  this.setState({
+      color: 'blue',
+      eraser: 3,
+  })
+}
+changeColorGreen = () => {
+  this.setState({
+      color: 'green',
+      eraser: 3,
+  })
+}
+changeColorBlack = () => {
+  this.setState({
+      color: 'black',
+      eraser: 3,
+  })
+}
+changeColorYellow = () => {
+  this.setState({
+      color: 'yellow',
+      eraser: 3,
+  })
+}
+changeColorOrange = () => {
+  this.setState({
+      color: 'orange',
+      eraser: 3,
+  })
+}
+changeColorPurple = () => {
+  this.setState({
+      color: 'purple',
+      eraser: 3,
+  })
+}
+changeColorBrown = () => {
+  this.setState({
+      color: 'brown',
+      eraser: 3,
+  })
+}
+handleEraser = () => {
+  this.setState({
+      color: 'white',
+      eraser: 20,
+  })
+}
+
+componentDidMount() {
+  this.setState({
+    color: 'black',
+  })
+}
     render() {
         return (
             <div>
@@ -14,18 +80,18 @@ export default class DrawingPage extends Component {
                 {/* Draw a {this.context.name etc} */}
                 <h3>Draw a fish </h3>
                 <div className="canvas-container">
-                    <Canvas />
+                    <Canvas color={this.state.color} eraser={this.state.eraser}/>
                 </div>
-                <Colors 
-                    changeColorRed={this.props.changeColorRed} 
-                    changeColorBlue={this.props.changeColorBlue} 
-                    changeColorGreen={this.props.changeColorGreen}
-                    changeColorBlack={this.props.changeColorBlack}
-                    changeColorPurple={this.props.changeColorPurple}
-                    changeColorOrange={this.props.changeColorOrange}
-                    changeColorYellow={this.props.changeColorYellow}
-                    changeColorBrown={this.props.changeColorBrown} 
-                    handleEraser={this.props.handleEraser}
+                <Colors
+                    changeColorRed={this.changeColorRed}
+                    changeColorBlue={this.changeColorBlue}
+                    changeColorGreen={this.changeColorGreen}
+                    changeColorBlack={this.changeColorBlack}
+                    changeColorYellow={this.changeColorYellow}
+                    changeColorOrange={this.changeColorOrange}
+                    changeColorPurple={this.changeColorPurple}
+                    changeColorBrown={this.changeColorBrown}
+                    handleEraser={this.handleEraser}
                 />
             </div>
         )

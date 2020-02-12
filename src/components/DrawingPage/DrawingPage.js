@@ -14,7 +14,7 @@ export default class DrawingPage extends Component {
                 <h3>Draw a fish </h3>
                 <div className="canvas-container">
                     <Canvas />
-                    <Colors changeColor={this.props.changeColor}/>
+                    <Colors />
                 </div>
             </div>
         )
