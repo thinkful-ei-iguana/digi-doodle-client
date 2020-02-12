@@ -7,23 +7,49 @@ class SignUpForm extends React.Component {
     super(props);
     this.state = {
       username: '',
-      greeting: false
+      greeting: false,
+      error: ''
     };
   }
+
 
   handleChange = (event) => {
     this.setState({
       username: event.target.value,
-      greeting: true
+      greeting: true,
+      error: ''
     });
-    //this.handleSubmit = this.handleSubmit.bind(this); 
   }
 
   handleSubmit = (event) => {
+    let username = this.state.username;
     event.preventDefault();
-    DigiDoodleApiService.createUserName(this.state.username)
-    //alert("You are submitting " + this.state.username);
+    DigiDoodleApiService.createUserName(username)
+    .catch(error => {
+      this.setState({
+        error: error.error
+      })
+      console.log(this.state)
+    })
   }
+
+
+
+  // componentDidCatch(error, errorInfo) {
+  //   this.setState({
+  //     error: error,
+  //     errorInfo: errorInfo
+  //   })
+  //   console.log('error:' , this.state.error);
+  // }
+
+  // validate = ({ username }) => {
+  //   return {
+  //     username: !username || username.trim().length === 0 
+  //     ? "Username is required" 
+  //     : false
+  //   }
+  // }
 
 
   render() {
