@@ -6,6 +6,7 @@ import './App.css';
 import GuessingPage from './GuessingPage/GuessingPage';
 import DrawingPage from './DrawingPage/DrawingPage';
 import GameLobbyPage from './GameLobbyPage/GameLobbyPage';
+import SignUpForm from './components/SignUpForm/SignUpForm';
 
 class App extends React.Component {
   constructor() {
@@ -19,6 +20,7 @@ class App extends React.Component {
       <AppContext.Provider value={this.state}>
         <div className="App">
           <Route exact path='/' component={LandingPage} />
+          <Route exact path='/sign-up' component={SignUpForm} />
           <Route exact path='/guess' component={GuessingPage} />
           <Route exact path='/draw' component={DrawingPage} />
           <Route exact path='/lobby' component={GameLobbyPage} />

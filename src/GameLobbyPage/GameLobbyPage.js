@@ -5,7 +5,6 @@ import './GameLobbyPage.css'
 export default class GameLobbyPage extends Component {
 
 
-
     render() {
         return (
             <div>
