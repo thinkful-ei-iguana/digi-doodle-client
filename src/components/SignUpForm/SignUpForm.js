@@ -1,5 +1,6 @@
 import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
+import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -20,8 +21,8 @@ class SignUpForm extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    //POST request to /player
-    alert("You are submitting " + this.state.username);
+    DigiDoodleApiService.createUserName(this.state.username)
+    //alert("You are submitting " + this.state.username);
   }
 
 
