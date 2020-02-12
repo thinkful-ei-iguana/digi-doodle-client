@@ -8,7 +8,7 @@ class SignUpForm extends React.Component {
     this.state = {
       username: '',
       greeting: false,
-      error: ''
+      error: null
     };
   }
 
@@ -17,47 +17,35 @@ class SignUpForm extends React.Component {
     this.setState({
       username: event.target.value,
       greeting: true,
-      error: ''
     });
   }
 
   handleSubmit = (event) => {
     let username = this.state.username;
     event.preventDefault();
-    DigiDoodleApiService.createUserName(username)
-    .catch(error => {
+    this.setState({error: null})
+    DigiDoodleApiService.createUserName(username).catch(error => {
       this.setState({
-        error: error.error
+        error: error
       })
-      console.log(this.state)
     })
   }
 
 
 
-  // componentDidCatch(error, errorInfo) {
-  //   this.setState({
-  //     error: error,
-  //     errorInfo: errorInfo
-  //   })
-  //   console.log('error:' , this.state.error);
-  // }
-
-  // validate = ({ username }) => {
-  //   return {
-  //     username: !username || username.trim().length === 0 
-  //     ? "Username is required" 
-  //     : false
-  //   }
-  // }
-
-
   render() {
     const greeting = this.state.greeting;
+    const error = this.state.error;
+    let errorMessage
     let message;
 
     if (greeting) {
       message = <h1>Hello, {this.state.username}!</h1>
+    }
+
+    if (error) {
+      errorMessage = <h1>{this.state.error.error}</h1>
+
     }
 
     return (
@@ -65,6 +53,7 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
+        {errorMessage}
         <div className="sign-up-form">
           <form>
             {message}
@@ -72,6 +61,7 @@ class SignUpForm extends React.Component {
             <input
               type='text'
               onChange={(event) => this.handleChange(event)}
+              required
             />
           </form>
         </div>
