@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
-import Canvas from '../Utils/Canvas'
+import Canvas from '../Utils/Canvas/Canvas'
+import Colors from '../Utils/Colors/Colors'
+import AppContext from '../Context/AppContext'
 import './DrawingPage.css'
-import '../Utils/Canvas.css'
+import '../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
+    static contextType = AppContext;
     render() {
         return (
             <div>
@@ -13,11 +16,17 @@ export default class DrawingPage extends Component {
                 <div className="canvas-container">
                     <Canvas />
                 </div>
-                <div className="dummy-container">
-                    <button type="button" className="dumbutton1"></button>
-                    <button type="button" className="dumbutton2"></button>
-                    <button type="button" className="dumbutton3"></button>
-                  </div>
+                <Colors 
+                    changeColorRed={this.props.changeColorRed} 
+                    changeColorBlue={this.props.changeColorBlue} 
+                    changeColorGreen={this.props.changeColorGreen}
+                    changeColorBlack={this.props.changeColorBlack}
+                    changeColorPurple={this.props.changeColorPurple}
+                    changeColorOrange={this.props.changeColorOrange}
+                    changeColorYellow={this.props.changeColorYellow}
+                    changeColorBrown={this.props.changeColorBrown} 
+                    handleEraser={this.props.handleEraser}
+                />
             </div>
         )
     }
