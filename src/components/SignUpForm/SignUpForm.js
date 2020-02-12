@@ -14,7 +14,6 @@ class SignUpForm extends React.Component {
     };
   }
 
-
   handleChange = (event) => {
     this.setState({
       username: event.target.value,
@@ -40,10 +39,10 @@ class SignUpForm extends React.Component {
       },
     })
 
-    DigiDoodleApiService.createUserName(username).catch(error => {
+    DigiDoodleApiService.createUserName(username).catch(res => {
       this.setState({
         error: {
-          error: error.message
+          error: res.error
         }
       })
     })
@@ -91,7 +90,6 @@ class SignUpForm extends React.Component {
     );
   }
 }
-
 
 
 export default SignUpForm;

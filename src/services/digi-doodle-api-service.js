@@ -8,15 +8,12 @@ const DigiDoodleApiService = {
                 'content-type': 'application/json',
             },
             body: JSON.stringify({ username })
-        }).then(res =>
+        }).then(res => 
             !res.ok ?
             res.json().then(event => Promise.reject(event)) 
             : res.json()
         )
-        
     }
 }
-
-
 
 export default DigiDoodleApiService
