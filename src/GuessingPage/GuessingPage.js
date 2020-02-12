@@ -11,15 +11,19 @@ export default class GuessingPage extends Component {
     render() {
         return (
             <div>
-                <h1>What are they drawing?</h1>
+                <h1 className="guess-page-header">What are they drawing?</h1>
                 <Canvas />
+                <div className="users-container">
                     <div>player 1</div>
                     <div>player 2</div>
                     <div>player 3</div>
                     <div>player 4</div>
-                <input type="text" placeholder="Type Your Guess Here"></input>
-                {/* wanting a green checkmark instead of text for button to submit guess */}
-                <button>Submit!</button>
+                </div>
+                <div className="guess-container">
+                    <input className="guess-box" type="text" placeholder="Type Your Guess Here"></input>
+                    {/* wanting a green checkmark instead of text for button to submit guess */}
+                    <button className="submit-guess">Submit!</button>
+                </div>
             </div>
         )
     }

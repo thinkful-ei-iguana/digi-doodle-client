@@ -7,6 +7,11 @@ import Logo from '../../Pictures/digidoodle-logo.png';
 // description
 //start button
 
+// handleSubmitUser = () => {
+//   //handle submission of user
+//   //make a database call to submit user
+// }
+
 class LandingPage extends React.Component {
   state = {}
   render() {
