@@ -1,18 +1,20 @@
 import React from 'react'
+import ColorContext from '../../Context/ColorContext'
 
 class Colors extends React.Component {
+    static contextType = ColorContext;
     render() {
         return (
             <div className="color-buttons">
-                <button onClick={this.props.changeColorBlack} type="button" className="black"></button>
-                <button onClick={this.props.changeColorBrown} type="button" className="brown"></button>
-                <button onClick={this.props.changeColorRed} type="button" className="red"></button>
-                <button onClick={this.props.changeColorYellow} type="button" className="yellow"></button>
-                <button onClick={this.props.changeColorOrange} type="button" className="orange"></button>
-                <button onClick={this.props.changeColorPurple} type="button" className="purple"></button>
-                <button onClick={this.props.changeColorBlue} type="button" className="blue"></button>
-                <button onClick={this.props.changeColorGreen} type="button" className="green"></button>
-                <button onClick={this.props.handleEraser} type="button" className="eraser"></button>
+                <button onClick={()=>this.context.changeColor('black')} type="button" className="black"></button>
+                <button onClick={()=>this.context.changeColor('brown')} type="button" className="brown"></button>
+                <button onClick={()=>this.context.changeColor('red')} type="button" className="red"></button>
+                <button onClick={()=>this.context.changeColor('yellow')} type="button" className="yellow"></button>
+                <button onClick={()=>this.context.changeColor('orange')} type="button" className="orange"></button>
+                <button onClick={()=>this.context.changeColor('purple')} type="button" className="purple"></button>
+                <button onClick={()=>this.context.changeColor('blue')} type="button" className="blue"></button>
+                <button onClick={()=>this.context.changeColor('green')} type="button" className="green"></button>
+                <button onClick={()=>this.context.handleEraser('white', 20)} type="button" className="eraser"></button>
             </div>
         )
     }
