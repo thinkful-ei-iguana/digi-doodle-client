@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
-import LandingPage from './components/LandingPage/LandingPage';
 import AppContext from './Context/AppContext'
+import LandingPage from './components/LandingPage/LandingPage';
+import GuessingPage from './components/GuessingPage/GuessingPage';
+import DrawingPage from './components/DrawingPage/DrawingPage';
+import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import './App.css';
-import GuessingPage from './GuessingPage/GuessingPage';
-import DrawingPage from './DrawingPage/DrawingPage';
-import GameLobbyPage from './GameLobbyPage/GameLobbyPage';
 
 class App extends React.Component {
   constructor() {

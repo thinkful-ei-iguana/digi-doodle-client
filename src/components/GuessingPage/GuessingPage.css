@@ -1,0 +1,28 @@
+.users-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.submit-guess {
+    border-radius: 10px;
+    font-size: 25px;
+    background-color: #f55440;
+    box-shadow: 2px 3px #222222;
+}
+
+.guess-box {
+    margin-bottom: 1rem;
+}
+
+.guess-container {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5rem;
+    margin-left: 5rem;
+    margin-top: 1rem;
+}
+
+.guess-page-header {
+    width: 98%;
+}
