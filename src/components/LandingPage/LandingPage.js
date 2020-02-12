@@ -13,7 +13,6 @@ import Logo from '../../Pictures/digidoodle-logo.png';
 // }
 
 class LandingPage extends React.Component {
-  state = {}
   render() {
     return (
       <div className="landing-page">
