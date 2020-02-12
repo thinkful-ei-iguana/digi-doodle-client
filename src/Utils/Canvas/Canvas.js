@@ -1,9 +1,9 @@
 import React from 'react';
 import { SketchField, Tools } from 'react-sketch';
-import AppContext from '../../Context/AppContext'
+import ColorContext from '../../Context/ColorContext'
 
 class Canvas extends React.Component {
-    static contextType = AppContext;
+    static contextType = ColorContext;
     render() {
         return (
             <SketchField 
