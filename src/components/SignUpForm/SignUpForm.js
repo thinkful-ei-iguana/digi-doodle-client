@@ -55,6 +55,6 @@ class SignUpForm extends React.Component {
   }
 }
 
-
+//comment
 
 export default SignUpForm;
