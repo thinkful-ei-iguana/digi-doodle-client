@@ -17,12 +17,12 @@ class App extends React.Component {
   render() {
     return (
       <AppContext.Provider value={this.state}>
-      <div className="App">
-        <Route exact path='/' component={LandingPage} />
-        <Route exact path='/guess' component={GuessingPage} />
-        <Route exact path='/draw' component={DrawingPage} />
-        <Route exact path='/lobby' component={GameLobbyPage} />
-      </div>
+        <div className="App">
+          <Route exact path='/' component={LandingPage} />
+          <Route exact path='/guess' component={GuessingPage} />
+          <Route exact path='/draw' component={DrawingPage} />
+          <Route exact path='/lobby' component={GameLobbyPage} />
+        </div>
       </AppContext.Provider>
     );
   }
