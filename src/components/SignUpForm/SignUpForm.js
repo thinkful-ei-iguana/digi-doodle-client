@@ -69,10 +69,10 @@ class SignUpForm extends React.Component {
     let errorMessage;
 
     if (error) {
-      errorMessage = <h2>{this.state.error.error}!</h2>
+      errorMessage = <h2 className="error">{this.state.error.error}!</h2>
     }
     if (greeting) {
-      message = <h2>Hello, {username}!</h2>
+      message = <h2 className="greeting">Hello, {username}!</h2>
     }
 
     return (
