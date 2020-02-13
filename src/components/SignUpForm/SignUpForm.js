@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
+import './SignUpForm.css'
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,7 @@ class SignUpForm extends React.Component {
       error: {
         error: ''
       },
-      playerId: []
+      playerId: [],
     };
   }
 
@@ -64,10 +65,10 @@ class SignUpForm extends React.Component {
     let errorMessage;
 
     if (error) {
-      errorMessage = <h1>{this.state.error.error}!</h1>
+      errorMessage = <h2>{this.state.error.error}!</h2>
     }
     if (greeting) {
-      message = <h1>Hello, {username}!</h1>
+      message = <h2>Hello, {username}!</h2>
     }
 
     return (
@@ -75,19 +76,19 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
-
         <div className="sign-up-form-container" onSubmit={this.handleSubmit}>
           <form className="sign-up-form">
             {errorMessage}
             {message}
             <p>Enter your username:</p>
-            <input
-              type='text'
-              onChange={(event) => this.handleChange(event)}
-              required
-            />
-            <br></br>
-            <button className="start-button" type="submit"  >Play Game!</button>
+              <input
+                type='text'
+                onChange={(event) => this.handleChange(event)}
+                required
+                maxLength="15"
+              />
+            <br/>
+            <button className="start-button" type="submit">Play Game!</button>
           </form>
         </div>
 
