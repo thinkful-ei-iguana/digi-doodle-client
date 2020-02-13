@@ -11,6 +11,7 @@ class SignUpForm extends React.Component {
       error: {
         error: ''
       },
+      playerId: []
     };
   }
 
@@ -31,14 +32,28 @@ class SignUpForm extends React.Component {
         }
       })
     }
+
     event.preventDefault();
-    DigiDoodleApiService.createUserName(username).catch(res => {
+    console.log('fish');
+    DigiDoodleApiService.createUserName(username)
+    .then(res => {
+      
+      this.setState({
+        playerId: [...res]
+      })
+      console.log('state', this.state.playerId);
+      console.log('res', res);
+      console.log('fish');
+    })
+
+    .catch(res => {
       this.setState({
         error: {
           error: res.error
         }
       })
     })
+
   }
 
   render() {
