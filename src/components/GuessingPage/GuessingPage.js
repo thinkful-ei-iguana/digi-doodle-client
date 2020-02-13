@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import Canvas from '../Utils/Canvas/Canvas'
+import Canvas from '../../Utils/Canvas/Canvas'
 import './GuessingPage.css'
-import '../Utils/Canvas/Canvas.css'
+import '../../Utils/Canvas/Canvas.css'
 
 export default class GuessingPage extends Component {
 

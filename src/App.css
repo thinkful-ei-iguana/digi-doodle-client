@@ -3,6 +3,10 @@
   /* want font style: "Abys" */
 }
 
+html {
+  font-family: "Comic Sans MS";
+}
+
 
 @media (prefers-reduced-motion: no-preference) {
   .use-class-here {

@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import ColorContext from '../../Context/ColorContext'
-import Canvas from '../Utils/Canvas/Canvas'
-import Colors from '../Utils/Colors/Colors'
+import Canvas from '../../Utils/Canvas/Canvas'
+import Colors from '../../Utils/Colors/Colors'
+import '../../Utils/Colors/Colors.css'
 import './DrawingPage.css'
-import '../Utils/Canvas/Canvas.css'
+import '../../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
-    static contextType = ColorContext;
     render() {
         return (
             <div>
@@ -15,8 +14,8 @@ export default class DrawingPage extends Component {
                 <h3>Draw a fish </h3>
                 <div className="canvas-container">
                     <Canvas />
+                    <Colors />
                 </div>
-                <Colors />
             </div>
         )
     }
