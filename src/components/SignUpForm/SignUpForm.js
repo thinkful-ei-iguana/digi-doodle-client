@@ -12,8 +12,9 @@ class SignUpForm extends React.Component {
       error: {
         error: ''
       },
-      playerId: [],
-    };
+      playerId: '',
+      gameId: ''
+    }
   }
 
   handleChange = (event) => {
@@ -23,8 +24,9 @@ class SignUpForm extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     let username = this.state.username;
+
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
       return this.setState({
@@ -33,28 +35,30 @@ class SignUpForm extends React.Component {
         }
       })
     }
-
     event.preventDefault();
-    console.log('fish');
-    DigiDoodleApiService.createUserName(username)
-    .then(res => {
-      
-      this.setState({
-        playerId: [...res]
-      })
-      console.log('state', this.state.playerId);
-      console.log('res', res);
-      console.log('fish');
-    })
 
-    .catch(res => {
-      this.setState({
-        error: {
-          error: res.error
-        }
-      })
-    })
+      let userID = await DigiDoodleApiService.createUserName(username);
+      userID = userID[0];
+      await this.setPlayerId(userID);
 
+      let gameData = await DigiDoodleApiService.createNewGame();
+      gameData = gameData[0].id;
+      await this.setGameId(gameData);
+
+      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);    
+      this.props.history.push('/lobby');
+  }
+
+  setPlayerId(uuid) {
+    this.setState({
+      playerId: uuid
+    })
+  }
+
+  setGameId(uuid) {
+    this.setState({
+      gameId: uuid
+    })
   }
 
   render() {
