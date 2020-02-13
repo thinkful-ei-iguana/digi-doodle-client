@@ -32,14 +32,11 @@ const DigiDoodleApiService = {
             headers: {
                 'content-type': 'application/json',
             },
-
             body: JSON.stringify({
                 playerId: playerId,
                 username: username
             })
-        }).then(res =>
-            !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
-        );
+        })
     },
 
     getWordPrompt() {
