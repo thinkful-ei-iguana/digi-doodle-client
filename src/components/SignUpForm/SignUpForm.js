@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
+import './SignUpForm.css'
 
 class SignUpForm extends React.Component {
   constructor(props) {
@@ -11,7 +12,9 @@ class SignUpForm extends React.Component {
       error: {
         error: ''
       },
-    };
+      playerId: '',
+      gameId: ''
+    }
   }
 
   handleChange = (event) => {
@@ -21,8 +24,9 @@ class SignUpForm extends React.Component {
     });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = async (event) => {
     let username = this.state.username;
+
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
       return this.setState({
@@ -32,12 +36,28 @@ class SignUpForm extends React.Component {
       })
     }
     event.preventDefault();
-    DigiDoodleApiService.createUserName(username).catch(res => {
-      this.setState({
-        error: {
-          error: res.error
-        }
-      })
+
+      let userID = await DigiDoodleApiService.createUserName(username);
+      userID = userID[0];
+      await this.setPlayerId(userID);
+
+      let gameData = await DigiDoodleApiService.createNewGame();
+      gameData = gameData[0].id;
+      await this.setGameId(gameData);
+
+      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);    
+      this.props.history.push('/lobby');
+  }
+
+  setPlayerId(uuid) {
+    this.setState({
+      playerId: uuid
+    })
+  }
+
+  setGameId(uuid) {
+    this.setState({
+      gameId: uuid
     })
   }
 
@@ -49,10 +69,10 @@ class SignUpForm extends React.Component {
     let errorMessage;
 
     if (error) {
-      errorMessage = <h1>{this.state.error.error}!</h1>
+      errorMessage = <h2>{this.state.error.error}!</h2>
     }
     if (greeting) {
-      message = <h1>Hello, {username}!</h1>
+      message = <h2>Hello, {username}!</h2>
     }
 
     return (
@@ -60,19 +80,19 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
-
         <div className="sign-up-form-container" onSubmit={this.handleSubmit}>
           <form className="sign-up-form">
             {errorMessage}
             {message}
             <p>Enter your username:</p>
-            <input
-              type='text'
-              onChange={(event) => this.handleChange(event)}
-              required
-            />
-            <br></br>
-            <button className="start-button" type="submit"  >Play Game!</button>
+              <input
+                type='text'
+                onChange={(event) => this.handleChange(event)}
+                required
+                maxLength="15"
+              />
+            <br/>
+            <button className="start-button" type="submit">Play Game!</button>
           </form>
         </div>
 
