@@ -35,7 +35,6 @@ class SignUpForm extends React.Component {
     }
 
     event.preventDefault();
-    console.log('fish');
     DigiDoodleApiService.createUserName(username)
       .then(res => {
         this.setState({
@@ -48,6 +47,15 @@ class SignUpForm extends React.Component {
             this.setState({
               gameId: res[0].id
             })
+          })
+      })
+      .then(() => {
+
+        const { gameId, playerId, username } = this.state
+
+        DigiDoodleApiService.insertPlayerInGame(gameId, playerId, username)
+          .then(res => {
+            console.log(res);
           })
       })
       .catch(res => {
