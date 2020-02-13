@@ -4,6 +4,11 @@ import LandingPage from './components/LandingPage/LandingPage';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import {ColorProvider} from './Context/ColorContext'
 import './App.css';
+import GuessingPage from './GuessingPage/GuessingPage';
+import DrawingPage from './DrawingPage/DrawingPage';
+import GameLobbyPage from './GameLobbyPage/GameLobbyPage';
+import SignUpForm from './components/SignUpForm/SignUpForm';
+
 
 class App extends React.Component {
   render() {

@@ -5,6 +5,7 @@ import ColorContext from '../../Context/ColorContext'
 import './GameLobbyPage.css'
 
 export default class GameLobbyPage extends Component {
+
     render() {
         return (
                 <ColorContext.Consumer>
