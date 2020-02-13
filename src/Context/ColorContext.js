@@ -12,7 +12,7 @@ export class ColorProvider extends React.Component {
     constructor(props) {
         super(props);
         this.state= {
-            color: '',
+            color: 'black',
             eraser: 3,
             changeColor: () => {},
         }
@@ -29,7 +29,7 @@ export class ColorProvider extends React.Component {
         const colorContent = {
             color: this.state.color,
             eraser: this.state.eraser,
-            changeColor: this.ChangeColor
+            changeColor: this.changeColor
         }
         return (
             <ColorContext.Provider value={colorContent}>
