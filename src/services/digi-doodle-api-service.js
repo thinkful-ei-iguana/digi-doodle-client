@@ -10,11 +10,21 @@ const DigiDoodleApiService = {
             body: JSON.stringify({ username })
         }).then(res =>
             !res.ok ?
-            res.json().then(event => Promise.reject(event)) 
-            : res.json()
+                res.json().then(event => Promise.reject(event))
+                : res.json()
         )
-        
-    }
+
+    },
+    createNewGame() {
+        return fetch(`${config.API_ENDPOINT}/game`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+        }).then(res =>
+            !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
+        );
+    },
 }
 
 
