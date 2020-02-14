@@ -5,7 +5,9 @@ const ColorContext = React.createContext({
     prompt: '',
     eraser: 3,
     changeColor: () => { },
-    getPrompt: () => { }
+    getPrompt: () => { },
+    username: '',
+    setUserName: () => {}
 })
 
 export default ColorContext;
@@ -18,7 +20,9 @@ export class ColorProvider extends React.Component {
             eraser: 3,
             prompt: 'test',
             changeColor: () => { },
-            getPrompt: () => { }
+            getPrompt: () => { },
+            username: '',
+            setUserName: () => {}
         }
     }
 
@@ -34,6 +38,12 @@ export class ColorProvider extends React.Component {
             prompt: res.prompt
         })
     }
+    
+    setUserName = (username) => {
+        this.setState({
+            username: username
+        })
+    }
 
     render() {
         const colorContent = {
@@ -41,7 +51,9 @@ export class ColorProvider extends React.Component {
             eraser: this.state.eraser,
             changeColor: this.changeColor,
             getPrompt: this.getPrompt,
-            prompt: this.state.prompt
+            prompt: this.state.prompt,
+            username: this.state.username,
+            setUserName: this.setUserName
         }
         return (
             <ColorContext.Provider value={colorContent}>
