@@ -22,7 +22,6 @@ export default class DrawingPage extends Component {
         return (
             <div>
                 <h1>You are Drawing!</h1>
-                {/* Draw a {this.context.name etc} */}
                 <h3>Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />
