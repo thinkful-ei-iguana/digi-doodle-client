@@ -7,7 +7,11 @@ const ColorContext = React.createContext({
     changeColor: () => { },
     getPrompt: () => { },
     username: '',
-    setUserName: () => {}
+    setUserName: () => {},
+    setGameId: () => {},
+    gameId: '',
+    setUserId: () => {},
+    userId: ''
 })
 
 export default ColorContext;
@@ -22,7 +26,11 @@ export class ColorProvider extends React.Component {
             changeColor: () => { },
             getPrompt: () => { },
             username: '',
-            setUserName: () => {}
+            setUserName: () => {},
+            setGameId: () => {},
+            gameId: '',
+            setUserId: () => {},
+            userId: ''
         }
     }
 
@@ -33,15 +41,27 @@ export class ColorProvider extends React.Component {
         })
     }
 
-    getPrompt = (res) => {
+    getPrompt = (prompt) => {
         this.setState({
-            prompt: res.prompt
+            prompt: prompt
         })
     }
     
     setUserName = (username) => {
         this.setState({
             username: username
+        })
+    }
+
+    setGameId = (gameId) => {
+        this.setState({
+            gameId: gameId
+        })
+    }
+
+    setUserId = (userId) => {
+        this.setState({
+            userId: userId
         })
     }
 
@@ -53,7 +73,11 @@ export class ColorProvider extends React.Component {
             getPrompt: this.getPrompt,
             prompt: this.state.prompt,
             username: this.state.username,
-            setUserName: this.setUserName
+            setUserName: this.setUserName,
+            setGameId: this.setGameId,
+            gameId: this.state.gameId,
+            setUserId: this.setUserId,
+            userId: this.state.userId
         }
         return (
             <ColorContext.Provider value={colorContent}>

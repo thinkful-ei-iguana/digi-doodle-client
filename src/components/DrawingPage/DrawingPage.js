@@ -8,14 +8,35 @@ import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            guess: ''
+        }
+    }
 
     static contextType = ColorContext
 
     componentDidMount() {
         DigiDoodleApiService.getWordPrompt()
             .then(res => {
-                this.context.getPrompt(res)
+                this.context.getPrompt(res.prompt)
             })
+    }
+
+    handleGuessSubmit = async (ev) => {
+        ev.preventDefault();
+        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
+        console.log('guess response: ', guess);
+        await this.setState({
+            guess: ''
+        });
+    }
+
+    handleTextInput = (ev) => {
+        this.setState({
+            guess: ev.target.value
+        })
     }
 
     render() {
@@ -26,8 +47,13 @@ export default class DrawingPage extends Component {
                 <h3>Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />
-                    <Colors />
                 </div>
+                <Colors />
+                <form className="guess-input" >
+                    <label htmlFor="chat-input">Guess goes here</label>
+                    <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
+                    <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
+                </form>
             </div>
         )
     }
