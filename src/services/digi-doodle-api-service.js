@@ -44,6 +44,23 @@ const DigiDoodleApiService = {
             .then(res =>
                 !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
             )
+    },
+
+    postGuess(gameId, playerId, guess) {
+        return fetch(`${config.API_ENDPOINT}/game/guess`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                playerId: playerId,
+                gameId: gameId,
+                guess: guess
+
+            })
+        })
+            .then(res => res.json())
+            .then(res => res);
     }
 
 }
