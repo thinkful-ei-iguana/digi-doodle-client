@@ -1,10 +1,19 @@
+@font-face {
+    font-family: 'cf_crayonsregular';
+    src: url('../../Fonts/Crayon/cfcrayons-regular-webfont.woff2') format('woff2'),
+         url('../../Fonts/Crayon/cfcrayons-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .start-button {
     margin-top: 2.5%;
     border-radius: 10px;
     font-size: 30px;
-    font-family: "Comic Sans MS";
+    font-family: "cf_crayonsregular", fallback, sans-serif;
     background-color: #f55440;
     box-shadow: 2px 3px #222222;
+    padding-left: 40px;
   }
 
   input {
@@ -26,8 +35,16 @@
       font-size: 22px;
   }
 
+  .error {
+      margin-bottom: 2%;
+      margin-top: -2%;
+      font-size: 18px;
+      padding: 0px 15px
+  }
+
   .greeting {
-      margin-bottom: -5%;
+      margin-bottom: -10%;
+      font-size: 22px;
   }
 
 @media screen and (max-width: 450px) {

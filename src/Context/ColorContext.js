@@ -3,7 +3,7 @@ import React from 'react'
 const ColorContext = React.createContext({
     color: '',
     prompt: '',
-    eraser: 3,
+    eraser: 5,
     changeColor: () => { },
     getPrompt: () => { },
     username: '',
@@ -17,7 +17,7 @@ export class ColorProvider extends React.Component {
         super(props);
         this.state = {
             color: 'black',
-            eraser: 3,
+            eraser: 5,
             prompt: 'test',
             changeColor: () => { },
             getPrompt: () => { },
@@ -26,7 +26,7 @@ export class ColorProvider extends React.Component {
         }
     }
 
-    changeColor = (color, eraser = 3) => {
+    changeColor = (color, eraser = 5) => {
         this.setState({
             color: color,
             eraser: eraser,
