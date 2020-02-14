@@ -8,21 +8,18 @@ import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            guess: ''
+            guess: '',
+            username: '',
+            players: [],
+            score: 0
         }
     }
 
     static contextType = ColorContext
 
-    componentDidMount() {
-        DigiDoodleApiService.getWordPrompt()
-            .then(res => {
-                this.context.getPrompt(res.prompt)
-            })
-    }
 
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
@@ -39,7 +36,10 @@ export default class DrawingPage extends Component {
         })
     }
 
+
     render() {
+
+
         console.log(this.context);
         return (
             <div>
@@ -54,7 +54,23 @@ export default class DrawingPage extends Component {
                     <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
                     <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
                 </form>
+                <div className="players-container">
+                    <ul className="player-ul">
+                        {this.context.players.map((player, index) => {
+                            return (
+                                <li className="player-li" key={index}>
+                                    <span>{player.username} | </span>
+                                    <span>{player.score}</span>
+                                </li>
+                            )
+                        })
+                        }
+                    </ul>
+
+
+                </div>
             </div>
+
         )
     }
 }
