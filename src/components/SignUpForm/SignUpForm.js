@@ -1,6 +1,7 @@
 import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
+import TokenService from '../../services/TokenService'
 import ColorContext from '../../Context/ColorContext'
 import './SignUpForm.css'
 
@@ -29,7 +30,7 @@ class SignUpForm extends React.Component {
 
   handleSubmit = async (event) => {
     let username = this.state.username;
-    
+
 
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
@@ -43,10 +44,12 @@ class SignUpForm extends React.Component {
 
     try {
       await this.context.setUserName(this.state.username);
+
       let userID = await DigiDoodleApiService.createUserName(username);
       userID = userID[0];
       await this.setPlayerId(userID);
       await this.context.setUserId(userID);
+      await TokenService.saveAuthToken(userID);
 
       let gameData = await DigiDoodleApiService.createNewGame();
       gameData = gameData[0].id;
