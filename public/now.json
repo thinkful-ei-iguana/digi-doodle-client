@@ -2,7 +2,17 @@
     "version": 2,
     "name": "digi-doodle",
     "routes": [
-        { "handle": "filesystem" },
-        { "src": "/.*", "dest": "/index.html" }
-    ]
-  }
+        {
+            "handle": "filesystem"
+        },
+        {
+            "src": "/.*",
+            "dest": "/index.html"
+        }
+    ],
+    "build": {
+        "env": {
+            "REACT_APP_API_ENDPOINT": "https://digi-doodle.herokuapp.com/api"
+        }
+    }
+}
