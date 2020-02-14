@@ -27,10 +27,11 @@ body {
   input {
       border: none;
       border-bottom: 1px solid #222222;
-      font-size: 20px;
+      font-size: 24px;
       width: 175px;
       padding-left: 10px;
       background: none;
+      margin-right: 1%;
   }
 
   .logo {
@@ -47,7 +48,8 @@ body {
   .error {
       margin-bottom: 2%;
       font-size: 18px;
-      padding: 0px 15px
+      padding: 0px 15px;
+      color: red;
   }
 
   .greeting {
