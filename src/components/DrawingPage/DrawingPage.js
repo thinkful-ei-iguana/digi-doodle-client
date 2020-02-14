@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Canvas from '../../Utils/Canvas/Canvas'
 import Colors from '../../Utils/Colors/Colors'
 import ColorContext from '../../Context/ColorContext'
-import DigiDoodleApiService from '../../services/digi-doodle-api-service'
 import '../../Utils/Colors/Colors.css'
 import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
@@ -18,20 +17,7 @@ export default class DrawingPage extends Component {
             score: 0
         }
     }
-    handleGuessSubmit = async (ev) => {
-        ev.preventDefault();
-        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
-        console.log('guess response: ', guess);
-        await this.setState({
-            guess: ''
-        });
-    }
 
-    handleTextInput = (ev) => {
-        this.setState({
-            guess: ev.target.value
-        })
-    }
 
     render() {
         return (
@@ -42,11 +28,7 @@ export default class DrawingPage extends Component {
                     <Canvas />
                 </div>
                 <Colors />
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here</label>
-                    <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
-                    <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
-                </form>
+               
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
