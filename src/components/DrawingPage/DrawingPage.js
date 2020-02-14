@@ -20,16 +20,6 @@ export default class DrawingPage extends Component {
 
     static contextType = ColorContext
 
-    componentDidMount() {
-        DigiDoodleApiService.getWordPrompt()
-            .then(res => {
-                this.context.getPrompt(res.prompt)
-            })
-        DigiDoodleApiService.getAllPlayersInGame(this.context.gameId)
-            .then(res =>
-                this.context.setPlayers(res[0].username, res[0].score),
-            )
-    }
 
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
@@ -65,19 +55,17 @@ export default class DrawingPage extends Component {
                     <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
                 </form>
                 <div className="players-container">
-                    <ul>
+                    <ul className="player-ul">
                         {this.context.players.map((player, index) => {
                             return (
-                                <li key={index}>{player}</li>
+                                <li className="player-li" key={index}>
+                                    <span>{player.username} | </span>
+                                    <span>{player.score}</span>
+                                </li>
                             )
                         })
                         }
                     </ul>
-
-                    <div className="score-container">
-                        {this.context.score}
-                   
-                    </div>
 
 
                 </div>

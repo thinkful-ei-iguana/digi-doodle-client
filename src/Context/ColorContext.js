@@ -36,7 +36,6 @@ export class ColorProvider extends React.Component {
             userId: '',
             setPlayers: () => {},
             players: [],
-            score: 0
         }
     }
 
@@ -53,10 +52,9 @@ export class ColorProvider extends React.Component {
         })
     }
 
-    setPlayers = (newplayer, score) => {
+    setPlayers = (res) => {
         this.setState({
-            players: [...this.state.players, newplayer],
-            score: score
+            players: res
         })
     }
    
