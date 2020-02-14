@@ -5,3 +5,9 @@
 .player-prompt {
     font-size: 22px;
 }
+
+body {
+    background-image: url('../../Pictures/paper-background.jpg');
+    background-position: center;
+    background-position-x: 25%;
+}
