@@ -1,5 +1,4 @@
 import React from 'react'
-import DigiDoodleApiService from '../services/digi-doodle-api-service'
 
 const ColorContext = React.createContext({
     color: '',
@@ -31,12 +30,9 @@ export class ColorProvider extends React.Component {
     }
 
     getPrompt = (res) => {
-        DigiDoodleApiService.getWordPrompt()
-            .then(res => {
-                this.setState({
-                    prompt: res.prompt
-                })
-            })
+        this.setState({
+            prompt: res.prompt
+        })
     }
 
     render() {
