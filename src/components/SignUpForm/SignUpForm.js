@@ -44,12 +44,15 @@ class SignUpForm extends React.Component {
 
     try {
       await this.context.setUserName(this.state.username);
+      let userName = this.context.username;
 
       let userID = await DigiDoodleApiService.createUserName(username);
       userID = userID[0];
       await this.setPlayerId(userID);
       await this.context.setUserId(userID);
-      await TokenService.saveAuthToken(userID);
+      await TokenService.saveAuthToken(
+        TokenService.makeBasicAuthToken(userID, userName)
+      );
 
       let gameData = await DigiDoodleApiService.createNewGame();
       gameData = gameData[0].id;
