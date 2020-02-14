@@ -5,6 +5,7 @@ import {ColorProvider} from './Context/ColorContext'
 import './App.css';
 
 import SignUpForm from './components/SignUpForm/SignUpForm';
+import GuessingPage from './components/GuessingPage/GuessingPage';
 
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <div className="App">
             <Route exact path='/' component={SignUpForm} />
             <Route path='/lobby' component={GameLobbyPage} />
+            <Route path='/guess' component={GuessingPage} />
           </div>
         </ColorProvider>
     );
