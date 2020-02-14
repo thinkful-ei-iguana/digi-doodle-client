@@ -14,7 +14,6 @@ const ColorContext = React.createContext({
     userId: '',
     setPlayers: () => {},
     players: [],
-    score: 0
 })
 
 export default ColorContext;
