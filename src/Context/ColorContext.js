@@ -1,9 +1,12 @@
 import React from 'react'
+import DigiDoodleApiService from '../services/digi-doodle-api-service'
 
 const ColorContext = React.createContext({
     color: '',
+    prompt: '',
     eraser: 3,
-    changeColor: () => {},
+    changeColor: () => { },
+    getPrompt: () => { }
 })
 
 export default ColorContext;
@@ -11,10 +14,12 @@ export default ColorContext;
 export class ColorProvider extends React.Component {
     constructor(props) {
         super(props);
-        this.state= {
+        this.state = {
             color: 'black',
             eraser: 3,
-            changeColor: () => {},
+            prompt: 'test',
+            changeColor: () => { },
+            getPrompt: () => { }
         }
     }
 
@@ -25,11 +30,22 @@ export class ColorProvider extends React.Component {
         })
     }
 
+    getPrompt = (res) => {
+        DigiDoodleApiService.getWordPrompt()
+            .then(res => {
+                this.setState({
+                    prompt: res.prompt
+                })
+            })
+    }
+
     render() {
         const colorContent = {
             color: this.state.color,
             eraser: this.state.eraser,
-            changeColor: this.changeColor
+            changeColor: this.changeColor,
+            getPrompt: this.getPrompt,
+            prompt: this.state.prompt
         }
         return (
             <ColorContext.Provider value={colorContent}>
