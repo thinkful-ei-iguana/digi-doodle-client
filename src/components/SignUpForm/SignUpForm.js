@@ -36,7 +36,7 @@ class SignUpForm extends React.Component {
       })
     }
     event.preventDefault();
-
+    try {
       let userID = await DigiDoodleApiService.createUserName(username);
       userID = userID[0];
       await this.setPlayerId(userID);
@@ -45,8 +45,16 @@ class SignUpForm extends React.Component {
       gameData = gameData[0].id;
       await this.setGameId(gameData);
 
-      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);    
+      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);
       this.props.history.push('/lobby');
+    } catch (error) {
+      console.log('error', error)
+      this.setState({
+        error: {
+          error: error.error
+        }
+      })
+    }
   }
 
   setPlayerId(uuid) {
@@ -85,13 +93,13 @@ class SignUpForm extends React.Component {
             {errorMessage}
             {message}
             <p>Enter your username:</p>
-              <input
-                type='text'
-                onChange={(event) => this.handleChange(event)}
-                required
-                maxLength="15"
-              />
-            <br/>
+            <input
+              type='text'
+              onChange={(event) => this.handleChange(event)}
+              required
+              maxLength="15"
+            />
+            <br />
             <button className="start-button" type="submit">Play Game!</button>
           </form>
         </div>
