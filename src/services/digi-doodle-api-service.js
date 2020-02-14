@@ -39,6 +39,15 @@ const DigiDoodleApiService = {
         })
     },
 
+
+    getAllPlayersInGame(gameId) {
+        return fetch(`${config.API_ENDPOINT}/game/${gameId}/player`)
+            .then(res =>
+                !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
+            )
+    },
+    
+
     getWordPrompt() {
         return fetch(`${config.API_ENDPOINT}/prompt`)
             .then(res =>

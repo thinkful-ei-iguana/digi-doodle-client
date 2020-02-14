@@ -8,10 +8,11 @@ import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
-            guess: ''
+            guess: '',
+          
         }
     }
 
@@ -22,6 +23,12 @@ export default class DrawingPage extends Component {
             .then(res => {
                 this.context.getPrompt(res.prompt)
             })
+        DigiDoodleApiService.getAllPlayersInGame(this.context.gameId)
+            .then(res =>
+                this.context.setPlayers(res)
+                , console.log('res', this.context.players)
+            )
+
     }
 
     handleGuessSubmit = async (ev) => {
@@ -38,23 +45,34 @@ export default class DrawingPage extends Component {
             guess: ev.target.value
         })
     }
+    
+    // showPlayer = this.context.players.map((player) =>
+    //     <li>{player.username}</li>
+    // )
 
-    render() {
-        console.log(this.context);
-        return (
-            <div>
-                <h1>{this.context.username}, it is your turn to draw!</h1>
-                <h3>Draw {this.context.prompt}</h3>
-                <div className="canvas-container">
-                    <Canvas />
-                </div>
-                <Colors />
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here</label>
-                    <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
-                    <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
-                </form>
+
+
+render() {
+
+    console.log(this.context);
+    return (
+        <div>
+            <h1>{this.context.username}, it is your turn to draw!</h1>
+            <h3>Draw {this.context.prompt}</h3>
+            <div className="canvas-container">
+                <Canvas />
             </div>
-        )
-    }
+            <Colors />
+            <form className="guess-input" >
+                <label htmlFor="chat-input">Guess goes here</label>
+                <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
+                <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
+            </form>
+            <div className="players-container">
+                {/* {this.showPlayer} */}
+          
+            </div>
+        </div>
+    )
+}
 }
