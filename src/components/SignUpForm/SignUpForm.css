@@ -1,19 +1,37 @@
+@font-face {
+    font-family: 'cf_crayonsregular';
+    src: url('../../Fonts/Crayon/cfcrayons-regular-webfont.woff2') format('woff2'),
+         url('../../Fonts/Crayon/cfcrayons-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    background-image: url('../../Pictures/paper-background.jpg');
+    background-position: center;
+    background-position-x: 25%;
+    background-position-y: 2%;
+}
+
 .start-button {
-    margin-top: 2.5%;
+    margin-top: 1.5%;
     border-radius: 10px;
     font-size: 30px;
-    font-family: "Comic Sans MS";
+    font-family: "cf_crayonsregular", fallback, sans-serif;
     background-color: #f55440;
     box-shadow: 2px 3px #222222;
+    padding-left: 40px;
+    margin-right: 1.5%;
   }
 
   input {
       border: none;
       border-bottom: 1px solid #222222;
-      font-size: 20px;
+      font-size: 24px;
       width: 175px;
       padding-left: 10px;
       background: none;
+      margin-right: 1%;
   }
 
   .logo {
@@ -22,12 +40,21 @@
   }
 
   p {
-      margin-top: 9%;
+      margin-top: 5%;
       font-size: 22px;
+      margin-right: 1.2%;
+  }
+
+  .error {
+      margin-bottom: 2%;
+      font-size: 18px;
+      padding: 0px 15px;
+      color: red;
   }
 
   .greeting {
-      margin-bottom: -5%;
+      margin-bottom: -3%;
+      font-size: 22px;
   }
 
 @media screen and (max-width: 450px) {
@@ -36,16 +63,25 @@
         margin-top: 15%;
     }
 
-    h2 {
-        margin-bottom: -15%;
+    .error {
+        margin-bottom: -2%;
+    }
+
+    .greeting {
+        margin-bottom: -10%;
+        margin-top: 4%;
     }
 
     p {
-        margin-top: 20%;
+        margin-top: 14%;
     }
 
     .start-button {
         margin-top: 10%;
+    }
+
+    input {
+        margin-top: -3%;
     }
 
 }

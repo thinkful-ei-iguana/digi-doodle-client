@@ -19,11 +19,10 @@ export default class DrawingPage extends Component {
     }
 
     render() {
-        console.log(this.context);
         return (
             <div>
-                <h1>{this.context.username}, it is your turn to draw!</h1>
-                <h3>Draw {this.context.prompt}</h3>
+                <h1 className="player-header">{this.context.username}, it's your turn</h1>
+                <h3 className="player-prompt">Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />
                     <Colors />

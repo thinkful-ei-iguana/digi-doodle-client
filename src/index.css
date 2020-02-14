@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'cf_crayonsregular';
+  src: url('./Fonts/Crayon/cfcrayons-regular-webfont.woff') format('woff'),
+       url('./Fonts/Crayon/cfcrayons-regular-webfont.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+
+}
+
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -5,9 +15,14 @@ body {
 }
 
 html {
-  font-family: "Comic Sans MS";
+  font-family: 'cf_crayonsregular', fallback, sans-serif;
 }
 
 input{
-  font-family: "Comic Sans MS";
+  font-family: 'cf_crayonsregular', fallback, sans-serif;
+  padding-top: 5px;
+}
+
+input:focus {
+  outline: none;
 }
