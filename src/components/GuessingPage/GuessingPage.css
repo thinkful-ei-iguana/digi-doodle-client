@@ -46,3 +46,43 @@ li {
 .player-li4{
     color: purple;
 }
+
+@media screen and (max-width: 500px) {
+    li {
+        font-size: 16px;
+        padding: 0px 5px;
+        margin-right: 25px;
+    }
+
+    .guess-input {
+        font-size: 20px;
+    }
+
+    input {
+        width: 30%;
+    }
+    .submit-guess {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    li {
+        font-size: 14px;
+    }
+
+    ul {
+        margin: 0 8px;
+    }
+
+    .guess-input {
+        font-size: 20px;
+    }
+
+    input {
+        width: 30%;
+    }
+    .submit-guess {
+        font-size: 18px;
+    }
+}
