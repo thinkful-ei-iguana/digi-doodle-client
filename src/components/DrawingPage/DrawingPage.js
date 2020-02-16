@@ -39,7 +39,6 @@ export default class DrawingPage extends Component {
 
     render() {
 
-
         console.log(this.context);
         return (
             <div>
@@ -66,8 +65,6 @@ export default class DrawingPage extends Component {
                         })
                         }
                     </ul>
-
-
                 </div>
             </div>
 

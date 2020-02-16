@@ -13,7 +13,6 @@ export default class GameLobbyPage extends Component {
 
     static contextType = ColorContext
 
-
     componentDidMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
