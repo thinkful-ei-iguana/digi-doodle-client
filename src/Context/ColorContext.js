@@ -7,12 +7,12 @@ const ColorContext = React.createContext({
     changeColor: () => { },
     getPrompt: () => { },
     username: '',
-    setUserName: () => {},
-    setGameId: () => {},
+    setUserName: () => { },
+    setGameId: () => { },
     gameId: '',
-    setUserId: () => {},
+    setUserId: () => { },
     userId: '',
-    setPlayers: () => {},
+    setPlayers: () => { },
     players: [],
 })
 
@@ -21,6 +21,7 @@ export default ColorContext;
 export class ColorProvider extends React.Component {
     constructor(props) {
         super(props);
+        console.log(this.props);
         this.state = {
             color: 'black',
             eraser: 3,
@@ -28,12 +29,12 @@ export class ColorProvider extends React.Component {
             changeColor: () => { },
             getPrompt: () => { },
             username: '',
-            setUserName: () => {},
-            setGameId: () => {},
+            setUserName: () => { },
+            setGameId: () => { },
             gameId: '',
-            setUserId: () => {},
+            setUserId: () => { },
             userId: '',
-            setPlayers: () => {},
+            setPlayers: () => { },
             players: [],
         }
     }
@@ -56,8 +57,7 @@ export class ColorProvider extends React.Component {
             players: res
         })
     }
-   
-    
+
     setUserName = (username) => {
         this.setState({
             username: username
