@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import DrawingPage from '../DrawingPage/DrawingPage'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
-import TokenService from '../../services/TokenService'
 import ColorContext from '../../Context/ColorContext';
+import Cookies from 'js-cookie'
 import './GameLobbyPage.css'
 
 export default class GameLobbyPage extends Component {
@@ -15,23 +15,26 @@ export default class GameLobbyPage extends Component {
 
 
     componentDidMount() {
-        if (TokenService.hasAuthToken()) {
-            setTimeout(function () {
-                TokenService.clearAuthToken();
-            }, 1000 * 60 * 60 * 24);
-        }
+        let cookie = Cookies.get();
+        let data = JSON.parse(cookie['digi-doodle-user']);
+        console.log('BANG', data);
+
+        this.context.setGameId(data.gameId)
+        this.context.setUserName(data.username)
+        this.context.setUserId(data.userId)
+
+        console.log('this is gameid', data.gameId);
+
         DigiDoodleApiService.getWordPrompt()
             .then(res => {
                 this.context.getPrompt(res.prompt)
             })
-        DigiDoodleApiService.getAllPlayersInGame(this.context.gameId)
+        DigiDoodleApiService.getAllPlayersInGame(data.gameId)
             .then(playersArray => {
                 this.context.setPlayers(playersArray)
             })
     }
     render() {
-
-
 
         return (
             <div>
