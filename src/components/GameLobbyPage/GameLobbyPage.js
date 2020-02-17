@@ -3,41 +3,40 @@ import DrawingPage from '../DrawingPage/DrawingPage'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
-import socketIOClient from 'socket.io-client';
+import io from 'socket.io-client';
+
 import './GameLobbyPage.css'
 
 export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            endpoint: ''            
         }
     }
 
     static contextType = ColorContext
 
+    socket_connect = (room) => {
+        return io(`localhost:8000`, {
+            query: 'r_var='+room,
+        });
+    }
+   
     async componentDidMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
-        console.log('BANG', data);
 
-        // FOR SOCKET //
-       
+        await this.context.setGameId(data.gameId)
+        await this.context.setUserName(data.username)
+        await this.context.setUserId(data.userId)
+
+
+
         await this.setState({
-            endpoint: `localhost:8000/api/game/${data.gameId}`
-        }) 
-        
-        const socket = socketIOClient(this.state.endpoint);
-
-        socket.on('guess submitted', (res) => {
-            console.log(res.json());
+            socket: this.socket_connect(`${data.gameId}`)
         })
-        // END OF SOCKET SETUP //
-        this.context.setGameId(data.gameId)
-        this.context.setUserName(data.username)
-        this.context.setUserId(data.userId)
 
-        console.log('this is gameid', data.gameId);
+        this.state.socket.emit('chat message', 'hello room')
 
         DigiDoodleApiService.getWordPrompt()
             .then(res => {

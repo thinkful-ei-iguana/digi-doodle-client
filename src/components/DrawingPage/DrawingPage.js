@@ -14,12 +14,12 @@ export default class DrawingPage extends Component {
             guess: '',
             username: '',
             players: [],
-            score: 0
+            score: 0,
+            socket: {}
         }
     }
 
     static contextType = ColorContext
-
 
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
@@ -38,8 +38,7 @@ export default class DrawingPage extends Component {
 
 
     render() {
-
-        console.log(this.context);
+        console.log('gameId: ', this.context.gameId)
         return (
             <div>
                 <h1>{this.context.username}, it is your turn to draw!</h1>
