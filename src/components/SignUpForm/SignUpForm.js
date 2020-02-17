@@ -72,7 +72,6 @@ class SignUpForm extends React.Component {
       this.props.history.push('/lobby');
 
     } catch (error) {
-      console.log('error', error)
       this.setState({
         error: {
           error: error.error
@@ -94,7 +93,6 @@ class SignUpForm extends React.Component {
   }
 
   render() {
-    console.log(this.context);
     const username = this.state.username;
     const greeting = this.state.greeting;
     let error = this.state.error.error;
@@ -123,6 +121,7 @@ class SignUpForm extends React.Component {
               onChange={(event) => this.handleChange(event)}
               required
               maxLength="15"
+              spellCheck="false"
             />
             <br />
             <button className="start-button" type="submit">Play Game!</button>
