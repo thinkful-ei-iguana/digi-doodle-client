@@ -17,8 +17,8 @@ export default class GameLobbyPage extends Component {
     static contextType = ColorContext
 
     socket_connect = (room) => {
-        return io(`localhost:8000`, {
-            query: 'r_var='+room,
+        return io(`localhost:8000/socket`, {
+            query: 'gameId='+room,
         });
     }
    
@@ -33,8 +33,9 @@ export default class GameLobbyPage extends Component {
 
 
         await this.setState({
-            socket: this.socket_connect(`${data.gameId}`)
+            socket: this.socket_connect(`${data.gameId}`, { transports: ['websocket'] })
         })
+        console.log(this.state.socket);
 
         this.state.socket.emit('chat message', 'hello room')
 
