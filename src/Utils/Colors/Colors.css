@@ -1,70 +1,78 @@
-.red {
+@media screen and (min-width: 300px) {
+  .red {
     width: 30px;
     height: 30px;
     background-color: red;
     cursor: pointer;
     border-radius: 100%;
-}
-.blue {
+  }
+  .blue {
     width: 30px;
     height: 30px;
     background-color: blue;
     cursor: pointer;
     border-radius: 100%;
-}
-.green {
+  }
+  .green {
     width: 30px;
     height: 30px;
     background-color: green;
     cursor: pointer;
     border-radius: 100%;
-}
-.black {
+  }
+  .black {
     width: 30px;
     height: 30px;
     background-color: black;
     cursor: pointer;
     border-radius: 100%;
-}
-.purple {
+  }
+  .purple {
     width: 30px;
     height: 30px;
     background-color: purple;
     cursor: pointer;
     border-radius: 100%;
-}
-.yellow {
+  }
+  .yellow {
     width: 30px;
     height: 30px;
     background-color: gold;
     cursor: pointer;
     border-radius: 100%;
-}
-.orange {
+  }
+  .orange {
     width: 30px;
     height: 30px;
     background-color: orange;
     cursor: pointer;
     border-radius: 100%;
-}
-.brown {
+  }
+  .brown {
     width: 30px;
     height: 30px;
     background-color: brown;
     cursor: pointer;
     border-radius: 100%;
-}
-.eraser {
+  }
+  .eraser {
     width: 30px;
     height: 30px;
     background-color: white;
     cursor: pointer;
     border-radius: 100%;
-}
+  }
 
-.color-buttons {
+  .color-buttons {
     display: flex;
     flex-direction: row;
-    margin: 2% auto;
     display: block;
+    margin-top: 1%;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .color-buttons {
+    margin: 0 auto;
+  }
 }

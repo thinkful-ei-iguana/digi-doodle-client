@@ -118,6 +118,7 @@ class SignUpForm extends React.Component {
               onChange={(event) => this.handleChange(event)}
               required
               maxLength="15"
+              spellCheck="false"
             />
             <br />
             <button className="start-button" type="submit">Play Game!</button>

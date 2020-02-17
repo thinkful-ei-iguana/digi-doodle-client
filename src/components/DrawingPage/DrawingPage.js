@@ -9,6 +9,7 @@ import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
 
 export default class DrawingPage extends Component {
+    static contextType = ColorContext
     constructor(props) {
         super(props);
         this.state = {
@@ -55,28 +56,22 @@ export default class DrawingPage extends Component {
         console.log(this.state.messages)
         return (
             <div>
-                <h1>{this.context.username}, it is your turn to draw!</h1>
-                <h3>Draw {this.context.prompt}</h3>
+                <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
+                <h3 className="player-prompt">Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />
                 </div>
                 <Colors />
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here</label>
-                    <input type="text" onChange={this.handleTextInput} id="chat-input" value={this.state.guess} required></input>
-                    <button type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>Send</button>
-                </form>
+               
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username} | </span>
-                                    <span>{player.score}</span>
+                                    <span>{player.username} : {player.score} </span>
                                 </li>
                             )
-                        })
-                        }
+                        })}
                     </ul>
                 </div>
                 <div className="chat-window">
@@ -89,7 +84,6 @@ export default class DrawingPage extends Component {
                     </ul>
                 </div>
             </div>
-
         )
     }
 }
