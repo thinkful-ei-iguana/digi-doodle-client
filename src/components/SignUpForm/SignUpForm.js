@@ -44,7 +44,7 @@ class SignUpForm extends React.Component {
 
     try {
       await this.context.setUserName(this.state.username);
-      let userName = this.state.username
+      let userName = this.state.username;
 
       let userID = await DigiDoodleApiService.createUserName(username);
       userID = userID[0];
@@ -72,7 +72,6 @@ class SignUpForm extends React.Component {
       this.props.history.push('/lobby');
 
     } catch (error) {
-      console.log('error', error)
       this.setState({
         error: {
           error: error.error
@@ -94,7 +93,6 @@ class SignUpForm extends React.Component {
   }
 
   render() {
-    console.log(this.context);
     const username = this.state.username;
     const greeting = this.state.greeting;
     let error = this.state.error.error;

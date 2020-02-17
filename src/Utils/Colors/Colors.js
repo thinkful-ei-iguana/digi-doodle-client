@@ -4,7 +4,6 @@ import ColorContext from '../../Context/ColorContext'
 class Colors extends React.Component {
     static contextType = ColorContext;
     render() {
-        console.log(this.context)
         return (
             <div className="color-buttons">
                 <button onClick={()=>this.context.changeColor('black')} type="button" className="black"></button>

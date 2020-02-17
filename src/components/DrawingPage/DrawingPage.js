@@ -3,6 +3,7 @@ import Canvas from '../../Utils/Canvas/Canvas'
 import Colors from '../../Utils/Colors/Colors'
 import ColorContext from '../../Context/ColorContext'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service'
+import socket from '../../services/socket-service'
 import '../../Utils/Colors/Colors.css'
 import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
@@ -15,16 +16,22 @@ export default class DrawingPage extends Component {
             username: '',
             players: [],
             score: 0,
-            socket: {}
         }
     }
 
     static contextType = ColorContext
 
+
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
         let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
-        console.log('guess response: ', guess);
+
+        socket.emit('guess', `${this.state.guess}`);
+        socket.on('chat message', (msg) => {
+            console.log('from server: ', msg);
+        })
+
+        // console.log('guess response: ', guess);
         await this.setState({
             guess: ''
         });
@@ -38,7 +45,7 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        console.log('gameId: ', this.context.gameId)
+
         return (
             <div>
                 <h1>{this.context.username}, it is your turn to draw!</h1>

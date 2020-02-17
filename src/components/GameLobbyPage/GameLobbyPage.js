@@ -3,10 +3,10 @@ import DrawingPage from '../DrawingPage/DrawingPage'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
-import io from 'socket.io-client';
-
+import socket from '../../services/socket-service';
 import './GameLobbyPage.css'
 
+        
 export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
@@ -16,12 +16,6 @@ export default class GameLobbyPage extends Component {
 
     static contextType = ColorContext
 
-    socket_connect = (room) => {
-        return io(`localhost:8000/socket`, {
-            query: 'gameId='+room,
-        });
-    }
-   
     async componentDidMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
@@ -30,14 +24,11 @@ export default class GameLobbyPage extends Component {
         await this.context.setUserName(data.username)
         await this.context.setUserId(data.userId)
 
-
-
-        await this.setState({
-            socket: this.socket_connect(`${data.gameId}`, { transports: ['websocket'] })
+        socket.emit('sendRoom', `${data.gameId}`);
+        socket.on('chat message', msg => {
+            console.log('from server: ', msg);
         })
-        console.log(this.state.socket);
-
-        this.state.socket.emit('chat message', 'hello room')
+        console.log(socket);
 
         DigiDoodleApiService.getWordPrompt()
             .then(res => {
@@ -50,7 +41,6 @@ export default class GameLobbyPage extends Component {
     }
 
     render() {
-
         return (
             <div>
                 <DrawingPage />
