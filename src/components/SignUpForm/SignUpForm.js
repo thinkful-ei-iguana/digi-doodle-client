@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext'
+import Cookies from 'js-cookie';
 import './SignUpForm.css'
 
 class SignUpForm extends React.Component {
@@ -29,7 +30,7 @@ class SignUpForm extends React.Component {
 
   handleSubmit = async (event) => {
     let username = this.state.username;
-    
+
 
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
@@ -43,18 +44,33 @@ class SignUpForm extends React.Component {
 
     try {
       await this.context.setUserName(this.state.username);
+      let userName = this.state.username
+
       let userID = await DigiDoodleApiService.createUserName(username);
       userID = userID[0];
       await this.setPlayerId(userID);
       await this.context.setUserId(userID);
+
+
+
+
 
       let gameData = await DigiDoodleApiService.createNewGame();
       gameData = gameData[0].id;
       await this.setGameId(gameData);
       await this.context.setGameId(gameData);
 
+      let cookieData = {
+        username: userName,
+        userID: userID,
+        gameId: gameData
+      }
+
+      Cookies.set('digi-doodle-user', cookieData, { expires: 1 });
+
       await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);
       this.props.history.push('/lobby');
+
     } catch (error) {
       this.setState({
         error: {
