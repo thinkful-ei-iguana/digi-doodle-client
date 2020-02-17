@@ -16,6 +16,10 @@ export default class DrawingPage extends Component {
             username: '',
             players: [],
             score: 0,
+            messages: [{
+                player: 'Lobby',
+                message: 'Welcome to the room!'
+            }]
         }
     }
 
@@ -26,10 +30,13 @@ export default class DrawingPage extends Component {
         ev.preventDefault();
         let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
 
-        socket.emit('guess', `${this.state.guess}`);
-        socket.on('chat message', (msg) => {
-            console.log('from server: ', msg);
-        })
+        socket.emit('guess', {player: this.context.username, message: this.state.guess});
+        socket.on('chat response', (msg) => {
+            this.setState({ 
+                 messages: [...this.state.messages, msg]
+             });
+         })
+         console.log(this.state.messages)
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -45,7 +52,7 @@ export default class DrawingPage extends Component {
 
 
     render() {
-
+        console.log(this.state.messages)
         return (
             <div>
                 <h1>{this.context.username}, it is your turn to draw!</h1>
@@ -70,6 +77,15 @@ export default class DrawingPage extends Component {
                             )
                         })
                         }
+                    </ul>
+                </div>
+                <div className="chat-window">
+                    <ul>
+                     {this.state.messages.map((message, index) => {
+                         return(
+                            <li key={index}>{message.player}: {message.message}</li>
+                            )
+                        })}   
                     </ul>
                 </div>
             </div>

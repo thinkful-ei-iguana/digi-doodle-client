@@ -15,19 +15,8 @@ const DigiDoodleApiService = {
         )
     },
 
-    createNewGame() {
-        return fetch(`${config.API_ENDPOINT}/game`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-        }).then(res =>
-            !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
-        );
-    },
-
-    insertPlayerInGame(gameId, playerId, username) {
-        return fetch(`${config.API_ENDPOINT}/game/${gameId}/player`, {
+    joinGame(playerId, username) {
+        return fetch(`${config.API_ENDPOINT}/game/join`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -36,8 +25,9 @@ const DigiDoodleApiService = {
                 playerId: playerId,
                 username: username
             })
-        })
+        }).then(res => res.json());
     },
+
 
 
     getAllPlayersInGame(gameId) {
@@ -65,7 +55,6 @@ const DigiDoodleApiService = {
                 playerId: playerId,
                 gameId: gameId,
                 guess: guess
-
             })
         })
             .then(res => res.json())

@@ -41,6 +41,7 @@ export default class GameLobbyPage extends Component {
     }
 
     render() {
+        console.log(this.props.history);
         return (
             <div>
                 <DrawingPage />

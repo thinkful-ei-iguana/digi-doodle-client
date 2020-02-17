@@ -46,17 +46,15 @@ class SignUpForm extends React.Component {
       await this.context.setUserName(this.state.username);
       let userName = this.state.username;
 
-      let userID = await DigiDoodleApiService.createUserName(username);
+      let userID = await DigiDoodleApiService.createUserName(userName);
+      console.log('userId: ', userID);
       userID = userID[0];
       await this.setPlayerId(userID);
       await this.context.setUserId(userID);
 
-
-
-
-
-      let gameData = await DigiDoodleApiService.createNewGame();
-      gameData = gameData[0].id;
+      let gameData = await DigiDoodleApiService.joinGame(this.state.playerId, userName);
+      console.log('gamedata response: ', gameData);
+      gameData = gameData[0];
       await this.setGameId(gameData);
       await this.context.setGameId(gameData);
 
@@ -68,7 +66,6 @@ class SignUpForm extends React.Component {
 
       Cookies.set('digi-doodle-user', cookieData, { expires: 1 });
 
-      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);
       this.props.history.push('/lobby');
 
     } catch (error) {
@@ -76,7 +73,7 @@ class SignUpForm extends React.Component {
         error: {
           error: error.error
         }
-      })
+      });
     }
   }
 
