@@ -35,8 +35,8 @@ export default class GuessingPage extends Component {
         socket.on('chat message', msg => {
             console.log('from server: ', msg);
         })
-        socket.on('drawing', (data) => {
-            
+        socket.on('sketch', (data) => {
+            console.log(data.objects);
         })
 
         DigiDoodleApiService.getWordPrompt()
@@ -77,6 +77,9 @@ export default class GuessingPage extends Component {
     //event handler for submit button to validate answer
 
     render() {
+        socket.on('sketch', (data) => {
+            console.log('sketchData from socket: ', data)
+        })
         return (
             <div className="disabled-canvas">
                 <h1 className="guess-page-header">What are they drawing</h1>

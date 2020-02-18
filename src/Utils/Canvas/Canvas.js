@@ -1,5 +1,6 @@
 import React from 'react';
 import { SketchField, Tools } from 'react-sketch';
+import socket from '../../services/socket-service'
 import ColorContext from '../../Context/ColorContext'
 
 class Canvas extends React.Component {
@@ -30,7 +31,7 @@ class Canvas extends React.Component {
     handleSketchChange = () => {
         let sketch = this._sketch.toJSON()
         console.log('sketch is', sketch);
-        // this.socket.emit('sketch', sketch)
+        socket.emit('sketch', sketch)
     }
 
     render() {
