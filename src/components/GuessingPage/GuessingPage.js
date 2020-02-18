@@ -8,7 +8,6 @@ import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'
 
 export default class GuessingPage extends Component {
-    static contextType = ColorContext;
     constructor(props) {
         super(props);
         this.state = {
@@ -23,44 +22,30 @@ export default class GuessingPage extends Component {
         }
     }
 
-    async componentDidMount() {
+    static contextType = ColorContext;
+
+    async componentWillMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
-
         await this.setState({
             username: data.username
         });
 
-        socket.emit('sendRoom', `${data.gameId}`);
-        socket.on('chat message', msg => {
-            console.log('from server: ', msg);
-        })
-        socket.on('sketch', (data) => {
-            console.log(data.objects);
-        })
-
-        DigiDoodleApiService.getWordPrompt()
-            .then(res => {
-                this.context.getPrompt(res.prompt)
-            })
-        DigiDoodleApiService.getAllPlayersInGame(data.gameId)
-            .then(playersArray => {
-                this.context.setPlayers(playersArray)
-            })
-    }
-
-    
-    handleGuessSubmit = async (ev) => {
-        ev.preventDefault();
-        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
-
-        socket.emit('guess', {player: this.state.username, message: this.state.guess});
-        socket.on('chat response', (msg) => {
+        await socket.on('chat response', (msg) => {
             this.setState({ 
                  messages: [...this.state.messages, msg]
              });
          })
          console.log(this.state.messages)
+    }
+
+    handleGuessSubmit = async (ev) => {
+        ev.preventDefault();
+        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
+        console.log('guess response from database: ', guess)
+
+        socket.emit('guess', {player: this.state.username, message: this.state.guess});
+        
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -77,13 +62,14 @@ export default class GuessingPage extends Component {
     //event handler for submit button to validate answer
 
     render() {
-        socket.on('sketch', (data) => {
-            console.log('sketchData from socket: ', data)
-        })
         return (
-            <div className="disabled-canvas">
+            <div>
                 <h1 className="guess-page-header">What are they drawing</h1>
-                <Canvas />
+
+                <div className="disabled-canvas">
+                    <Canvas />
+                </div>
+                
 
 
                 <div className="players-container">

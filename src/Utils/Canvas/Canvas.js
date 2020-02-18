@@ -4,38 +4,51 @@ import socket from '../../services/socket-service'
 import ColorContext from '../../Context/ColorContext'
 
 class Canvas extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            canvasData: []
+        }
+    }
     static contextType = ColorContext;
     // socket;
 
-    // componentDidMount(){
-    //     SocketService.open((socket) => {
-    //         this.socket = socket;
-    //     })
+    componentDidMount(){
 
-    //     this.socket.listen((data) => {
-    //         const message = 'sketch_' + this.props.gameNumber
-    //         this.setState({
-    //             canvasData: data[message]
-    //         })
-    //     })
-    // }
+        socket.on('sketch return', async(data) => {
+            console.log(data.objects)
+            console.log(this.state.canvasData);
+            if ((!this.context.isDrawing) && data.objects !== this.state.canvasData){
+                console.log('changing state')
+                await this.setState({
+                    canvasData: data
+                })
+            }
+            // const message = 'sketch_' + this.context.gameId
+            // this.setState({
+            //     canvasData: data
+            // })
+        })
+    }
 
     // componentWillUnmount() {
     //     SocketService.close();
     // }
 
-    state = {
-        canvasData: {}
-    }
 
     handleSketchChange = () => {
+      if(this.context.isDrawing){
         let sketch = this._sketch.toJSON()
-        console.log('sketch is', sketch);
-        socket.emit('sketch', sketch)
+        console.log('sketch is', sketch.objects);
+        if ((sketch.objects && this.state.canvasData) &&sketch.objects !== this.state.canvasData){
+            socket.emit('sketch', sketch);
+        }
+      };
     }
 
+   
+
     render() {
-        console.log(this.context.canvasData);
         return (
             <SketchField
                 width="90%"
@@ -45,6 +58,7 @@ class Canvas extends React.Component {
                 lineWidth={this.context.eraser}
                 backgroundColor='white'
                 value={this.state.canvasData}
+                forceValue={true}
                 onChange={this.handleSketchChange}
                 ref={c => (this._sketch = c)}
             />

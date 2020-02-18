@@ -4,7 +4,6 @@ import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext'
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
-import GuessingPage from './components/GuessingPage/GuessingPage';
 
 
 class App extends React.Component {
