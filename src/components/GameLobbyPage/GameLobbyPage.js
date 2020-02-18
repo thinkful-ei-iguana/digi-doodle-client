@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DrawingPage from '../DrawingPage/DrawingPage'
+import GuessingPage from '../GuessingPage/GuessingPage'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
@@ -11,6 +12,7 @@ export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            drawing: false
         }
     }
 
@@ -28,6 +30,11 @@ export default class GameLobbyPage extends Component {
         socket.on('chat message', msg => {
             console.log('from server: ', msg);
         })
+        socket.on('announcement', (announcement) => {
+            this.setState({
+                correct: true
+            })
+        })
         console.log(socket);
 
         DigiDoodleApiService.getWordPrompt()
@@ -41,10 +48,11 @@ export default class GameLobbyPage extends Component {
     }
 
     render() {
-        console.log(this.props.history);
+        
         return (
             <div>
-                <DrawingPage />
+                {this.state.drawing && <DrawingPage />}
+                {!this.state.drawing && <GuessingPage />}
             </div>
         )
     }

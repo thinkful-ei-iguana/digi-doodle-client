@@ -27,9 +27,8 @@ export default class DrawingPage extends Component {
     static contextType = ColorContext
 
 
-    handleGuessSubmit = async (ev) => {
+    handleChatSubmit = async (ev) => {
         ev.preventDefault();
-        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
 
         socket.emit('guess', {player: this.context.username, message: this.state.guess});
         socket.on('chat response', (msg) => {
@@ -53,7 +52,6 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        console.log(this.state.messages)
         return (
             <div>
                 <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
@@ -62,6 +60,18 @@ export default class DrawingPage extends Component {
                     <Canvas />
                 </div>
                 <Colors />
+
+                <form className="guess-input" >
+                    <label htmlFor="chat-input">Guess goes here: </label>
+                    <input type="text" onChange={this.handleTextInput} 
+                    id="chat-input" 
+                    value={this.state.guess} 
+                    required
+                    spellCheck="false"
+                    maxLength="30"
+                    />
+                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
+                </form>
                
                 <div className="players-container">
                     <ul className="player-ul">
@@ -74,6 +84,7 @@ export default class DrawingPage extends Component {
                         })}
                     </ul>
                 </div>
+
                 <div className="chat-window">
                     <ul>
                      {this.state.messages.map((message, index) => {
@@ -83,6 +94,7 @@ export default class DrawingPage extends Component {
                         })}   
                     </ul>
                 </div>
+
             </div>
         )
     }
