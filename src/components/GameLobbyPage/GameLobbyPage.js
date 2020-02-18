@@ -47,12 +47,19 @@ export default class GameLobbyPage extends Component {
             })
     }
 
+    swapIsDrawing = () => {
+        this.setState({
+            isDrawing: !this.state.isDrawing
+        })
+    }
+
     render() {
         
         return (
             <div>
                 {!this.state.isDrawing && <GuessingPage />}
                 {this.state.isDrawing && <DrawingPage />}
+                <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button>
             </div>
         )
     }
