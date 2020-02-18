@@ -5,6 +5,8 @@ import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
+import StandbyView from '../../StandbyView/StandbyView';
+import '../../StandbyView/StandbyView.css';
 import './GameLobbyPage.css'
 
         
@@ -58,9 +60,10 @@ export default class GameLobbyPage extends Component {
 
         return (
             <div>
-                {!this.context.isDrawing && <GuessingPage />}
+                {<StandbyView />}
+             {/*   {!this.context.isDrawing && <GuessingPage />}
                 {this.context.isDrawing && <DrawingPage />}
-                <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button>
+        <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button> */}
             </div>
         )
     }
