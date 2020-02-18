@@ -16,18 +16,14 @@ class Canvas extends React.Component {
     componentDidMount(){
 
         socket.on('sketch return', async(data) => {
-            console.log(data.objects)
-            console.log(this.state.canvasData);
+
             if ((!this.context.isDrawing) && data.objects !== this.state.canvasData){
                 console.log('changing state')
                 await this.setState({
                     canvasData: data
                 })
             }
-            // const message = 'sketch_' + this.context.gameId
-            // this.setState({
-            //     canvasData: data
-            // })
+
         })
     }
 
@@ -40,7 +36,7 @@ class Canvas extends React.Component {
       if(this.context.isDrawing){
         let sketch = this._sketch.toJSON()
         console.log('sketch is', sketch.objects);
-        if ((sketch.objects && this.state.canvasData) &&sketch.objects !== this.state.canvasData){
+        if ((sketch.objects && this.state.canvasData) && sketch.objects !== this.state.canvasData){
             socket.emit('sketch', sketch);
         }
       };

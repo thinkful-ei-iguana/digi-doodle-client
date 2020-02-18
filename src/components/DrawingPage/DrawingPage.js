@@ -58,19 +58,7 @@ export default class DrawingPage extends Component {
                 <div className="canvas-container">
                     <Canvas />
                 </div>
-                <Colors />
-
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput} 
-                    id="chat-input" 
-                    value={this.state.guess} 
-                    required
-                    spellCheck="false"
-                    maxLength="30"
-                    />
-                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
-                </form>
+                <Colors />               
                
                 <div className="players-container">
                     <ul className="player-ul">
@@ -83,6 +71,18 @@ export default class DrawingPage extends Component {
                         })}
                     </ul>
                 </div>
+
+                <form className="guess-input" >
+                    <label htmlFor="chat-input">Guess goes here: </label>
+                    <input type="text" onChange={this.handleTextInput} 
+                    id="chat-input" 
+                    value={this.state.guess} 
+                    required
+                    spellCheck="false"
+                    maxLength="30"
+                    />
+                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
+                </form>
 
                 <div className="chat-window">
                     <ul>
