@@ -14,6 +14,7 @@ const ColorContext = React.createContext({
     userId: '',
     setPlayers: () => { },
     players: [],
+    canvasData: {}
 })
 
 export default ColorContext;
@@ -36,6 +37,7 @@ export class ColorProvider extends React.Component {
             userId: '',
             setPlayers: () => { },
             players: [],
+            canvasData: {}
         }
     }
 
@@ -76,6 +78,8 @@ export class ColorProvider extends React.Component {
         })
     }
 
+
+
     render() {
         const colorContent = {
             color: this.state.color,
@@ -91,7 +95,8 @@ export class ColorProvider extends React.Component {
             userId: this.state.userId,
             setPlayers: this.setPlayers,
             players: this.state.players,
-            score: this.state.score
+            score: this.state.score,
+            canvasData: this.state.canvasData
         }
         return (
             <ColorContext.Provider value={colorContent}>

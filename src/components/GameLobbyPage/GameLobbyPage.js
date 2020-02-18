@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DrawingPage from '../DrawingPage/DrawingPage'
+import GuessingPage from '../GuessingPage/GuessingPage'
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie'
@@ -8,7 +9,9 @@ import './GameLobbyPage.css'
 export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
+        this.state = {
+            isDrawing: false
+        }
     }
 
     static contextType = ColorContext
@@ -16,13 +19,10 @@ export default class GameLobbyPage extends Component {
     componentDidMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
-        console.log('BANG', data);
 
         this.context.setGameId(data.gameId)
         this.context.setUserName(data.username)
         this.context.setUserId(data.userId)
-
-        console.log('this is gameid', data.gameId);
 
         DigiDoodleApiService.getWordPrompt()
             .then(res => {
@@ -37,7 +37,8 @@ export default class GameLobbyPage extends Component {
 
         return (
             <div>
-                <DrawingPage />
+                {!this.state.isDrawing && <GuessingPage />}
+                {this.state.isDrawing && <DrawingPage />}
             </div>
         )
     }

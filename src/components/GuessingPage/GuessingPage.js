@@ -16,7 +16,7 @@ export default class GuessingPage extends Component {
             score: 0
         }
     }
-    
+
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
         let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
@@ -36,7 +36,7 @@ export default class GuessingPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="disabled-canvas">
                 <h1 className="guess-page-header">What are they drawing</h1>
                 <Canvas />
 
@@ -57,17 +57,17 @@ export default class GuessingPage extends Component {
                         </li>
                     </ul>
 
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput} 
-                    id="chat-input" 
-                    value={this.state.guess} 
-                    required
-                    spellCheck="false"
-                    maxLength="30"
-                    />
-                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
-                </form>
+                    <form className="guess-input" >
+                        <label htmlFor="chat-input">Guess goes here: </label>
+                        <input type="text" onChange={this.handleTextInput}
+                            id="chat-input"
+                            value={this.state.guess}
+                            required
+                            spellCheck="false"
+                            maxLength="30"
+                        />
+                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                    </form>
 
 
 
