@@ -36,13 +36,17 @@ const DigiDoodleApiService = {
                 !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
             )
     },
-    
+
 
     getWordPrompt() {
         return fetch(`${config.API_ENDPOINT}/prompt`)
             .then(res =>
                 !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
             )
+    },
+
+    getIsYourTurn() {
+        return true
     },
 
     postGuess(gameId, playerId, guess) {

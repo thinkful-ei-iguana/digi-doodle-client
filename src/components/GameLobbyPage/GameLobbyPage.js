@@ -12,7 +12,7 @@ export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            drawing: false
+            isDrawing: false
         }
     }
 
@@ -51,8 +51,8 @@ export default class GameLobbyPage extends Component {
         
         return (
             <div>
-                {this.state.drawing && <DrawingPage />}
-                {!this.state.drawing && <GuessingPage />}
+                {!this.state.isDrawing && <GuessingPage />}
+                {this.state.isDrawing && <DrawingPage />}
             </div>
         )
     }

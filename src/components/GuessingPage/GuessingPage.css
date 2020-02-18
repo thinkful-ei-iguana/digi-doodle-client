@@ -47,6 +47,10 @@ li {
     color: purple;
 }
 
+.disabled-canvas {
+    pointer-events: none;
+}
+
 @media screen and (max-width: 500px) {
     li {
         font-size: 16px;
