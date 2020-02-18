@@ -27,15 +27,21 @@ export default class GameLobbyPage extends Component {
         await this.context.setUserId(data.userId)
 
         socket.emit('sendRoom', `${data.gameId}`);
+        socket.emit('start check', 'player in room');
+        socket.emit('get game', 'gimme that sweet, sweet game')
+
         socket.on('chat message', msg => {
             console.log('from server: ', msg);
+        })
+        socket.on('send game', async (gameData) => {
+            console.log('gamedata from server: ', gameData);
+            await this.context.setGame(gameData);
         })
         socket.on('announcement', (announcement) => {
             this.setState({
                 correct: true
             })
         })
-        console.log(socket);
 
         DigiDoodleApiService.getWordPrompt()
             .then(res => {

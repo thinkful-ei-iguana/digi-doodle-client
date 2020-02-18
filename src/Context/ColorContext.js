@@ -16,7 +16,9 @@ const ColorContext = React.createContext({
     players: [],
     canvasData: {},
     swapDrawing: () => { },
-    isDrawing: false
+    isDrawing: false,
+    game: {},
+    setGame: () => { }
 })
 
 export default ColorContext;
@@ -41,6 +43,8 @@ export class ColorProvider extends React.Component {
             canvasData: {},
             swapDrawing: () => { },
             isDrawing: false,
+            setGame: () => { },
+            game: {}
         }
     }
 
@@ -80,9 +84,16 @@ export class ColorProvider extends React.Component {
             userId: userId
         })
     }
+
     swapDrawing = () => {
         this.setState({
             isDrawing: !this.state.isDrawing
+        })
+    }
+
+    setGame = (gameData) => {
+        this.setState({
+            game: gameData
         })
     }
 
@@ -106,8 +117,11 @@ export class ColorProvider extends React.Component {
             score: this.state.score,
             canvasData: this.state.canvasData,
             swapDrawing: this.swapDrawing,
-            isDrawing: this.state.isDrawing
+            isDrawing: this.state.isDrawing,
+            game: this.state.game,
+            setGame: this.setGame
         }
+        
         return (
             <ColorContext.Provider value={colorContent}>
                 {this.props.children}

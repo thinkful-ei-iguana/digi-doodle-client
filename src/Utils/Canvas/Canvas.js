@@ -27,9 +27,6 @@ class Canvas extends React.Component {
         })
     }
 
-    // componentWillUnmount() {
-    //     SocketService.close();
-    // }
 
 
     handleSketchChange = () => {
