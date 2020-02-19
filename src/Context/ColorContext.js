@@ -2,10 +2,8 @@ import React from 'react'
 
 const ColorContext = React.createContext({
     color: '',
-    prompt: '',
     eraser: 3,
     changeColor: () => { },
-    getPrompt: () => { },
     username: '',
     setUserName: () => { },
     setGameId: () => { },
@@ -34,9 +32,7 @@ export class ColorProvider extends React.Component {
         this.state = {
             color: 'black',
             eraser: 3,
-            prompt: 'test',
             changeColor: () => { },
-            getPrompt: () => { },
             username: '',
             setUserName: () => { },
             setGameId: () => { },
@@ -65,12 +61,6 @@ export class ColorProvider extends React.Component {
         this.setState({
             color: color,
             eraser: eraser,
-        })
-    }
-
-    getPrompt = (prompt) => {
-        this.setState({
-            prompt: prompt
         })
     }
 
@@ -135,8 +125,6 @@ export class ColorProvider extends React.Component {
             color: this.state.color,
             eraser: this.state.eraser,
             changeColor: this.changeColor,
-            getPrompt: this.getPrompt,
-            prompt: this.state.prompt,
             username: this.state.username,
             setUserName: this.setUserName,
             setGameId: this.setGameId,

@@ -28,10 +28,14 @@ export default class GameLobbyPage extends Component {
 
         socket.emit('sendRoom', { gameId: data.gameId, userId: data.userId, username: data.username });
         socket.emit('start check', 'players in room');
-        socket.emit('get game', 'gimme that sweet, sweet game')
+        socket.emit('get game', 'gimme that sweet, sweet game');
 
         socket.on('chat message', msg => {
             console.log('from server: ', msg);
+        })
+
+        socket.on('send players', (playerData) => {
+            this.context.setPlayers(playerData);
         })
 
         socket.on('chat response', (msg) => {
@@ -44,7 +48,6 @@ export default class GameLobbyPage extends Component {
         })
 
         socket.on('timer', (time) => {
-            console.log(time);
             this.context.updateTimer(time);
         })
 
@@ -52,14 +55,6 @@ export default class GameLobbyPage extends Component {
             //something here to let everyone know there was a correct guess made.
         })
 
-        DigiDoodleApiService.getWordPrompt()
-            .then(res => {
-                this.context.getPrompt(res.prompt)
-            })
-        DigiDoodleApiService.getAllPlayersInGame(data.gameId)
-            .then(playersArray => {
-                this.context.setPlayers(playersArray)
-            })
     }
 
     componentWillUnmount(){
