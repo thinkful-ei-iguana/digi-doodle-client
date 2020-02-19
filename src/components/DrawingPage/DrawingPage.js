@@ -56,6 +56,9 @@ export default class DrawingPage extends Component {
         if (this.context.isDrawing === true && this.context.status === 'waiting for players') {
             drawingHeader = <h1>Draw Something while you wait!</h1>
         }
+        if (this.context.status === 'standby' && this.context.winner !== null) {
+            drawingHeader = <div></div>
+        }
         else {
             drawingHeader = <div><h1>{this.context.current_drawer}, Draw the prompt</h1>
                 <h3 className="player-prompt">Draw {this.context.prompt}</h3></div>
@@ -63,7 +66,7 @@ export default class DrawingPage extends Component {
         return (
             <div>
                 {drawingHeader}
-                <div className="canvas-container">
+                <div className={this.context.disableAttr}>
                     <Canvas />
                 </div>
                 <Colors />

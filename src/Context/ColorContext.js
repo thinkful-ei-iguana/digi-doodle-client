@@ -18,7 +18,10 @@ const ColorContext = React.createContext({
     swapDrawing: () => { },
     isDrawing: false,
     current_drawer: '',
-    status: ''
+    status: '',
+    winner: '',
+    disableAttr: '',
+    toggleDisableCanvas: () => { }
 })
 
 export default ColorContext;
@@ -42,9 +45,11 @@ export class ColorProvider extends React.Component {
             players: [],
             canvasData: {},
             swapDrawing: () => { },
-            isDrawing: false,
+            isDrawing: false, // try: use the provided button to toggle between true or false
             current_drawer: 'Sophia',
-            status: 'drawing'
+            status: 'standby', //try: 'standby', 'waiting for players',
+            winner: 'Jon', //try: null or 'Jon'
+            disableAttr: 'disabled-canvas', //try: 'canvas-container' or 'disabled-canvas' to change className
         }
     }
 
@@ -90,6 +95,11 @@ export class ColorProvider extends React.Component {
         })
     }
 
+    toggleDisableCanvas = () => {
+        this.setState({
+            disableAttr: 'canvas-container'
+        })
+    }
 
 
     render() {
@@ -112,7 +122,10 @@ export class ColorProvider extends React.Component {
             swapDrawing: this.swapDrawing,
             isDrawing: this.state.isDrawing,
             current_drawer: this.state.current_drawer,
-            status: this.state.status
+            status: this.state.status,
+            winner: this.state.winner,
+            disableAttr: this.state.disableAttr,
+            toggleDisableCanvas: this.toggleDisableCanvas
         }
         return (
             <ColorContext.Provider value={colorContent}>

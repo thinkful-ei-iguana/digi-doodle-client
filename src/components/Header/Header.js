@@ -27,6 +27,9 @@ export default class StandbyView extends Component {
         if (this.context.isDrawing === false && this.context.status === 'standby') {
             header = <h1>{this.context.current_drawer}, you're up next to draw</h1>
         }
+        if (this.context.status === 'standby' && this.context.winner !== null) {
+            header = <h1>{this.context.winner}, You Win!</h1>
+        }
         if (this.context.isDrawing === false && this.context.status === 'drawing') {
             header = <h1>What are they drawing?</h1>
         }
