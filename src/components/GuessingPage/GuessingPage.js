@@ -61,10 +61,12 @@ export default class GuessingPage extends Component {
     }
 
     scrollToBottom() {
-    animateScroll.scrollToBottom({
-      containerId: "chatUl"
-    });
-}
+        animateScroll.scrollToBottom({
+        containerId: "chatUl"
+        });
+    }
+
+
 
     //event handler for submit button to validate answer
 
