@@ -24,9 +24,9 @@ export default class GameLobbyPage extends Component {
 
         await this.context.setGameId(data.gameId)
         await this.context.setUserName(data.username)
-        await this.context.setUserId(data.userId)
+        await this.context.setUserId(data.userID)
 
-        socket.emit('sendRoom', { gameId: data.gameId, userId: data.userId, username: data.username });
+        socket.emit('sendRoom', { gameId: data.gameId, userId: data.userID, username: data.username });
         socket.emit('start check', 'players in room');
         socket.emit('get game', 'gimme that sweet, sweet game');
 
