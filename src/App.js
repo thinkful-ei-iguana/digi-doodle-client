@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route } from 'react-router-dom';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
-import { ColorProvider } from './Context/ColorContext'
+import { ColorProvider } from './Context/ColorContext';
+import socket from './services/socket-service'
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 
@@ -15,7 +16,6 @@ class App extends React.Component {
       gameData: ''
     }
   }
-
 
   render() {
     return (

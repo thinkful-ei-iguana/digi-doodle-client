@@ -14,11 +14,7 @@ export default class GuessingPage extends Component {
             guess: '',
             username: '',
             players: [],
-            score: 0,
-            messages: [{
-                player: 'Lobby',
-                message: 'Welcome to the room!'
-            }]
+            score: 0
         }
     }
 
@@ -30,13 +26,6 @@ export default class GuessingPage extends Component {
         await this.setState({
             username: data.username
         });
-
-        await socket.on('chat response', (msg) => {
-            this.setState({ 
-                 messages: [...this.state.messages, msg]
-             });
-         })
-         console.log(this.state.messages)
     }
 
     handleGuessSubmit = async (ev) => {
@@ -44,7 +33,7 @@ export default class GuessingPage extends Component {
         let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
         console.log('guess response from database: ', guess)
 
-        socket.emit('guess', {player: this.state.username, message: this.state.guess});
+        socket.emit('guess', { player: this.state.username, message: this.state.guess });
         
 
         // console.log('guess response: ', guess);
@@ -98,7 +87,7 @@ export default class GuessingPage extends Component {
 
                 <div className="chat-window">
                     <ul>
-                     {this.state.messages.map((message, index) => {
+                     {this.context.messages.map((message, index) => {
                          return(
                             <li key={index}>{message.player}: {message.message}</li>
                             )

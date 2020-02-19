@@ -33,10 +33,18 @@ export default class GameLobbyPage extends Component {
         socket.on('chat message', msg => {
             console.log('from server: ', msg);
         })
+
+        socket.on('chat response', (msg) => {
+            this.context.setMessages({ 
+                 messages: [...this.context.messages, msg]
+             });
+         })
+
         socket.on('send game', async (gameData) => {
             console.log('gamedata from server: ', gameData);
             await this.context.setGame(gameData);
         })
+
         socket.on('announcement', (announcement) => {
             this.setState({
                 correct: true
@@ -51,6 +59,10 @@ export default class GameLobbyPage extends Component {
             .then(playersArray => {
                 this.context.setPlayers(playersArray)
             })
+    }
+
+    componentWillUnmount(){
+        socket.close();
     }
 
     swapIsDrawing = async () => {

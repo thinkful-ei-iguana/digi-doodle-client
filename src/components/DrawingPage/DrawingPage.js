@@ -15,11 +15,7 @@ export default class DrawingPage extends Component {
             guess: '',
             username: '',
             players: [],
-            score: 0,
-            messages: [{
-                player: 'Lobby',
-                message: 'Welcome to the room!'
-            }]
+            score: 0
         }
     }
 
@@ -29,13 +25,7 @@ export default class DrawingPage extends Component {
     handleChatSubmit = async (ev) => {
         ev.preventDefault();
 
-        socket.emit('guess', {player: this.context.username, message: this.state.guess});
-        socket.on('chat response', (msg) => {
-            this.setState({ 
-                 messages: [...this.state.messages, msg]
-             });
-         })
-         console.log(this.state.messages)
+        socket.emit('chat message', { player: this.context.username, message: this.state.guess});
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -86,7 +76,7 @@ export default class DrawingPage extends Component {
 
                 <div className="chat-window">
                     <ul>
-                     {this.state.messages.map((message, index) => {
+                     {this.context.messages.map((message, index) => {
                          return(
                             <li key={index}>{message.player}: {message.message}</li>
                             )

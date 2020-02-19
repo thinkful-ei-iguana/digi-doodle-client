@@ -18,7 +18,10 @@ const ColorContext = React.createContext({
     swapDrawing: () => { },
     isDrawing: false,
     game: {},
-    setGame: () => { }
+    setGame: () => { },
+    setMessages: () => { },
+    messages: [],
+    setCanvas: () => { },
 })
 
 export default ColorContext;
@@ -44,7 +47,13 @@ export class ColorProvider extends React.Component {
             swapDrawing: () => { },
             isDrawing: false,
             setGame: () => { },
-            game: {}
+            game: {},
+            setMessages: () => { },
+            messages: [{
+                player: 'Lobby',
+                message: 'Welcome to the room!'
+            }],
+            setCanvas: () => { }
         }
     }
 
@@ -97,6 +106,18 @@ export class ColorProvider extends React.Component {
         })
     }
 
+    setMessages = (message) => {
+        this.setState({
+            messages: [...this.state.messages, message]
+        })
+    }
+    
+    setCanvas = (data) => {
+        this.setState({
+            canvasData: data
+        })
+    }
+
 
 
     render() {
@@ -119,7 +140,10 @@ export class ColorProvider extends React.Component {
             swapDrawing: this.swapDrawing,
             isDrawing: this.state.isDrawing,
             game: this.state.game,
-            setGame: this.setGame
+            setGame: this.setGame,
+            setMessages: this.setMessages,
+            messages: this.state.messages,
+            setCanvas: this.setCanvas
         }
         
         return (
