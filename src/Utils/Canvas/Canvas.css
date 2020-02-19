@@ -1,6 +1,73 @@
-canvas {
-  border: 2px solid black;
-  border-radius: 25px;
-  margin: -10px 0;
+
+/* Extra small devices (phones, 600px and down) */
+ @media only screen and (max-width: 600px) {
+       canvas, .upper-canvas, .lower-canvas {
+    display: block;
+    margin-left: 11%;
+    width: 599px !important;
+    height: 70px !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    /*margin: -10px 0;*/
+  }
 }
+
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+ @media only screen and (min-width: 600px) {
+     canvas, .upper-canvas, .lower-canvas {
+    display: block;
+    margin-left: 11%;
+    width: 700px !important;
+    height: 100px !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    /*margin: -10px 0;*/
+  }
+}
+
+
+/* Medium devices (landscape tablets, 768px and up) */
+ @media only screen and (min-width: 768px) {
+   canvas, .upper-canvas, .lower-canvas {
+    display: block;
+    margin-left: 11%;
+    width: 800px !important;
+    height: 200px !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    /*margin: -10px 0;*/
+  }
+}
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+ @media only screen and (min-width: 992px) {
+  canvas, .upper-canvas, .lower-canvas {
+    display: block;
+    margin-left: 11%;
+    width: 900px !important;
+    height: 300px !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    /*margin: -10px 0;*/
+  }
+}
+ 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+  canvas, .upper-canvas, .lower-canvas {
+    display: block;
+    margin-left: 11%;
+    width: 1235px !important;
+    height: 500px !important;
+    border: 2px solid black;
+    border-radius: 25px;
+    /*margin: -10px 0;*/
+  }
+}
+
+
+
 

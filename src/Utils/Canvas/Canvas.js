@@ -50,12 +50,12 @@ class Canvas extends React.Component {
         let width;
         let height;
         if(this.state.width >= '700px') {
-            width = '40vw';
-            height = '40vh';
+            width = 1300;
+            height = 500;
         } else {
            if (this.state.width <= '600px') {
-               width = '90vw';
-               height = '60vw';
+               width = 320;
+               height = 240;
            }
         }
 
