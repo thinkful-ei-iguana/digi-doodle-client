@@ -22,6 +22,8 @@ const ColorContext = React.createContext({
     setMessages: () => { },
     messages: [],
     setCanvas: () => { },
+    time: null,
+    updateTimer: () => { }
 })
 
 export default ColorContext;
@@ -53,7 +55,9 @@ export class ColorProvider extends React.Component {
                 player: 'Lobby',
                 message: 'Welcome to the room!'
             }],
-            setCanvas: () => { }
+            setCanvas: () => { },
+            time: null,
+            updateTimer: () => { }
         }
     }
 
@@ -118,6 +122,12 @@ export class ColorProvider extends React.Component {
         })
     }
 
+    updateTimer = (time) => {
+        this.setState({
+            time: time
+        })
+    }
+
 
 
     render() {
@@ -143,7 +153,9 @@ export class ColorProvider extends React.Component {
             setGame: this.setGame,
             setMessages: this.setMessages,
             messages: this.state.messages,
-            setCanvas: this.setCanvas
+            setCanvas: this.setCanvas,
+            time: this.state.time,
+            updateTimer: this.updateTimer
         }
         
         return (

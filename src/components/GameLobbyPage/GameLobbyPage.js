@@ -26,8 +26,8 @@ export default class GameLobbyPage extends Component {
         await this.context.setUserName(data.username)
         await this.context.setUserId(data.userId)
 
-        socket.emit('sendRoom', `${data.gameId}`);
-        socket.emit('start check', 'player in room');
+        socket.emit('sendRoom', { gameId: data.gameId, userId: data.userId, username: data.username });
+        socket.emit('start check', 'players in room');
         socket.emit('get game', 'gimme that sweet, sweet game')
 
         socket.on('chat message', msg => {
@@ -35,9 +35,7 @@ export default class GameLobbyPage extends Component {
         })
 
         socket.on('chat response', (msg) => {
-            this.context.setMessages({ 
-                 messages: [...this.context.messages, msg]
-             });
+            this.context.setMessages(msg);
          })
 
         socket.on('send game', async (gameData) => {
@@ -45,10 +43,13 @@ export default class GameLobbyPage extends Component {
             await this.context.setGame(gameData);
         })
 
+        socket.on('timer', (time) => {
+            console.log(time);
+            this.context.updateTimer(time);
+        })
+
         socket.on('announcement', (announcement) => {
-            this.setState({
-                correct: true
-            })
+            //something here to let everyone know there was a correct guess made.
         })
 
         DigiDoodleApiService.getWordPrompt()
