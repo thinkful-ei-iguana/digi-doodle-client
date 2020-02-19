@@ -58,13 +58,17 @@ export default class GuessingPage extends Component {
             guess: ev.target.value
         })
     }
+   
 
     //event handler for submit button to validate answer
 
     render() {
+        let message = <h1 className="guess-page-header">props.message</h1>;
+
         return (
             <div>
-                <h1 className="guess-page-header">What are they drawing</h1>
+            {message}
+                
 
                 <div className="disabled-canvas">
                     <Canvas />

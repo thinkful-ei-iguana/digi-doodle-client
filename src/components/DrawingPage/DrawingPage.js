@@ -51,9 +51,10 @@ export default class DrawingPage extends Component {
 
 
     render() {
+        let message = <h1 className="guess-page-header">{props.message}</h1>;
         return (
             <div>
-                <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
+                {message}
                 <h3 className="player-prompt">Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />

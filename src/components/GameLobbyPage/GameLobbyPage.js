@@ -57,13 +57,17 @@ export default class GameLobbyPage extends Component {
     }
 
     render() {
+        let displayPage;
+
+        if (this.context.isDrawing && this.context.status === 'waiting for players')
 
         return (
             <div>
-                {<StandbyView />}
-             {/*   {!this.context.isDrawing && <GuessingPage />}
+                <StandbyView />
+              {(!this.context.isDrawing && this.context.status === 'waiting for players') ? <DrawingPage {message="Waiting for more players. Feel free to draw..."} : null />}
+
                 {this.context.isDrawing && <DrawingPage />}
-        <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button> */}
+        <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button> 
             </div>
         )
     }
