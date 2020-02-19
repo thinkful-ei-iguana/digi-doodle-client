@@ -17,7 +17,7 @@ class Canvas extends React.Component {
 
     componentDidMount(){
         window.addEventListener('resize', this.updateDimensions);
-        this.handleWidth();
+        console.log(`Window size: '${this.width}' x '${this.height}'`)
         socket.on('sketch return', async(data) => {
             if ((!this.context.isDrawing) && data.objects !== this.state.canvasData){
                 console.log('changing state')
@@ -46,20 +46,19 @@ class Canvas extends React.Component {
       };
     }
 
-    handleWidth = () => {
-        if (window.innerWidth <= 2000) {
-            this.setState({
-                width: 1000,
-                height: 200
-            })
-        }
-    }
-   
-
     render() {
+        let width;
+        let height;
+        if(this.state.width >= '700px') {
+            width = '40vw';
+            height = '40vh';
+        } else {
+           if (this.state.width <= '600px') {
+               width = '90vw';
+               height = '60vw';
+           }
+        }
 
-        let width = window.innerWidth;
-        let height = window.innerHeight;
         return (
             <SketchField
                 width={width}
