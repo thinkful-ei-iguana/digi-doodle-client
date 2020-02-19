@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import DrawingPage from '../DrawingPage/DrawingPage'
 import GuessingPage from '../GuessingPage/GuessingPage'
-import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
@@ -62,20 +61,12 @@ export default class GameLobbyPage extends Component {
         socket.close();
     }
 
-    swapIsDrawing = async () => {
-        await this.setState({
-            isDrawing: !this.state.isDrawing
-        })
-        await this.context.swapDrawing();
-    }
-
     render() {
 
         return (
             <div>
                 {(this.context.userId !== this.context.game.current_drawer) && <GuessingPage />}
                 {(this.context.userId === this.context.game.current_drawer) && <DrawingPage />}
-                <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button>
             </div>
         )
     }
