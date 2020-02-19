@@ -15,13 +15,15 @@ class Canvas extends React.Component {
 
     componentDidMount(){
 
-        socket.on('sketch return', async(data) => {
+        socket.on('clear canvas', () => {
+            this._sketch.clear();
+        })
 
-            if ((!this.context.isDrawing) && data.objects !== this.context.canvasData){
+        socket.on('sketch return', async(data) => {
+            if ((this.context.userId !== this.context.game.current_drawer) && (data !== this.context.canvasData)){
                 console.log('changing state')
                 await this.context.setCanvas(data);
             }
-
         })
     }
 
@@ -31,9 +33,7 @@ class Canvas extends React.Component {
       if(this.context.userId === this.context.game.current_drawer){
         let sketch = this._sketch.toJSON()
         console.log('sketch is', sketch.objects);
-        if ((sketch.objects && this.context.canvasData) && sketch.objects !== this.context.canvasData){
-            socket.emit('sketch', sketch);
-        }
+        socket.emit('sketch', sketch);
       };
     }
 
@@ -49,7 +49,6 @@ class Canvas extends React.Component {
                 lineWidth={this.context.eraser}
                 backgroundColor='white'
                 value={this.context.canvasData}
-                forceValue={true}
                 onChange={this.handleSketchChange}
                 ref={c => (this._sketch = c)}
             />
