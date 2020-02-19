@@ -47,7 +47,7 @@ class Canvas extends React.Component {
     render() {
         return (
             <SketchField
-                width="90%"
+                width="80%"
                 height="400px"
                 tool={Tools.Pencil}
                 lineColor={this.context.color}

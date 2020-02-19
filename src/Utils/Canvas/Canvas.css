@@ -1,5 +1,11 @@
 canvas {
     border: 2px solid black;
     border-radius: 25px;
-    margin: -10px 5%;
+    margin: -10px 12%;
+}
+
+@media screen and (max-width: 500px) {
+    canvas {
+        width: 10%;
+    }
 }

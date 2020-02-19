@@ -53,7 +53,7 @@ export default class DrawingPage extends Component {
     render() {
         return (
             <div>
-                <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
+                <h1 className="player-header">{this.context.username}, it is your turn to draw<span className="exclamation">!</span></h1>
                 <h3 className="player-prompt">Draw {this.context.prompt}</h3>
                 <div className="canvas-container">
                     <Canvas />
@@ -88,7 +88,7 @@ export default class DrawingPage extends Component {
                     <ul>
                      {this.state.messages.map((message, index) => {
                          return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                            <li className="player-message" key={index}>{message.player}: {message.message}</li>
                             )
                         })}   
                     </ul>

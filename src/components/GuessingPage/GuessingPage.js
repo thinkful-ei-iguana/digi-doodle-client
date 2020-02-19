@@ -6,6 +6,7 @@ import DigiDoodleApiService from '../../services/digi-doodle-api-service'
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'
+import { animateScroll } from "react-scroll";
 
 export default class GuessingPage extends Component {
     constructor(props) {
@@ -34,7 +35,7 @@ export default class GuessingPage extends Component {
         await socket.on('chat response', (msg) => {
             this.setState({ 
                  messages: [...this.state.messages, msg]
-             });
+             }, this.scrollToBottom);
          })
          console.log(this.state.messages)
     }
@@ -59,12 +60,18 @@ export default class GuessingPage extends Component {
         })
     }
 
+    scrollToBottom() {
+    animateScroll.scrollToBottom({
+      containerId: "chatUl"
+    });
+}
+
     //event handler for submit button to validate answer
 
     render() {
         return (
             <div>
-                <h1 className="guess-page-header">What are they drawing</h1>
+                <h1 className="guess-page-header">What are they drawing<span className="question-mark">?</span></h1>
 
                 <div className="disabled-canvas">
                     <Canvas />
@@ -77,7 +84,8 @@ export default class GuessingPage extends Component {
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username} : {player.score} </span>
+                                    <span>{player.username}</span><br/>
+                                    <span>{player.score}</span>
                                 </li>
                             )
                         })}
@@ -97,16 +105,14 @@ export default class GuessingPage extends Component {
                     </form>
 
                 <div className="chat-window">
-                    <ul>
+                    <ul className="chat-ul" id="chatUl">
                      {this.state.messages.map((message, index) => {
                          return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                            <li className="chat-li" key={index}>{message.player}: {message.message}</li>
                             )
                         })}   
                     </ul>
                 </div>
-
-                
             </div>
         )
     }
