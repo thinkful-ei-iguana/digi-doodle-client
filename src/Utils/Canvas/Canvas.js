@@ -28,10 +28,10 @@ class Canvas extends React.Component {
 
 
     handleSketchChange = () => {
-      if(this.context.isDrawing){
+      if(this.context.userId === this.context.game.current_drawer){
         let sketch = this._sketch.toJSON()
         console.log('sketch is', sketch.objects);
-        if ((sketch.objects && this.context.canvasData) && sketch.objects !== this.state.canvasData){
+        if ((sketch.objects && this.context.canvasData) && sketch.objects !== this.context.canvasData){
             socket.emit('sketch', sketch);
         }
       };
