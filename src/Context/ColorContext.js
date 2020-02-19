@@ -21,7 +21,8 @@ const ColorContext = React.createContext({
     messages: [],
     setCanvas: () => { },
     time: null,
-    updateTimer: () => { }
+    updateTimer: () => { },
+    checkDrawing: () => { }
 })
 
 export default ColorContext;

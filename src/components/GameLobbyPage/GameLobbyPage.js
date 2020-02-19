@@ -44,6 +44,7 @@ export default class GameLobbyPage extends Component {
 
         socket.on('send game', async (gameData) => {
             console.log('gamedata from server: ', gameData);
+            gameData = gameData[0];
             await this.context.setGame(gameData);
         })
 
@@ -72,8 +73,8 @@ export default class GameLobbyPage extends Component {
 
         return (
             <div>
-                {!this.context.isDrawing && <GuessingPage />}
-                {this.context.isDrawing && <DrawingPage />}
+                {(this.context.userId !== this.context.game.current_drawer) && <GuessingPage />}
+                {(this.context.userId === this.context.game.current_drawer) && <DrawingPage />}
                 <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button>
             </div>
         )
