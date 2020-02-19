@@ -47,9 +47,8 @@ export class ColorProvider extends React.Component {
             swapDrawing: () => { },
             isDrawing: false, // try: use the provided button to toggle between true or false
             current_drawer: 'Sophia',
-            status: 'standby', //try: 'standby', 'waiting for players',
-            winner: 'Jon', //try: null or 'Jon'
-            disableAttr: 'disabled-canvas', //try: 'canvas-container' or 'disabled-canvas' to change className
+            status: 'waiting for players', //try: 'standby', 'waiting for players',
+            winner: null, //try: null or 'Jon'
         }
     }
 
