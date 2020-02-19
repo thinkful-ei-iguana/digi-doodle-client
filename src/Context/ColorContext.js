@@ -44,7 +44,7 @@ export class ColorProvider extends React.Component {
             swapDrawing: () => { },
             isDrawing: false,
             current_drawer: 'Sophia',
-            status: 'waiting for players'
+            status: 'drawing'
         }
     }
 

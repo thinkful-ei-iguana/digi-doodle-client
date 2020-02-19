@@ -5,11 +5,10 @@ import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
-import StandbyView from '../../StandbyView/StandbyView';
-import '../../StandbyView/StandbyView.css';
+import Header from '../Header/Header';
 import './GameLobbyPage.css'
 
-        
+
 export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
@@ -57,17 +56,13 @@ export default class GameLobbyPage extends Component {
     }
 
     render() {
-        let displayPage;
-
-        if (this.context.isDrawing && this.context.status === 'waiting for players')
 
         return (
             <div>
-                <StandbyView />
-              {(!this.context.isDrawing && this.context.status === 'waiting for players') ? <DrawingPage {message="Waiting for more players. Feel free to draw..."} : null />}
-
+                <Header />
                 {this.context.isDrawing && <DrawingPage />}
-        <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button> 
+                {!this.context.isDrawing && <GuessingPage />}
+                <button onClick={this.swapIsDrawing}>Swap Drawing/Guessing Views</button>
             </div>
         )
     }

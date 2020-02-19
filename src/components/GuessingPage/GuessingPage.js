@@ -32,11 +32,11 @@ export default class GuessingPage extends Component {
         });
 
         await socket.on('chat response', (msg) => {
-            this.setState({ 
-                 messages: [...this.state.messages, msg]
-             });
-         })
-         console.log(this.state.messages)
+            this.setState({
+                messages: [...this.state.messages, msg]
+            });
+        })
+        console.log(this.state.messages)
     }
 
     handleGuessSubmit = async (ev) => {
@@ -44,8 +44,8 @@ export default class GuessingPage extends Component {
         let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
         console.log('guess response from database: ', guess)
 
-        socket.emit('guess', {player: this.state.username, message: this.state.guess});
-        
+        socket.emit('guess', { player: this.state.username, message: this.state.guess });
+
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -58,23 +58,16 @@ export default class GuessingPage extends Component {
             guess: ev.target.value
         })
     }
-   
+
 
     //event handler for submit button to validate answer
 
     render() {
-        let message = <h1 className="guess-page-header">props.message</h1>;
-
         return (
             <div>
-            {message}
-                
-
                 <div className="disabled-canvas">
                     <Canvas />
                 </div>
-                
-
 
                 <div className="players-container">
                     <ul className="player-ul">
@@ -88,29 +81,29 @@ export default class GuessingPage extends Component {
                     </ul>
                 </div>
 
-                    <form className="guess-input" >
-                        <label htmlFor="chat-input">Guess goes here: </label>
-                        <input type="text" onChange={this.handleTextInput}
-                            id="chat-input"
-                            value={this.state.guess}
-                            required
-                            spellCheck="false"
-                            maxLength="30"
-                        />
-                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
-                    </form>
+                <form className="guess-input" >
+                    <label htmlFor="chat-input">Guess goes here: </label>
+                    <input type="text" onChange={this.handleTextInput}
+                        id="chat-input"
+                        value={this.state.guess}
+                        required
+                        spellCheck="false"
+                        maxLength="30"
+                    />
+                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                </form>
 
                 <div className="chat-window">
                     <ul>
-                     {this.state.messages.map((message, index) => {
-                         return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                        {this.state.messages.map((message, index) => {
+                            return (
+                                <li key={index}>{message.player}: {message.message}</li>
                             )
-                        })}   
+                        })}
                     </ul>
                 </div>
 
-                
+
             </div>
         )
     }

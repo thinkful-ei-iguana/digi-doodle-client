@@ -29,13 +29,13 @@ export default class DrawingPage extends Component {
     handleChatSubmit = async (ev) => {
         ev.preventDefault();
 
-        socket.emit('guess', {player: this.context.username, message: this.state.guess});
+        socket.emit('guess', { player: this.context.username, message: this.state.guess });
         socket.on('chat response', (msg) => {
-            this.setState({ 
-                 messages: [...this.state.messages, msg]
-             });
-         })
-         console.log(this.state.messages)
+            this.setState({
+                messages: [...this.state.messages, msg]
+            });
+        })
+        console.log(this.state.messages)
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -51,16 +51,23 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        let message = <h1 className="guess-page-header">{props.message}</h1>;
+        let drawingHeader;
+
+        if (this.context.isDrawing === true && this.context.status === 'waiting for players') {
+            drawingHeader = <h1>Draw Something while you wait!</h1>
+        }
+        else {
+            drawingHeader = <div><h1>{this.context.current_drawer}, Draw the prompt</h1>
+                <h3 className="player-prompt">Draw {this.context.prompt}</h3></div>
+        }
         return (
             <div>
-                {message}
-                <h3 className="player-prompt">Draw {this.context.prompt}</h3>
+                {drawingHeader}
                 <div className="canvas-container">
                     <Canvas />
                 </div>
-                <Colors />               
-               
+                <Colors />
+
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
@@ -75,23 +82,23 @@ export default class DrawingPage extends Component {
 
                 <form className="guess-input" >
                     <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput} 
-                    id="chat-input" 
-                    value={this.state.guess} 
-                    required
-                    spellCheck="false"
-                    maxLength="30"
+                    <input type="text" onChange={this.handleTextInput}
+                        id="chat-input"
+                        value={this.state.guess}
+                        required
+                        spellCheck="false"
+                        maxLength="30"
                     />
                     <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
                 </form>
 
                 <div className="chat-window">
                     <ul>
-                     {this.state.messages.map((message, index) => {
-                         return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                        {this.state.messages.map((message, index) => {
+                            return (
+                                <li key={index}>{message.player}: {message.message}</li>
                             )
-                        })}   
+                        })}
                     </ul>
                 </div>
 
