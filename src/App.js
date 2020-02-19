@@ -12,7 +12,9 @@ class App extends React.Component {
     this.state = {
       userID: '',
       username: '',
-      gameData: ''
+      gameData: '',
+      windowWidth: 0,
+      windowHeight: 0,
     }
   }
 

@@ -72,7 +72,6 @@ export default class GuessingPage extends Component {
         return (
             <div>
                 <h1 className="guess-page-header">What are they drawing<span className="question-mark">?</span></h1>
-
                 <div className="disabled-canvas">
                     <Canvas />
                 </div>
@@ -85,7 +84,7 @@ export default class GuessingPage extends Component {
                             return (
                                 <li className="player-li" key={index}>
                                     <span>{player.username}</span><br/>
-                                    <span>{player.score}</span>
+                                    <span className="score">{player.score}</span>
                                 </li>
                             )
                         })}
