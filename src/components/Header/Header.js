@@ -33,15 +33,17 @@ export default class StandbyView extends Component {
         if (this.context.game.status === 'standby' && this.context.roundResults) {
             header = <h1>{this.context.roundResults}</h1>;
         }
+
         //winning mode
         else if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
-            header = <h1>{this.context.game.winner}, You Win!</h1>
-        if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
-            header = 
-            <div className="header-box">
-                <h1>{this.context.game.winner}, You Win!</h1>
-            </div>
-            //isDrawing: false for both parties
+                header = <h1>{this.context.game.winner}, You Win!</h1>
+            if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
+                header = 
+                <div className="header-box">
+                    <h1>{this.context.game.winner}, You Win!</h1>
+                </div>
+                //isDrawing: false for both parties
+            }
         }
         
         //standby before drawer comes up
@@ -53,7 +55,7 @@ export default class StandbyView extends Component {
             </div>
             header = <h1>{this.context.game.winner}, You Win<span className="exclamation">!</span></h1>       
         }
-    }
+    
 
         // waiting mode
         else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
@@ -62,6 +64,7 @@ export default class StandbyView extends Component {
                 <h1>Wait for more players to come in</h1>
             </div>
         }
+
         // guessing mode
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
             header = 
@@ -70,6 +73,7 @@ export default class StandbyView extends Component {
                 <Timer />
             </div>
         }
+
         // drawing mode
         else if (this.props.isDrawing === true && this.context.game.status === 'drawing') {
 
@@ -81,6 +85,7 @@ export default class StandbyView extends Component {
                 <Timer />
             </div>
         }
+
         // waiting mode 2
         else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
             header = 
@@ -88,9 +93,11 @@ export default class StandbyView extends Component {
                 <h1>Draw Something while you wait!</h1>
             </div>
         }
+
         else {
             header = <h1>Something went wrong with the game data.</h1>
         }
+        
 
         return (
             <div>
