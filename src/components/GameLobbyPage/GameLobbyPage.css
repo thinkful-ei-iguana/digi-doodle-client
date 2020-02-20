@@ -21,6 +21,11 @@
     font-weight: bold;
 }
 
+.reminder-instructions {
+    font-size: 18px;
+    color: #222222;
+}
+
 
 @media screen and (min-width: 280px) {
     .guess-page-header, .question-mark {

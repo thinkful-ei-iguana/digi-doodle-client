@@ -61,9 +61,6 @@ export default class GuessingPage extends Component {
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
-
-                <p className="reminder-instructions">You need 15 points to win the game</p>
-
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
@@ -98,6 +95,7 @@ export default class GuessingPage extends Component {
                         })}
                     </ul>
                 </div>
+                <p className="reminder-instructions">15 points to win</p>
             </div>
         )
     }

@@ -49,11 +49,7 @@ export default class DrawingPage extends Component {
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
-
                 <Colors />
-
-                <p className="reminder-instructions">You need 15 points to win the game</p>
-
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
@@ -66,7 +62,6 @@ export default class DrawingPage extends Component {
                         })}
                     </ul>
                 </div>
-
                     <form className="guess-input" >
                         <label htmlFor="chat-input">Guess goes here: </label>
                         <input type="text" onChange={this.handleTextInput}
@@ -88,7 +83,7 @@ export default class DrawingPage extends Component {
                         })}
                     </ul>
                 </div>
-
+                <p className="reminder-instructions">15 points to win</p>
             </div>
         )
     }
