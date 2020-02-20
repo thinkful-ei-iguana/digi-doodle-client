@@ -54,7 +54,7 @@ export default class StandbyView extends Component {
         else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
             header = 
             <div className="header-box">
-                <h1>Wait for more players to come in</h1>
+                <h1>Waiting for more players</h1>
             </div>
         }
 
