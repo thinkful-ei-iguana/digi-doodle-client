@@ -6,6 +6,7 @@ import DigiDoodleApiService from '../../services/digi-doodle-api-service'
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'
+import { animateScroll } from "react-scroll";
 
 export default class GuessingPage extends Component {
     constructor(props) {
@@ -48,6 +49,12 @@ export default class GuessingPage extends Component {
         })
     }
 
+    scrollToBottom() {
+        animateScroll.scrollToBottom({
+        containerId: "chatUl"
+        });
+    }
+
 
     //event handler for submit button to validate answer
 
@@ -64,7 +71,8 @@ export default class GuessingPage extends Component {
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username} : {player.score} </span>
+                                    <span>{player.username}</span><br/>
+                                    <span className="score">{player.score}</span>
                                 </li>
                             )
                         })}
@@ -84,16 +92,14 @@ export default class GuessingPage extends Component {
                 </form>
 
                 <div className="chat-window">
-                    <ul>
+                    <ul className="chat-ul" id="chatUl">
                      {this.context.messages.map((message, index) => {
                          return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                            <li className="chat-li" key={index}>{message.player}: {message.message}</li>
                             )
                         })}
                     </ul>
                 </div>
-
-
             </div>
         )
     }

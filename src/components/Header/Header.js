@@ -34,6 +34,9 @@ export default class StandbyView extends Component {
         //winning mode
         else if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
             header = <h1>{this.context.game.winner}, You Win!</h1>
+        if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
+            header = <h1>{this.context.game.winner}, You Win<span className="exclamation">!</span></h1>
+
             //isDrawing: false for both parties
         }
         //standby before drawer comes up
@@ -47,17 +50,15 @@ export default class StandbyView extends Component {
         }
         // guessing mode
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
-            header = <h1>What are they drawing?</h1>
+            header = <h1>What are they drawing<span className="question">?</span></h1>
         }
         // drawing mode
         else if (this.props.isDrawing === true && this.context.game.status === 'drawing') {
-
-            header = <div><h1>{player.username}, Draw the prompt</h1>
-                <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3></div>
+            header = <div><h1>{player.username}, Draw {this.context.game.current_answer}</h1></div>
         }
         // waiting mode 2
         else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
-            header = <h1>Draw Something while you wait!</h1>
+            header = <h1>Draw Something while you wait<span className="exclamation">!</span></h1>
         }
         else {
             header = <h1>Something went wrong with the game data.</h1>
