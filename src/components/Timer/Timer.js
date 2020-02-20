@@ -14,11 +14,11 @@ class Timer extends React.Component {
   componentDidMount() {
     
     socket.on('timer', (time) => {
-      if (time === 0) {
-        this.setState({
-          time: null
-        });
-    } else 
+    //   if (time === 0) {
+    //     this.setState({
+    //       time: null
+    //     });
+    // } else 
     
       this.setState({
         time: time
@@ -31,7 +31,7 @@ class Timer extends React.Component {
   render() {
     return(
       <div className="timer-container">
-          {(this.state.time !== null) && <h4> In {this.context.time}</h4>}
+          {(this.state.time !== 0) && <h4> In {this.state.time}</h4>}
       </div>
     )
   }

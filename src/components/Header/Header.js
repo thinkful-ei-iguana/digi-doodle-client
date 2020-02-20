@@ -47,7 +47,10 @@ export default class StandbyView extends Component {
         }
         //waiting mode
         else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
-            header = <h1>Wait for more players to come in</h1>
+            header = 
+            <div className="header-box">
+                <h1>Wait for more players to come in</h1>
+            </div>
         }
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
             header = 
@@ -60,19 +63,23 @@ export default class StandbyView extends Component {
 
             header = 
             <div className="header-box">
-                
                 <div className="player-prompt">
                     <h1>{player.username}, Draw <span className="prompt">{this.context.game.current_answer}</span></h1>
-                    </div>
+                </div>
                 <Timer />
             </div>
         }
         else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
             header = 
-            <h1>Draw Something while you wait!</h1>
+            <div className="header-box">
+                <h1>Draw Something while you wait!</h1>
+            </div>
         }
         else {
-            header = <h1>Wait for more players to come in</h1>
+            header = 
+            <div className="header-box">
+                <h1>Wait for more players to come in</h1>
+            </div>
         }
 
         return (

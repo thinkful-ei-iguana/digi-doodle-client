@@ -1,3 +1,4 @@
 .timer-container {
-  align-self: flex-end;
+  align-self: center;
+  justify-self: flex-end;
 }
