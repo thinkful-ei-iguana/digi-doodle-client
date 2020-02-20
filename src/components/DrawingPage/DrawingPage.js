@@ -54,7 +54,8 @@ export default class DrawingPage extends Component {
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username} : {player.score} </span>
+                                    <span>{player.username}</span><br/>
+                                    <span className="score">{player.score}</span>
                                 </li>
                             )
                         })}

@@ -1,5 +1,10 @@
 canvas {
     border: 2px solid black;
     border-radius: 25px;
-    margin: -10px 5%;
+    margin: -10px 5%; 
+
+}
+
+.lower-canvas {
+    background-color: white;;
 }
