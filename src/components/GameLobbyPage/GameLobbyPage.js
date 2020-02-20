@@ -45,7 +45,7 @@ export default class GameLobbyPage extends Component {
         socket.on('send game', async (gameData) => {
             console.log('gamedata from server: ', gameData);
             gameData = gameData[0];
-            let isDrawing = this.context.userId === gameData.current_drawer
+            let isDrawing = this.context.userId === gameData.current_drawer && gameData.status === "drawing"
             this.setState({ isDrawing: isDrawing })
             if (!this.context.isDrawing && isDrawing) {
                 await this.context.swapDrawing()
@@ -76,8 +76,8 @@ export default class GameLobbyPage extends Component {
             <div>
                 <div>Hello {this.context.username}!</div>
                 <Header isDrawing={this.state.isDrawing} />
-                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing}/>}
-                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing}/>}
+                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
+                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
             </div>
         )
     }
