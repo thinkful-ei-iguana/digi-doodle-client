@@ -13,6 +13,15 @@ body {
   background-position-y: 2%;
 }
 
+.rules-container {
+  display: block;
+  margin: auto;
+  width: 65%;
+  border: 4px groove black;
+  background-color: #afedf5;
+  padding-right: 22px;
+}
+
 .start-button {
   margin-top: 1.5%;
   border-radius: 10px;
