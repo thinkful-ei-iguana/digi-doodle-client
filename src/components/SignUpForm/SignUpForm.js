@@ -108,6 +108,8 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
+
+        
         <div className="sign-up-form-container" onSubmit={this.handleSubmit}>
           <form className="sign-up-form">
             {errorMessage}
