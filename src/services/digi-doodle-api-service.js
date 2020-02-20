@@ -15,19 +15,8 @@ const DigiDoodleApiService = {
         )
     },
 
-    createNewGame() {
-        return fetch(`${config.API_ENDPOINT}/game`, {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-        }).then(res =>
-            !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
-        );
-    },
-
-    insertPlayerInGame(gameId, playerId, username) {
-        return fetch(`${config.API_ENDPOINT}/game/${gameId}/player`, {
+    joinGame(playerId, username) {
+        return fetch(`${config.API_ENDPOINT}/game/join`, {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',
@@ -36,14 +25,44 @@ const DigiDoodleApiService = {
                 playerId: playerId,
                 username: username
             })
-        })
+        }).then(res => res.json());
     },
+
+
+
+    getAllPlayersInGame(gameId) {
+        return fetch(`${config.API_ENDPOINT}/game/${gameId}/player`)
+            .then(res =>
+                !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
+            )
+    },
+
 
     getWordPrompt() {
         return fetch(`${config.API_ENDPOINT}/prompt`)
             .then(res =>
                 !res.ok ? res.json().then(event => Promise.reject(event)) : res.json()
             )
+    },
+
+    getIsYourTurn() {
+        return true
+    },
+
+    postGuess(gameId, playerId, guess) {
+        return fetch(`${config.API_ENDPOINT}/game/guess`, {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify({
+                playerId: playerId,
+                gameId: gameId,
+                guess: guess
+            })
+        })
+            .then(res => res.json())
+            .then(res => res);
     }
 
 }

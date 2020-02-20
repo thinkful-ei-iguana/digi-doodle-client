@@ -2,6 +2,7 @@ import React from 'react';
 import Logo from '../../Pictures/digidoodle-logo.png';
 import DigiDoodleApiService from '../../services/digi-doodle-api-service';
 import ColorContext from '../../Context/ColorContext'
+import Cookies from 'js-cookie';
 import './SignUpForm.css'
 
 class SignUpForm extends React.Component {
@@ -29,7 +30,7 @@ class SignUpForm extends React.Component {
 
   handleSubmit = async (event) => {
     let username = this.state.username;
-    
+
 
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
@@ -43,22 +44,36 @@ class SignUpForm extends React.Component {
 
     try {
       await this.context.setUserName(this.state.username);
-      let userID = await DigiDoodleApiService.createUserName(username);
+      let userName = this.state.username;
+
+      let userID = await DigiDoodleApiService.createUserName(userName);
+      console.log('userId: ', userID);
       userID = userID[0];
       await this.setPlayerId(userID);
+      await this.context.setUserId(userID);
 
-      let gameData = await DigiDoodleApiService.createNewGame();
-      gameData = gameData[0].id;
+      let gameData = await DigiDoodleApiService.joinGame(this.state.playerId, userName);
+      console.log('gamedata response: ', gameData);
+      gameData = gameData[0];
       await this.setGameId(gameData);
+      await this.context.setGameId(gameData);
 
-      await DigiDoodleApiService.insertPlayerInGame(this.state.gameId, this.state.playerId, this.state.username);
+      let cookieData = {
+        username: userName,
+        userID: userID,
+        gameId: gameData
+      }
+
+      Cookies.set('digi-doodle-user', cookieData, { expires: 1 });
+
       this.props.history.push('/lobby');
+
     } catch (error) {
       this.setState({
         error: {
           error: error.error
         }
-      })
+      });
     }
   }
 
@@ -108,9 +123,17 @@ class SignUpForm extends React.Component {
             <br />
             <button className="start-button" type="submit">Play Game!</button>
           </form>
+        </div>   
+        <h2 className="welcome-header">Welcome to digi-doodle<span className="exclamation">!</span></h2>
+        <div className="rules-container">
+          <p className="intro-text">The rules of the game are simple:</p>
+          <ul className="rules-ul">
+            <li className="rules-li">• First type out your desired username to start playing<span className="exclamation">!</span></li>
+            <li className="rules-li">• When it’s your turn, you will draw a picture based on the given word or phrase that you see. </li>
+            <li className="rules-li">• When you're guessing what another player is drawing, you will type and submit your guess in the chat box below the canvas.</li>
+            <li className="rules-li">• The drawer gets 2 points when a player makes a correct guess, and the guesser gets 1 point for each correct guess. The first player to score 15 points wins<span className="exclamation">!</span></li>
+          </ul>
         </div>
-
-
       </div>
     );
   }
