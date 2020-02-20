@@ -81,7 +81,7 @@ export default class GuessingPage extends Component {
                         value={this.state.guess}
                         required
                         spellCheck="false"
-                        maxLength="30"
+                        maxLength="35"
                     />
                     <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
                 </form>

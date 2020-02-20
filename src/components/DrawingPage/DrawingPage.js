@@ -69,7 +69,7 @@ export default class DrawingPage extends Component {
                             value={this.state.guess}
                             required
                             spellCheck="false"
-                            maxLength="30"
+                            maxLength="35"
                         />
                         <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
                     </form>
