@@ -108,20 +108,6 @@ class SignUpForm extends React.Component {
         <div className="logo-container">
           <img className="logo" src={Logo} alt="logo" />
         </div>
-
-          <h2 className="welcome-header">Welcome to digi-doodle!</h2>
-          
-          <div className="rules-container">
-          <p>Choose a username to play a game with other users.</p>
-          <p>The rules of the game are simple:</p>
-          <ul>
-            <li>• When it’s your turn to draw, draw a picture based on the given word or phrase that you see. </li>
-            <li>• When it’s your turn to guess, try to guess what another user is drawing and type your guess in the chat.</li>
-            <li>• The drawer gets 2 points when a guesser makes a correct guess, and the guessers get 1 point for each correct guess. The first user to score 15 points wins!</li>
-          </ul>
-        </div>
-
-
         <div className="sign-up-form-container" onSubmit={this.handleSubmit}>
           <form className="sign-up-form">
             {errorMessage}
@@ -137,9 +123,17 @@ class SignUpForm extends React.Component {
             <br />
             <button className="start-button" type="submit">Play Game!</button>
           </form>
+        </div>   
+        <div className="rules-container">
+          <h2 className="welcome-header">Welcome to digi-doodle!</h2>
+          <p className="intro-text">The rules of the game are simple:</p>
+          <ul className="rules-ul">
+            <li className="rules-li">• First type out your desired username to start playing!</li>
+            <li className="rules-li">• When it’s your turn, you will draw a picture based on the given word or phrase that you see. </li>
+            <li className="rules-li">• When you're guessing what another player is drawing, you will type and submit your guess in the chat box below the canvas.</li>
+            <li className="rules-li">• The drawer gets 2 points when a player makes a correct guess, and the guesser gets 1 point for each correct guess. The first player to score 15 points wins!</li>
+          </ul>
         </div>
-
-
       </div>
     );
   }

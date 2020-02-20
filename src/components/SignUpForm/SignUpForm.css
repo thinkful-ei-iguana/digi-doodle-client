@@ -1,7 +1,7 @@
 @font-face {
   font-family: "cf_crayonsregular";
   src: url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff2") format("woff2"),
-    url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
+       url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -14,12 +14,25 @@ body {
 }
 
 .rules-container {
-  display: block;
-  margin: auto;
-  width: 65%;
-  border: 4px groove black;
-  background-color: #afedf5;
-  padding-right: 22px;
+  font-weight: 600;
+  background-color: white;
+  opacity: 90%;
+  border: 2px solid #3ea6fb;
+  border-radius: 10px;
+}
+
+.welcome-header {
+  margin-top: 15%;
+  margin-bottom: -4%;
+}
+
+.rules-li {
+  text-align: left;
+  padding-top: 5px;
+}
+
+.intro-text {
+  font-size: 18px;
 }
 
 .start-button {
@@ -31,6 +44,7 @@ body {
   box-shadow: 2px 3px #222222;
   padding-left: 40px;
   margin-right: 1.5%;
+  font-weight: 600;
 }
 
 input {
@@ -52,6 +66,7 @@ p {
   margin-top: 5%;
   font-size: 22px;
   margin-right: 1.2%;
+  font-weight: 600;
 }
 
 .error {
@@ -91,5 +106,71 @@ p {
 
   input {
     margin-top: -3%;
+  }
+
+  .rules-container {
+    margin: 20px 15px;
+  }
+
+  .welcome-header {
+    margin-top: 5%;
+  }
+
+  .rules-li {
+    margin-left: -30px;
+    margin-bottom: 15px;
+    margin-right: 3.5px;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .rules-li {
+    font-size: 18px;
+  }
+
+  .rules-container {
+    margin-top: 5%;
+  }
+
+  .welcome-header {
+    margin-top: 2%;
+  }
+}
+
+@media screen and (min-width: 800px) {
+  .welcome-header {
+    font-size: 28px;
+    margin-top: 5%;
+    margin-bottom: 4%;
+  }
+
+  .intro-text {
+    font-size: 24px;
+  }
+
+  .rules-li {
+    font-size: 18px;
+  }
+  
+  .rules-container {
+    margin-bottom: 5%;
+  }
+
+  .rules-container {
+    margin: 10px 25px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .rules-container {
+    margin: 20px 15%;
+  }
+
+  .welcome-header {
+    margin-top: 2%;
+  }
+
+  .intro-text {
+    margin-top: -2%;
   }
 }
