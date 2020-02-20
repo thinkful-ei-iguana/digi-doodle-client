@@ -61,6 +61,11 @@ export default class GameLobbyPage extends Component {
             }
         })
 
+        socket.on('results', (results) => {
+            console.log('results of round: ', results);
+            this.context.setRoundResults(results);
+        })
+
         socket.on('announcement', (announcement) => {
             //something here to let everyone know there was a correct guess made.
         })

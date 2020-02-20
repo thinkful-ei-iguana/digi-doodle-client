@@ -26,33 +26,41 @@ export default class StandbyView extends Component {
         let player = this.context.players.find(player => {
             return player.player_id === this.context.game.current_drawer
         })
+
+        // results mode
+        if (this.context.game.status === 'standby' && this.context.roundResults) {
+            header = <h1>{this.context.roundResults}</h1>;
+        }
         //winning mode
-        if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
+        else if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
             header = <h1>{this.context.game.winner}, You Win!</h1>
             //isDrawing: false for both parties
         }
         //standby before drawer comes up
-        else if (this.context.game.status === 'standby' && this.context.game.winner === null) {
+        else if (this.context.game.status === 'standby' && this.context.game.winner === null && this.context.roundResults === null) {
             header = <h1>{player.username}, you're up next to draw</h1>
             //isDrawing: false for both parties
         }
-        //waiting mode
+        // waiting mode
         else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
             header = <h1>Wait for more players to come in</h1>
         }
+        // guessing mode
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
             header = <h1>What are they drawing?</h1>
         }
+        // drawing mode
         else if (this.props.isDrawing === true && this.context.game.status === 'drawing') {
 
             header = <div><h1>{player.username}, Draw the prompt</h1>
                 <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3></div>
         }
+        // waiting mode 2
         else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
             header = <h1>Draw Something while you wait!</h1>
         }
         else {
-            header = <h1>Wait for more players to come in</h1>
+            header = <h1>Something went wrong with the game data.</h1>
         }
 
         return (

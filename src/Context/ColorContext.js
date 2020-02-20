@@ -25,6 +25,8 @@ const ColorContext = React.createContext({
     checkDrawing: () => { },
     toggleDisableCanvas: () => { },
     disableAttr: '',
+    roundResults: null,
+    setRoundResults: () => { }
 })
 
 export default ColorContext;
@@ -56,7 +58,8 @@ export class ColorProvider extends React.Component {
             }],
             setCanvas: () => { },
             time: null,
-            updateTimer: () => { }
+            updateTimer: () => { },
+            roundResults: null,
         }
     }
 
@@ -127,7 +130,11 @@ export class ColorProvider extends React.Component {
         })
     }
 
-
+    setRoundResults = (results) => {
+        this.setState({
+            roundResults: results
+        });
+    }
 
     render() {
         const colorContent = {
@@ -154,7 +161,9 @@ export class ColorProvider extends React.Component {
             time: this.state.time,
             updateTimer: this.updateTimer,
             toggleDisableCanvas: this.toggleDisableCanvas,
-            disableAttr: this.state.disableAttr
+            disableAttr: this.state.disableAttr,
+            roundResults: this.state.roundResults,
+            setRoundResults: this.setRoundResults
         }
         
         return (
