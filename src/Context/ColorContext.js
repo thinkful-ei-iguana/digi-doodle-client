@@ -2,10 +2,8 @@ import React from 'react'
 
 const ColorContext = React.createContext({
     color: '',
-    prompt: '',
     eraser: 3,
     changeColor: () => { },
-    getPrompt: () => { },
     username: '',
     setUserName: () => { },
     setGameId: () => { },
@@ -16,7 +14,17 @@ const ColorContext = React.createContext({
     players: [],
     canvasData: {},
     swapDrawing: () => { },
-    isDrawing: false
+    isDrawing: false,
+    game: {},
+    setGame: () => { },
+    setMessages: () => { },
+    messages: [],
+    setCanvas: () => { },
+    time: null,
+    updateTimer: () => { },
+    checkDrawing: () => { },
+    toggleDisableCanvas: () => { },
+    disableAttr: '',
 })
 
 export default ColorContext;
@@ -27,9 +35,7 @@ export class ColorProvider extends React.Component {
         this.state = {
             color: 'black',
             eraser: 3,
-            prompt: 'test',
             changeColor: () => { },
-            getPrompt: () => { },
             username: '',
             setUserName: () => { },
             setGameId: () => { },
@@ -41,6 +47,16 @@ export class ColorProvider extends React.Component {
             canvasData: {},
             swapDrawing: () => { },
             isDrawing: false,
+            setGame: () => { },
+            game: {},
+            setMessages: () => { },
+            messages: [{
+                player: 'Lobby',
+                message: 'Welcome to the room!'
+            }],
+            setCanvas: () => { },
+            time: null,
+            updateTimer: () => { }
         }
     }
 
@@ -48,12 +64,6 @@ export class ColorProvider extends React.Component {
         this.setState({
             color: color,
             eraser: eraser,
-        })
-    }
-
-    getPrompt = (prompt) => {
-        this.setState({
-            prompt: prompt
         })
     }
 
@@ -80,9 +90,40 @@ export class ColorProvider extends React.Component {
             userId: userId
         })
     }
+
     swapDrawing = () => {
         this.setState({
             isDrawing: !this.state.isDrawing
+        })
+    }
+
+    setGame = (gameData) => {
+        this.setState({
+            game: gameData
+        })
+    }
+
+    toggleDisableCanvas = () => {
+        this.setState({
+            disableAttr: 'canvas-container'
+        })
+    }
+
+    setMessages = (message) => {
+        this.setState({
+            messages: [...this.state.messages, message]
+        })
+    }
+    
+    setCanvas = (data) => {
+        this.setState({
+            canvasData: data
+        })
+    }
+
+    updateTimer = (time) => {
+        this.setState({
+            time: time
         })
     }
 
@@ -93,8 +134,6 @@ export class ColorProvider extends React.Component {
             color: this.state.color,
             eraser: this.state.eraser,
             changeColor: this.changeColor,
-            getPrompt: this.getPrompt,
-            prompt: this.state.prompt,
             username: this.state.username,
             setUserName: this.setUserName,
             setGameId: this.setGameId,
@@ -106,8 +145,18 @@ export class ColorProvider extends React.Component {
             score: this.state.score,
             canvasData: this.state.canvasData,
             swapDrawing: this.swapDrawing,
-            isDrawing: this.state.isDrawing
+            isDrawing: this.state.isDrawing,
+            game: this.state.game,
+            setGame: this.setGame,
+            setMessages: this.setMessages,
+            messages: this.state.messages,
+            setCanvas: this.setCanvas,
+            time: this.state.time,
+            updateTimer: this.updateTimer,
+            toggleDisableCanvas: this.toggleDisableCanvas,
+            disableAttr: this.state.disableAttr
         }
+        
         return (
             <ColorContext.Provider value={colorContent}>
                 {this.props.children}

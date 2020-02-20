@@ -15,11 +15,7 @@ export default class DrawingPage extends Component {
             guess: '',
             username: '',
             players: [],
-            score: 0,
-            messages: [{
-                player: 'Lobby',
-                message: 'Welcome to the room!'
-            }]
+            score: 0
         }
     }
 
@@ -29,13 +25,7 @@ export default class DrawingPage extends Component {
     handleChatSubmit = async (ev) => {
         ev.preventDefault();
 
-        socket.emit('guess', {player: this.context.username, message: this.state.guess});
-        socket.on('chat response', (msg) => {
-            this.setState({ 
-                 messages: [...this.state.messages, msg]
-             });
-         })
-         console.log(this.state.messages)
+        socket.emit('chat message', { player: this.context.username, message: this.state.guess});
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -51,15 +41,16 @@ export default class DrawingPage extends Component {
 
 
     render() {
+        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
-                <h1 className="player-header">{this.context.username}, it is your turn to draw<span className="exclamation">!</span></h1>
-                <h3 className="player-prompt">Draw {this.context.prompt}</h3>
+
                 <div className="canvas-container">
+                <div className={disableAttr}>
                     <Canvas />
                 </div>
-                <Colors />               
-               
+                <Colors />
+
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
@@ -74,23 +65,23 @@ export default class DrawingPage extends Component {
 
                 <form className="guess-input" >
                     <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput} 
-                    id="chat-input" 
-                    value={this.state.guess} 
-                    required
-                    spellCheck="false"
-                    maxLength="30"
+                    <input type="text" onChange={this.handleTextInput}
+                        id="chat-input"
+                        value={this.state.guess}
+                        required
+                        spellCheck="false"
+                        maxLength="30"
                     />
                     <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
                 </form>
 
                 <div className="chat-window">
                     <ul>
-                     {this.state.messages.map((message, index) => {
+                     {this.context.messages.map((message, index) => {
                          return(
                             <li className="player-message" key={index}>{message.player}: {message.message}</li>
                             )
-                        })}   
+                        })}
                     </ul>
                 </div>
 

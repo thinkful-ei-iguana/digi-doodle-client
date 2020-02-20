@@ -1,79 +1,65 @@
 import React from 'react';
 import { SketchField, Tools } from 'react-sketch';
-import socket from '../../services/socket-service'
-import ColorContext from '../../Context/ColorContext'
+import socket from '../../services/socket-service';
+import ColorContext from '../../Context/ColorContext';
 
 class Canvas extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            canvasData: [],
-            // width: 0,
-            // height: 0,
-        }
-    }
-    static contextType = ColorContext;
-    // socket;
+	constructor(props) {
+		super(props);
+		this.state = {
+			canvasData: []
+		};
+	}
+	static contextType = ColorContext;
+	// socket;
 
-    componentDidMount(){
-        // window.addEventListener('resize', this.updateDimensions);
-        // console.log(`Window size: '${this.width}' x '${this.height}'`)
-        socket.on('sketch return', async(data) => {
-            if ((!this.context.isDrawing) && data.objects !== this.state.canvasData){
-                console.log('changing state')
-                await this.setState({
-                    canvasData: data
-                })
-            }
-        })
-    }
+	componentDidMount() {
+		socket.on('clear canvas', () => {
+			if (this._sketch && this._sketch.clear) {
+				console.info('clear sketch');
+				this._sketch.clear();
+			}
+		});
 
-    // updateDimensions = () => {
-    //     this.setState({ width: window.innerWidth, height: window.innerHeight });
-    // };
+		socket.on('sketch return', async (data) => {
+			console.log('changing state');
+			await this.context.setCanvas(data);
+		});
+	}
 
-    // componentWillUnmount() {
-    //     window.removeEventListener('resize', this.updateDimensions)
-    // }
+	handleSketchChange = () => {
+		// code defensively to make sure objects exist
+		if (this.context.isDrawing && this._sketch && this.context.canvasData) {
+			let sketch = this._sketch.toJSON(); // convert drawn object to JSON
+			if (sketch.objects && this.context.canvasData) {
+				// detect if I have drawn something new
+				// we need to do this hack because the canvas detects mouse movements as drawing.
+				// we only want to send data to the server if we have drawn something new
+				const firstDraw = !this.context.canvasData.objects;
+				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
+				if (firstDraw || newDraw){
+					console.log('sketch is', sketch.objects);
+					socket.emit('sketch', sketch);
+				}
+			}
+		}
+	};
 
-    handleSketchChange = () => {
-      if(this.context.isDrawing){
-        let sketch = this._sketch.toJSON()
-        console.log('sketch is', sketch.objects);
-        if ((sketch.objects && this.state.canvasData) && sketch.objects !== this.state.canvasData){
-            socket.emit('sketch', sketch);
-        }
-      };
-    }
-
-    render() {
-        // let width;
-        // let height;
-        // if(this.state.width >= '700px') {
-        //     width = window.innerWidth;
-        //     height = 500;
-        // } else {
-        //    if (this.state.width <= '600px') {
-        //        width = 120;
-        //        height = 540;
-        //    }
-        // }
-
-        return (
-            <SketchField
-                width='80%'
-                height='450px'
-                tool={Tools.Pencil}
-                lineColor={this.context.color}
-                lineWidth={this.context.eraser}
-                backgroundColor='white'
-                value={this.state.canvasData}
-                forceValue={true}
-                onChange={this.handleSketchChange}
-                ref={c => (this._sketch = c)}
-            />
-        )
-    }
+	render() {
+		return (
+			<SketchField
+				width="90%"
+				height="400px"
+				tool={Tools.Pencil}
+				lineColor={this.context.color}
+				lineWidth={this.context.eraser}
+				backgroundColor="white"
+				value={this.context.canvasData}
+				onChange={this.handleSketchChange}
+				ref={(c) => (this._sketch = c)}
+			/>
+		);
+	}
 }
 
 export default Canvas;
