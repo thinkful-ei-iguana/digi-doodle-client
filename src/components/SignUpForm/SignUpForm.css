@@ -23,7 +23,6 @@ body {
 
 .welcome-header {
   margin-top: 15%;
-  margin-bottom: -4%;
 }
 
 .rules-li {
@@ -121,6 +120,10 @@ p {
     margin-bottom: 15px;
     margin-right: 3.5px;
   }
+
+  .intro-text {
+    margin-top: 3%;
+  }
 }
 
 @media screen and (min-width: 500px) {
@@ -129,11 +132,11 @@ p {
   }
 
   .rules-container {
-    margin-top: 5%;
+    margin: 5% 15px;
   }
 
   .welcome-header {
-    margin-top: 2%;
+    margin-top: 4%;
   }
 }
 
@@ -141,7 +144,6 @@ p {
   .welcome-header {
     font-size: 28px;
     margin-top: 5%;
-    margin-bottom: 4%;
   }
 
   .intro-text {
@@ -150,6 +152,7 @@ p {
 
   .rules-li {
     font-size: 18px;
+    margin-right: 1%;
   }
   
   .rules-container {
@@ -171,6 +174,6 @@ p {
   }
 
   .intro-text {
-    margin-top: -2%;
+    margin-top: 1%;
   }
 }
