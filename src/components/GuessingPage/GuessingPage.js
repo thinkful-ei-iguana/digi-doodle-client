@@ -31,11 +31,7 @@ export default class GuessingPage extends Component {
 
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
-        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
-        console.log('guess response from database: ', guess)
-
         socket.emit('guess', { player: this.state.username, message: this.state.guess });
-
 
         // console.log('guess response: ', guess);
         await this.setState({
