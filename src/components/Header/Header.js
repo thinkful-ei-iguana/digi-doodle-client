@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import ColorContext from '../../Context/ColorContext'
 import Timer from '../Timer/Timer';
+import './Header.css'
 
 export default class StandbyView extends Component {
     static contextType = ColorContext
@@ -59,8 +60,10 @@ export default class StandbyView extends Component {
 
             header = 
             <div className="header-box">
-                <h1>{player.username}, Draw the prompt</h1>
-                <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3>
+                
+                <div className="player-prompt">
+                    <h1>{player.username}, Draw <span className="prompt">{this.context.game.current_answer}</span></h1>
+                    </div>
                 <Timer />
             </div>
         }
