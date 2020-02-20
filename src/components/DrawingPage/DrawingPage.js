@@ -45,23 +45,24 @@ export default class DrawingPage extends Component {
         return (
             <div>
 
-                <div className="canvas-container">
+                
                     <div className={disableAttr}>
-                        <Canvas />
+                      <Canvas />
                     </div>
                     <Colors />
 
                     <div className="players-container">
-                        <ul className="player-ul">
-                            {this.context.players.map((player, index) => {
-                                return (
-                                    <li className="player-li" key={index}>
-                                        <span>{player.username} : {player.score} </span>
-                                    </li>
-                                )
-                            })}
-                        </ul>
-                    </div>
+                    <ul className="player-ul">
+                        {this.context.players.map((player, index) => {
+                            return (
+                                <li className="player-li" key={index}>
+                                    <span>{player.username}</span><br/>
+                                    <span className="score">{player.score}</span>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                </div>
 
                     <form className="guess-input" >
                         <label htmlFor="chat-input">Guess goes here: </label>
