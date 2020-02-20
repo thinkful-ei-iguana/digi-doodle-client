@@ -41,11 +41,9 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        const disableAttr = this.context.isDrawing ? "canvas-container" : "disabled-canvas"
+        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
-                <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
-                <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3>
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
