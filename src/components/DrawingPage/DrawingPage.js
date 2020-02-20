@@ -25,7 +25,7 @@ export default class DrawingPage extends Component {
     handleChatSubmit = async (ev) => {
         ev.preventDefault();
 
-        socket.emit('chat message', { player: this.context.username, message: this.state.guess});
+        socket.emit('chat message', { player: this.context.username, message: this.state.guess });
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -41,13 +41,18 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        const standbyMode = this.context.game.status === 'standby'
+        disableAttr = disableAttr || standbyMode
         return (
             <div>
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
+
                 <Colors />
+
+                <p className="reminder-instructions">You need 15 points to win the game</p>
 
                 <div className="players-container">
                     <ul className="player-ul">
@@ -75,9 +80,9 @@ export default class DrawingPage extends Component {
 
                 <div className="chat-window">
                     <ul>
-                     {this.context.messages.map((message, index) => {
-                         return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                        {this.context.messages.map((message, index) => {
+                            return (
+                                <li className="player-message" key={index}>{message.player}: {message.message}</li>
                             )
                         })}
                     </ul>

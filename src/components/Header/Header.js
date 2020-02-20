@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ColorContext from '../../Context/ColorContext'
+import './Header.css'
 
 export default class StandbyView extends Component {
     static contextType = ColorContext
@@ -45,8 +46,7 @@ export default class StandbyView extends Component {
         }
         else if (this.props.isDrawing === true && this.context.game.status === 'drawing') {
 
-            header = <div><h1>{player.username}, Draw the prompt</h1>
-                <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3></div>
+            header = <div className="player-prompt"><h1>{player.username}, Draw <span className="prompt">{this.context.game.current_answer}</span></h1></div>
         }
         else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
             header = <h1>Draw Something while you wait!</h1>

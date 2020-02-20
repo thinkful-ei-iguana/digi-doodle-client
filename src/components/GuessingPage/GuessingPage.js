@@ -52,12 +52,15 @@ export default class GuessingPage extends Component {
     //event handler for submit button to validate answer
 
     render() {
-        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+
         return (
             <div>
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
+
+                <p className="reminder-instructions">You need 15 points to win the game</p>
 
                 <div className="players-container">
                     <ul className="player-ul">
@@ -85,9 +88,9 @@ export default class GuessingPage extends Component {
 
                 <div className="chat-window">
                     <ul>
-                     {this.context.messages.map((message, index) => {
-                         return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                        {this.context.messages.map((message, index) => {
+                            return (
+                                <li key={index}>{message.player}: {message.message}</li>
                             )
                         })}
                     </ul>
