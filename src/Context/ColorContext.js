@@ -20,8 +20,6 @@ const ColorContext = React.createContext({
     setMessages: () => { },
     messages: [],
     setCanvas: () => { },
-    time: null,
-    updateTimer: () => { },
     checkDrawing: () => { },
     toggleDisableCanvas: () => { },
     disableAttr: '',
@@ -55,8 +53,7 @@ export class ColorProvider extends React.Component {
                 message: 'Welcome to the room!'
             }],
             setCanvas: () => { },
-            time: null,
-            updateTimer: () => { }
+
         }
     }
 
@@ -121,11 +118,6 @@ export class ColorProvider extends React.Component {
         })
     }
 
-    updateTimer = (time) => {
-        this.setState({
-            time: time
-        })
-    }
 
 
 
@@ -151,8 +143,6 @@ export class ColorProvider extends React.Component {
             setMessages: this.setMessages,
             messages: this.state.messages,
             setCanvas: this.setCanvas,
-            time: this.state.time,
-            updateTimer: this.updateTimer,
             toggleDisableCanvas: this.toggleDisableCanvas,
             disableAttr: this.state.disableAttr
         }

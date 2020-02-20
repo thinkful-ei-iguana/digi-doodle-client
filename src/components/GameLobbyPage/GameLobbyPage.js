@@ -53,14 +53,6 @@ export default class GameLobbyPage extends Component {
             await this.context.setGame(gameData);
         })
 
-        socket.on('timer', (time) => {
-            //this.context.updateTimer(time);
-            console.log(time);
-            if (time === 1) {
-                this.context.updateTimer(time);
-            }
-        })
-
         socket.on('announcement', (announcement) => {
             //something here to let everyone know there was a correct guess made.
         })
