@@ -112,11 +112,12 @@ class SignUpForm extends React.Component {
           <h2 className="welcome-header">Welcome to digi-doodle!</h2>
           
           <div className="rules-container">
-          <p>Choose a username to play a game with other users. The rules of the game are simple:</p>
+          <p>Choose a username to play a game with other users.</p>
+          <p>The rules of the game are simple:</p>
           <ul>
-            <li>When it’s your turn to draw, draw a picture based on the given word or phrase that you see. </li>
-            <li>When it’s your turn to guess, try to guess what another user is drawing and type your guess in the chat.</li>
-            <li>The drawer gets 2 points when a guesser makes a correct guess, and the guessers get 1 point for each correct guess. The first user to score 15 points wins!</li>
+            <li>• When it’s your turn to draw, draw a picture based on the given word or phrase that you see. </li>
+            <li>• When it’s your turn to guess, try to guess what another user is drawing and type your guess in the chat.</li>
+            <li>• The drawer gets 2 points when a guesser makes a correct guess, and the guessers get 1 point for each correct guess. The first user to score 15 points wins!</li>
           </ul>
         </div>
 
