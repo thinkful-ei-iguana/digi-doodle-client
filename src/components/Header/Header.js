@@ -23,29 +23,36 @@ export default class StandbyView extends Component {
 
     render() {
         let header;
+        let player = this.context.players.find(player => {
+            return player.player_id === this.context.game.current_drawer
+        })
         //winning mode
-        if (this.context.status === 'standby' && this.context.winner !== null) {
-            header = <h1>{this.context.winner}, You Win!</h1>
+        if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
+            header = <h1>{this.context.game.winner}, You Win!</h1>
             //isDrawing: false for both parties
         }
         //standby before drawer comes up
-        else if (this.context.status === 'standby' && this.context.winner === null) {
-            header = <h1>{this.context.current_drawer}, you're up next to draw</h1>
+        else if (this.context.game.status === 'standby' && this.context.game.winner === null) {
+            header = <h1>{player.username}, you're up next to draw</h1>
             //isDrawing: false for both parties
         }
         //waiting mode
-        else if (this.context.isDrawing === false && this.context.status === 'waiting for players') {
+        else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
             header = <h1>Wait for more players to come in</h1>
         }
-        else if (this.context.isDrawing === false && this.context.status === 'drawing') {
+        else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
             header = <h1>What are they drawing?</h1>
         }
-        else if (this.context.isDrawing === true && this.context.status === 'drawing') {
-            header = <div><h1>{this.context.current_drawer}, Draw the prompt</h1>
-                <h3 className="player-prompt">Draw {this.context.prompt}</h3></div>
+        else if (this.props.isDrawing === true && this.context.game.status === 'drawing') {
+
+            header = <div><h1>{player.username}, Draw the prompt</h1>
+                <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3></div>
         }
-        else if (this.context.isDrawing === true && this.context.status === 'waiting for players') {
+        else if (this.props.isDrawing === true && this.context.game.status === 'waiting for players') {
             header = <h1>Draw Something while you wait!</h1>
+        }
+        else {
+            header = <h1>Wait for more players to come in</h1>
         }
 
         return (

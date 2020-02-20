@@ -52,7 +52,7 @@ export default class GuessingPage extends Component {
     //event handler for submit button to validate answer
 
     render() {
-        const disableAttr = this.context.isDrawing ? "canvas-container" : "disabled-canvas"
+        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
                 <div className={disableAttr}>

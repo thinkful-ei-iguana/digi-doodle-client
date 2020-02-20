@@ -15,22 +15,33 @@ class Canvas extends React.Component {
 
 	componentDidMount() {
 		socket.on('clear canvas', () => {
-			this._sketch.clear();
+			if (this._sketch && this._sketch.clear) {
+				console.info('clear sketch');
+				this._sketch.clear();
+			}
 		});
 
 		socket.on('sketch return', async (data) => {
-			if (this.context.userId !== this.context.game.current_drawer && data !== this.context.canvasData) {
-				console.log('changing state');
-				await this.context.setCanvas(data);
-			}
+			console.log('changing state');
+			await this.context.setCanvas(data);
 		});
 	}
 
 	handleSketchChange = () => {
-		if (this.context.userId === this.context.game.current_drawer) {
-			let sketch = this._sketch.toJSON();
-			console.log('sketch is', sketch.objects);
-			socket.emit('sketch', sketch);
+		// code defensively to make sure objects exist
+		if (this.context.isDrawing && this._sketch && this.context.canvasData) {
+			let sketch = this._sketch.toJSON(); // convert drawn object to JSON
+			if (sketch.objects && this.context.canvasData) {
+				// detect if I have drawn something new
+				// we need to do this hack because the canvas detects mouse movements as drawing.
+				// we only want to send data to the server if we have drawn something new
+				const firstDraw = !this.context.canvasData.objects;
+				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
+				if (firstDraw || newDraw){
+					console.log('sketch is', sketch.objects);
+					socket.emit('sketch', sketch);
+				}
+			}
 		}
 	};
 
