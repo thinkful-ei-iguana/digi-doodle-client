@@ -24,3 +24,17 @@ input {
 input:focus {
   outline: none;
 }
+
+.exclamation {
+  font-family: "Comic Sans MS";
+  font-size: 28px;
+  color: black;
+  padding-left: 3px;
+}
+
+.question-mark {
+  font-family: "Comic Sans MS";
+  font-size: 30px;
+  color: black;
+  padding-left: 3px;
+}
