@@ -23,6 +23,8 @@ const ColorContext = React.createContext({
     time: null,
     updateTimer: () => { },
     checkDrawing: () => { }
+    toggleDisableCanvas: () => { }
+    disableAttr: '',
 })
 
 export default ColorContext;
@@ -100,6 +102,11 @@ export class ColorProvider extends React.Component {
             game: gameData
         })
     }
+    toggleDisableCanvas = () => {
+        this.setState({
+            disableAttr: 'canvas-container'
+        })
+    }
 
     setMessages = (message) => {
         this.setState({
@@ -145,6 +152,8 @@ export class ColorProvider extends React.Component {
             setCanvas: this.setCanvas,
             time: this.state.time,
             updateTimer: this.updateTimer
+            toggleDisableCanvas: this.toggleDisableCanvas
+            disableAttr: this.state.disableAttr,
         }
         
         return (

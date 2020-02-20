@@ -4,9 +4,10 @@ import GuessingPage from '../GuessingPage/GuessingPage'
 import ColorContext from '../../Context/ColorContext';
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
+import Header from '../Header/Header';
 import './GameLobbyPage.css'
 
-        
+
 export default class GameLobbyPage extends Component {
     constructor(props) {
         super(props);
@@ -65,6 +66,7 @@ export default class GameLobbyPage extends Component {
 
         return (
             <div>
+                <Header />
                 {(this.context.userId !== this.context.game.current_drawer) && <GuessingPage />}
                 {(this.context.userId === this.context.game.current_drawer) && <DrawingPage />}
             </div>

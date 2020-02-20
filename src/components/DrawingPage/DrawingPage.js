@@ -41,15 +41,16 @@ export default class DrawingPage extends Component {
 
 
     render() {
+        const disableAttr = this.context.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
                 <h1 className="player-header">{this.context.username}, it is your turn to draw!</h1>
                 <h3 className="player-prompt">Draw {this.context.game.current_answer}</h3>
-                <div className="canvas-container">
+                <div className={disableAttr}>
                     <Canvas />
                 </div>
-                <Colors />               
-               
+                <Colors />
+
                 <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
@@ -64,12 +65,12 @@ export default class DrawingPage extends Component {
 
                 <form className="guess-input" >
                     <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput} 
-                    id="chat-input" 
-                    value={this.state.guess} 
-                    required
-                    spellCheck="false"
-                    maxLength="30"
+                    <input type="text" onChange={this.handleTextInput}
+                        id="chat-input"
+                        value={this.state.guess}
+                        required
+                        spellCheck="false"
+                        maxLength="30"
                     />
                     <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
                 </form>
@@ -80,7 +81,7 @@ export default class DrawingPage extends Component {
                          return(
                             <li key={index}>{message.player}: {message.message}</li>
                             )
-                        })}   
+                        })}
                     </ul>
                 </div>
 

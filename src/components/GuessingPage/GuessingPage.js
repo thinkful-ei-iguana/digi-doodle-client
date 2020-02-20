@@ -34,7 +34,7 @@ export default class GuessingPage extends Component {
         console.log('guess response from database: ', guess)
 
         socket.emit('guess', { player: this.state.username, message: this.state.guess });
-        
+
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -48,18 +48,16 @@ export default class GuessingPage extends Component {
         })
     }
 
+
     //event handler for submit button to validate answer
 
     render() {
+        const disableAttr = this.context.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
-                <h1 className="guess-page-header">What are they drawing</h1>
-
-                <div className="disabled-canvas">
+                <div className={disableAttr}>
                     <Canvas />
                 </div>
-                
-
 
                 <div className="players-container">
                     <ul className="player-ul">
@@ -73,17 +71,17 @@ export default class GuessingPage extends Component {
                     </ul>
                 </div>
 
-                    <form className="guess-input" >
-                        <label htmlFor="chat-input">Guess goes here: </label>
-                        <input type="text" onChange={this.handleTextInput}
-                            id="chat-input"
-                            value={this.state.guess}
-                            required
-                            spellCheck="false"
-                            maxLength="30"
-                        />
-                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
-                    </form>
+                <form className="guess-input" >
+                    <label htmlFor="chat-input">Guess goes here: </label>
+                    <input type="text" onChange={this.handleTextInput}
+                        id="chat-input"
+                        value={this.state.guess}
+                        required
+                        spellCheck="false"
+                        maxLength="30"
+                    />
+                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                </form>
 
                 <div className="chat-window">
                     <ul>
@@ -91,11 +89,11 @@ export default class GuessingPage extends Component {
                          return(
                             <li key={index}>{message.player}: {message.message}</li>
                             )
-                        })}   
+                        })}
                     </ul>
                 </div>
 
-                
+
             </div>
         )
     }
