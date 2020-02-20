@@ -41,17 +41,20 @@ export default class DrawingPage extends Component {
 
 
     render() {
-        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        const standbyMode = this.context.game.status === 'standby'
+        disableAttr = disableAttr || standbyMode
         return (
             <div>
+                <div className={disableAttr}>
+                    <Canvas />
+                </div>
 
-                
-                    <div className={disableAttr}>
-                      <Canvas />
-                    </div>
-                    <Colors />
+                <Colors />
 
-                    <div className="players-container">
+                <p className="reminder-instructions">You need 15 points to win the game</p>
+
+                <div className="players-container">
                     <ul className="player-ul">
                         {this.context.players.map((player, index) => {
                             return (
@@ -76,15 +79,15 @@ export default class DrawingPage extends Component {
                         <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
                     </form>
 
-                    <div className="chat-window">
-                        <ul>
-                            {this.context.messages.map((message, index) => {
-                                return (
-                                    <li className="player-message" key={index}>{message.player}: {message.message}</li>
-                                )
-                            })}
-                        </ul>
-                    </div>
+                <div className="chat-window">
+                    <ul>
+                        {this.context.messages.map((message, index) => {
+                            return (
+                                <li className="player-message" key={index}>{message.player}: {message.message}</li>
+                            )
+                        })}
+                    </ul>
+                </div>
 
             </div>
         )

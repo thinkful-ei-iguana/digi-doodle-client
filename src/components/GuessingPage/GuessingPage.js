@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Canvas from '../../Utils/Canvas/Canvas'
 import './GuessingPage.css'
 import ColorContext from '../../Context/ColorContext'
-import DigiDoodleApiService from '../../services/digi-doodle-api-service'
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'
@@ -31,11 +30,7 @@ export default class GuessingPage extends Component {
 
     handleGuessSubmit = async (ev) => {
         ev.preventDefault();
-        let guess = await DigiDoodleApiService.postGuess(this.context.gameId, this.context.userId, this.state.guess);
-        console.log('guess response from database: ', guess)
-
         socket.emit('guess', { player: this.state.username, message: this.state.guess });
-
 
         // console.log('guess response: ', guess);
         await this.setState({
@@ -59,12 +54,15 @@ export default class GuessingPage extends Component {
     //event handler for submit button to validate answer
 
     render() {
-        const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+        let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+
         return (
             <div>
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
+
+                <p className="reminder-instructions">You need 15 points to win the game</p>
 
                 <div className="players-container">
                     <ul className="player-ul">

@@ -42,27 +42,20 @@ export default class GameLobbyPage extends Component {
             this.context.setMessages(msg);
         })
 
+        socket.on('results', (results) => {
+            console.log("results of round: ", results);
+            this.context.setRoundResults(results)
+        })
+
         socket.on('send game', async (gameData) => {
             console.log('gamedata from server: ', gameData);
             gameData = gameData[0];
-            let isDrawing = this.context.userId === gameData.current_drawer
+            let isDrawing = this.context.userId === gameData.current_drawer && gameData.status === "drawing"
             this.setState({ isDrawing: isDrawing })
             if (!this.context.isDrawing && isDrawing) {
                 await this.context.swapDrawing()
             }
             await this.context.setGame(gameData);
-        })
-
-        socket.on('timer', (time) => {
-            //this.context.updateTimer(time);
-            console.log(time);
-            if (time === 1) {
-                this.context.updateTimer(time);
-            }
-        })
-
-        socket.on('announcement', (announcement) => {
-            //something here to let everyone know there was a correct guess made.
         })
 
     }
@@ -76,8 +69,8 @@ export default class GameLobbyPage extends Component {
             <div>
                 <div className="username-display">Hello {this.context.username}<span className="exclamation">!</span></div>
                 <Header isDrawing={this.state.isDrawing} />
-                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing}/>}
-                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing}/>}
+                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
+                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
             </div>
         )
     }
