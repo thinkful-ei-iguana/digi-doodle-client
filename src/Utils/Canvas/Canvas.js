@@ -8,16 +8,16 @@ class Canvas extends React.Component {
         super(props);
         this.state = {
             canvasData: [],
-            width: 0,
-            height: 0,
+            // width: 0,
+            // height: 0,
         }
     }
     static contextType = ColorContext;
     // socket;
 
     componentDidMount(){
-        window.addEventListener('resize', this.updateDimensions);
-        console.log(`Window size: '${this.width}' x '${this.height}'`)
+        // window.addEventListener('resize', this.updateDimensions);
+        // console.log(`Window size: '${this.width}' x '${this.height}'`)
         socket.on('sketch return', async(data) => {
             if ((!this.context.isDrawing) && data.objects !== this.state.canvasData){
                 console.log('changing state')
@@ -28,13 +28,13 @@ class Canvas extends React.Component {
         })
     }
 
-    updateDimensions = () => {
-        this.setState({ width: window.innerWidth, height: window.innerHeight });
-    };
+    // updateDimensions = () => {
+    //     this.setState({ width: window.innerWidth, height: window.innerHeight });
+    // };
 
-    componentWillUnmount() {
-        window.removeEventListener('resize', this.updateDimensions)
-    }
+    // componentWillUnmount() {
+    //     window.removeEventListener('resize', this.updateDimensions)
+    // }
 
     handleSketchChange = () => {
       if(this.context.isDrawing){
@@ -47,22 +47,22 @@ class Canvas extends React.Component {
     }
 
     render() {
-        let width;
-        let height;
-        if(this.state.width >= '700px') {
-            width = 1300;
-            height = 500;
-        } else {
-           if (this.state.width <= '600px') {
-               width = 320;
-               height = 240;
-           }
-        }
+        // let width;
+        // let height;
+        // if(this.state.width >= '700px') {
+        //     width = window.innerWidth;
+        //     height = 500;
+        // } else {
+        //    if (this.state.width <= '600px') {
+        //        width = 120;
+        //        height = 540;
+        //    }
+        // }
 
         return (
             <SketchField
-                width={width}
-                height={height}
+                width='80%'
+                height='450px'
                 tool={Tools.Pencil}
                 lineColor={this.context.color}
                 lineWidth={this.context.eraser}

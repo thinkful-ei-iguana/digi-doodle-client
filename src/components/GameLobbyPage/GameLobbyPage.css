@@ -21,22 +21,10 @@ canvas {
     background-color: white;
 }
 
-.chat-li {
-    position: relative;
-    -webkit-animation: floatBubble 4s infinite  normal ease-out;
-    animation: floatBubble 4s 1  normal ease-out;
+.score {
+    font-weight: bold;
 }
-@-webkit-keyframes floatBubble {
-    0% {
-       top: 0px;
-       opacity: 1;
-    }
-    100% {
-        top: -500px;
-        opacity: 0;
 
-    }
-}
 @media screen and (min-width: 280px) {
     .guess-page-header, .question-mark {
         font-size: 20px;
@@ -83,6 +71,10 @@ canvas {
     .guess-input {
         margin-top: 3%;
     }
+
+    .score {
+        font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 370px) {
@@ -117,6 +109,10 @@ canvas {
         max-height: 80px;
         margin: 10px 30px;
     }
+
+    .score {
+        font-size: 20px;
+    }
 }
 
 @media screen and (min-width: 600px) {
@@ -144,6 +140,10 @@ canvas {
 
     .submit-guess {
         font-size: 18px;
+    }
+
+    .score {
+        font-size: 22px;
     }
 }
 
@@ -189,6 +189,5 @@ canvas {
 
     .score {
         font-size: 26px;
-        font-weight: bold;
     }
 }

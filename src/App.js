@@ -13,8 +13,6 @@ class App extends React.Component {
       userID: '',
       username: '',
       gameData: '',
-      windowWidth: 0,
-      windowHeight: 0,
     }
   }
 
