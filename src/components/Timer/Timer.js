@@ -6,7 +6,7 @@ class Timer extends React.Component {
   constructor(props){
     super(props);
     this.state ={
-      time: null
+      time: 0
     }
   }
   static contextType = ColorContext

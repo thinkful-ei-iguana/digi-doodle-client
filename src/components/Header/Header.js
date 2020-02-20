@@ -36,14 +36,8 @@ export default class StandbyView extends Component {
 
         //winning mode
         else if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
-                header = <h1>{this.context.game.winner}, You Win!</h1>
-            if (this.context.game.status === 'standby' && this.context.game.winner !== null) {
                 header = 
-                <div className="header-box">
-                    <h1>{this.context.game.winner}, You Win!</h1>
-                </div>
-                //isDrawing: false for both parties
-            }
+                <h1>{this.context.game.winner}, You Win!</h1>
         }
         
         //standby before drawer comes up
@@ -52,8 +46,7 @@ export default class StandbyView extends Component {
             <div className="header-box">
                 <h1>{player.username}, you're up next to draw</h1>
                 <Timer />
-            </div>
-            header = <h1>{this.context.game.winner}, You Win<span className="exclamation">!</span></h1>       
+            </div>       
         }
     
 

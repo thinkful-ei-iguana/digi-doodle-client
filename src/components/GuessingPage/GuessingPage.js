@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import Canvas from '../../Utils/Canvas/Canvas'
 import './GuessingPage.css'
 import ColorContext from '../../Context/ColorContext'
-import DigiDoodleApiService from '../../services/digi-doodle-api-service'
 import Cookies from 'js-cookie';
 import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'

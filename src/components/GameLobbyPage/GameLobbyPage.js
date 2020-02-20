@@ -42,6 +42,11 @@ export default class GameLobbyPage extends Component {
             this.context.setMessages(msg);
         })
 
+        socket.on('results', (results) => {
+            console.log("results of round: ", results);
+            this.context.setRoundResults(results)
+        })
+
         socket.on('send game', async (gameData) => {
             console.log('gamedata from server: ', gameData);
             gameData = gameData[0];
@@ -51,10 +56,6 @@ export default class GameLobbyPage extends Component {
                 await this.context.swapDrawing()
             }
             await this.context.setGame(gameData);
-        })
-
-        socket.on('announcement', (announcement) => {
-            //something here to let everyone know there was a correct guess made.
         })
 
     }
