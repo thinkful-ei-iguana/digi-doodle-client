@@ -44,6 +44,8 @@ export default class DrawingPage extends Component {
         const disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
         return (
             <div>
+
+                <div className="canvas-container">
                 <div className={disableAttr}>
                     <Canvas />
                 </div>
@@ -77,7 +79,7 @@ export default class DrawingPage extends Component {
                     <ul>
                      {this.context.messages.map((message, index) => {
                          return(
-                            <li key={index}>{message.player}: {message.message}</li>
+                            <li className="player-message" key={index}>{message.player}: {message.message}</li>
                             )
                         })}
                     </ul>
