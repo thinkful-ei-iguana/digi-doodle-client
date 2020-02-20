@@ -31,7 +31,7 @@ class Timer extends React.Component {
   render() {
     return(
       <div className="timer-container">
-          {(this.state.time !== 0) && <h4> In {this.state.time}</h4>}
+          {(this.state.time !== 0) && <h4>{this.state.time}</h4>}
       </div>
     )
   }
