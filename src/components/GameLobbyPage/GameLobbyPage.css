@@ -167,7 +167,7 @@ canvas {
     }
 
     .chat-window {
-        margin: 15px 32%;
+        margin: 15px 20%;
     }
 
     label {
@@ -189,5 +189,11 @@ canvas {
 
     .score {
         font-size: 26px;
+    }
+}
+
+@media screen and (min-width: 1300px) {
+    .chat-window {
+        margin: 15px 30%;
     }
 }
