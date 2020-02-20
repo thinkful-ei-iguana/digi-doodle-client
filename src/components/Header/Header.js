@@ -53,6 +53,7 @@ export default class StandbyView extends Component {
             </div>
             header = <h1>{this.context.game.winner}, You Win<span className="exclamation">!</span></h1>       
         }
+    }
 
         // waiting mode
         else if (this.props.isDrawing === false && this.context.game.status === 'waiting for players') {
@@ -96,6 +97,6 @@ export default class StandbyView extends Component {
                 {header}
             </div>
         )
+    
     }
-}
 }
