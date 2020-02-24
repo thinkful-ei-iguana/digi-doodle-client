@@ -5,6 +5,9 @@
     background-color: red;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .blue {
     width: 30px;
@@ -12,6 +15,9 @@
     background-color: blue;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .green {
     width: 30px;
@@ -19,6 +25,9 @@
     background-color: green;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .black {
     width: 30px;
@@ -26,6 +35,8 @@
     background-color: black;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-right: 2px;
   }
   .purple {
     width: 30px;
@@ -33,6 +44,9 @@
     background-color: purple;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .yellow {
     width: 30px;
@@ -40,6 +54,9 @@
     background-color: gold;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .orange {
     width: 30px;
@@ -47,6 +64,9 @@
     background-color: orange;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .brown {
     width: 30px;
@@ -54,6 +74,9 @@
     background-color: brown;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 2px;
+    margin-right: 2px;
   }
   .eraser {
     width: 30px;
@@ -61,6 +84,8 @@
     background-color: white;
     cursor: pointer;
     border-radius: 100%;
+    border: 0.75px solid black;
+    margin-left: 10px;
   }
 
   .color-buttons {

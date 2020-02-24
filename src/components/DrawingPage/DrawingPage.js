@@ -3,6 +3,7 @@ import Canvas from '../../Utils/Canvas/Canvas'
 import Colors from '../../Utils/Colors/Colors'
 import ColorContext from '../../Context/ColorContext'
 import socket from '../../services/socket-service'
+import PlayAgain from '../PlayAgain/PlayAgain'
 import '../../Utils/Colors/Colors.css'
 import './DrawingPage.css'
 import '../../Utils/Canvas/Canvas.css'
@@ -44,6 +45,24 @@ export default class DrawingPage extends Component {
         let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
         const standbyMode = this.context.game.status === 'standby'
         disableAttr = disableAttr || standbyMode
+
+        let toggleDisplay;
+
+        if (this.context.game.winner) {
+            toggleDisplay = <PlayAgain />
+        } else {
+            toggleDisplay =
+                <div className="chat-window">
+                    <ul>
+                        {this.context.messages.map((message, index) => {
+                            return (
+                                <li className="player-message" key={index}>{message.player}: {message.message}</li>
+                            )
+                        })}
+                    </ul>
+                </div>
+        }
+
         return (
             <div>
                 <div className={disableAttr}>
@@ -55,34 +74,16 @@ export default class DrawingPage extends Component {
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username}</span><br/>
+                                    <span>{player.username}</span><br />
                                     <span className="score">{player.score}</span>
                                 </li>
                             )
                         })}
                     </ul>
                 </div>
-                    <form className="guess-input" >
-                        <label htmlFor="chat-input">Guess goes here: </label>
-                        <input type="text" onChange={this.handleTextInput}
-                            id="chat-input"
-                            value={this.state.guess}
-                            required
-                            spellCheck="false"
-                            maxLength="35"
-                        />
-                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleChatSubmit}>&#10004;</button>
-                    </form>
 
-                <div className="chat-window">
-                    <ul>
-                        {this.context.messages.map((message, index) => {
-                            return (
-                                <li className="player-message" key={index}>{message.player}: {message.message}</li>
-                            )
-                        })}
-                    </ul>
-                </div>
+                {toggleDisplay}
+
                 <p className="reminder-instructions">15 points to win</p>
             </div>
         )
