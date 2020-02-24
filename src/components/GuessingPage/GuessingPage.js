@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import socket from '../../services/socket-service'
 import '../../Utils/Canvas/Canvas.css'
 import { animateScroll } from "react-scroll";
+import PlayAgain from '../PlayAgain/PlayAgain'
 
 export default class GuessingPage extends Component {
     constructor(props) {
@@ -46,7 +47,7 @@ export default class GuessingPage extends Component {
 
     scrollToBottom() {
         animateScroll.scrollToBottom({
-        containerId: "chatUl"
+            containerId: "chatUl"
         });
     }
 
@@ -55,6 +56,36 @@ export default class GuessingPage extends Component {
 
     render() {
         let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
+
+        let toggleDisplay;
+
+        if (this.context.game.winner) {
+            toggleDisplay = <PlayAgain />
+        } else {
+            toggleDisplay =
+                <div>
+                    <form className="guess-input" >
+                        <label htmlFor="chat-input">Guess goes here: </label>
+                        <input type="text" onChange={this.handleTextInput}
+                            id="chat-input"
+                            value={this.state.guess}
+                            required
+                            spellCheck="false"
+                            maxLength="35"
+                        />
+                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                    </form>
+                    <div className="chat-window">
+                        <ul>
+                            {this.context.messages.map((message, index) => {
+                                return (
+                                    <li className="player-message" key={index}>{message.player}: {message.message}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                </div>
+        }
 
         return (
             <div>
@@ -66,7 +97,7 @@ export default class GuessingPage extends Component {
                         {this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
-                                    <span>{player.username}</span><br/>
+                                    <span>{player.username}</span><br />
                                     <span className="score">{player.score}</span>
                                 </li>
                             )
@@ -74,27 +105,8 @@ export default class GuessingPage extends Component {
                     </ul>
                 </div>
 
-                <form className="guess-input" >
-                    <label htmlFor="chat-input">Guess goes here: </label>
-                    <input type="text" onChange={this.handleTextInput}
-                        id="chat-input"
-                        value={this.state.guess}
-                        required
-                        spellCheck="false"
-                        maxLength="35"
-                    />
-                    <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
-                </form>
+                {toggleDisplay}
 
-                <div className="chat-window">
-                    <ul className="chat-ul" id="chatUl">
-                     {this.context.messages.map((message, index) => {
-                         return(
-                            <li className="chat-li" key={index}>{message.player}: {message.message}</li>
-                            )
-                        })}
-                    </ul>
-                </div>
                 <p className="reminder-instructions">15 points to win</p>
             </div>
         )
