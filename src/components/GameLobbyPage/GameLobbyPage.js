@@ -6,6 +6,7 @@ import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
 import Header from '../Header/Header';
 import './GameLobbyPage.css'
+import ErrorBoundary from '../ErrorBoundary/errorBoundary'
 
 
 export default class GameLobbyPage extends Component {
@@ -67,10 +68,12 @@ export default class GameLobbyPage extends Component {
     render() {
         return (
             <div>
-                <div className="username-display">Hello {this.context.username}<span className="exclamation">!</span></div>
-                <Header isDrawing={this.state.isDrawing} />
-                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
-                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
+                <ErrorBoundary>
+                    <div className="username-display">Hello {this.context.username}<span className="exclamation">!</span></div>
+                    <Header isDrawing={this.state.isDrawing} />
+                    {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
+                    {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
+                </ErrorBoundary>
             </div>
         )
     }

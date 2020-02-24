@@ -24,7 +24,7 @@ const ColorContext = React.createContext({
     toggleDisableCanvas: () => { },
     disableAttr: '',
     roundResults: null,
-    setRoundResults: () => { }
+    setRoundResults: () => { },
 })
 
 export default ColorContext;
@@ -113,7 +113,7 @@ export class ColorProvider extends React.Component {
             messages: [...this.state.messages, message]
         })
     }
-    
+
     setCanvas = (data) => {
         this.setState({
             canvasData: data
@@ -152,9 +152,9 @@ export class ColorProvider extends React.Component {
             toggleDisableCanvas: this.toggleDisableCanvas,
             disableAttr: this.state.disableAttr,
             roundResults: this.state.roundResults,
-            setRoundResults: this.setRoundResults
+            setRoundResults: this.setRoundResults,
         }
-        
+
         return (
             <ColorContext.Provider value={colorContent}>
                 {this.props.children}
