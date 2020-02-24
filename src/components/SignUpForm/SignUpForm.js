@@ -128,7 +128,7 @@ class SignUpForm extends React.Component {
         <div className="rules-container">
           <p className="intro-text">The rules of the game are simple:</p>
           <ul className="rules-ul">
-            <li className="rules-li">• First type out your desired username to start playing<span className="exclamation">!</span></li>
+            <li className="rules-li">• First enter your desired username to start playing<span className="exclamation">!</span></li>
             <li className="rules-li">• When it’s your turn, you will draw a picture based on the given word or phrase that you see. </li>
             <li className="rules-li">• When you're guessing what another player is drawing, you will type and submit your guess in the chat box below the canvas.</li>
             <li className="rules-li">• The drawer gets 2 points when a player makes a correct guess, and the guesser gets 1 point for each correct guess. The first player to score 15 points wins<span className="exclamation">!</span></li>
