@@ -91,7 +91,6 @@ class PlayAgain extends React.Component {
 
     handleDeleteData = () => {
         Cookies.remove('digi-doodle-user', { path: `/` });
-        this.context.resetDefault();
     }
 
 
@@ -100,10 +99,7 @@ class PlayAgain extends React.Component {
         return (
             <div className="play-again-container">
                 <form className="play-again-form">
-                    <Link to="/">
-                        <button className="play-again-button" onClick={this.handleDeleteData}>Play Again?</button>
-                    </Link>
-                </form>
+                    <a href="/" className="play-again-button" onClick={this.handleDeleteData}>Play Again?</a>                </form>
             </div>
         );
     }

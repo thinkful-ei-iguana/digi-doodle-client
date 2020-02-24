@@ -25,7 +25,6 @@ const ColorContext = React.createContext({
     disableAttr: '',
     roundResults: null,
     setRoundResults: () => { },
-    resetDefault: () => { }
 })
 
 export default ColorContext;
@@ -57,37 +56,7 @@ export class ColorProvider extends React.Component {
             }],
             setCanvas: () => { },
             roundResults: null,
-            resetDefault: () => { }
         }
-    }
-
-    resetDefault = () => {
-        this.setState({
-            color: 'black',
-            eraser: 3,
-            changeColor: () => { },
-            username: '',
-            setUserName: () => { },
-            setGameId: () => { },
-            gameId: '',
-            setUserId: () => { },
-            userId: '',
-            setPlayers: () => { },
-            players: [],
-            canvasData: {},
-            swapDrawing: () => { },
-            isDrawing: false,
-            setGame: () => { },
-            game: {},
-            setMessages: () => { },
-            messages: [{
-                player: 'Lobby',
-                message: 'Welcome to the room!'
-            }],
-            setCanvas: () => { },
-            roundResults: null,
-            resetDefault: () => { }
-        })
     }
 
     changeColor = (color, eraser = 3) => {
@@ -184,7 +153,6 @@ export class ColorProvider extends React.Component {
             disableAttr: this.state.disableAttr,
             roundResults: this.state.roundResults,
             setRoundResults: this.setRoundResults,
-            resetDefault: this.resetDefault
         }
 
         return (
