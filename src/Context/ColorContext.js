@@ -24,7 +24,8 @@ const ColorContext = React.createContext({
     toggleDisableCanvas: () => { },
     disableAttr: '',
     roundResults: null,
-    setRoundResults: () => { }
+    setRoundResults: () => { },
+    resetDefault: () => { }
 })
 
 export default ColorContext;
@@ -56,7 +57,37 @@ export class ColorProvider extends React.Component {
             }],
             setCanvas: () => { },
             roundResults: null,
+            resetDefault: () => { }
         }
+    }
+
+    resetDefault = () => {
+        this.setState({
+            color: 'black',
+            eraser: 3,
+            changeColor: () => { },
+            username: '',
+            setUserName: () => { },
+            setGameId: () => { },
+            gameId: '',
+            setUserId: () => { },
+            userId: '',
+            setPlayers: () => { },
+            players: [],
+            canvasData: {},
+            swapDrawing: () => { },
+            isDrawing: false,
+            setGame: () => { },
+            game: {},
+            setMessages: () => { },
+            messages: [{
+                player: 'Lobby',
+                message: 'Welcome to the room!'
+            }],
+            setCanvas: () => { },
+            roundResults: null,
+            resetDefault: () => { }
+        })
     }
 
     changeColor = (color, eraser = 3) => {
@@ -113,7 +144,7 @@ export class ColorProvider extends React.Component {
             messages: [...this.state.messages, message]
         })
     }
-    
+
     setCanvas = (data) => {
         this.setState({
             canvasData: data
@@ -152,9 +183,10 @@ export class ColorProvider extends React.Component {
             toggleDisableCanvas: this.toggleDisableCanvas,
             disableAttr: this.state.disableAttr,
             roundResults: this.state.roundResults,
-            setRoundResults: this.setRoundResults
+            setRoundResults: this.setRoundResults,
+            resetDefault: this.resetDefault
         }
-        
+
         return (
             <ColorContext.Provider value={colorContent}>
                 {this.props.children}
