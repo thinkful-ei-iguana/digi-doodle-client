@@ -4,12 +4,7 @@ import socket from '../../services/socket-service';
 import ColorContext from '../../Context/ColorContext';
 
 class Canvas extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			canvasData: []
-		};
-	}
+
 	static contextType = ColorContext;
 	// socket;
 
@@ -18,12 +13,16 @@ class Canvas extends React.Component {
 			if (this._sketch && this._sketch.clear) {
 				console.info('clear sketch');
 				this._sketch.clear();
+				this.context.setCanvas([]);
 			}
 		});
 
 		socket.on('sketch return', async (data) => {
-			console.log('changing state');
-			await this.context.setCanvas(data);
+			if (!this.context.isDrawing) {
+				console.log('isdrawing is', this.context.isDrawing);
+				console.log('changing state');
+				await this.context.setCanvas(data);
+			}
 		});
 	}
 
@@ -37,7 +36,7 @@ class Canvas extends React.Component {
 				// we only want to send data to the server if we have drawn something new
 				const firstDraw = !this.context.canvasData.objects;
 				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
-				if (firstDraw || newDraw){
+				if (firstDraw || newDraw) {
 					console.log('sketch is', sketch.objects);
 					socket.emit('sketch', sketch);
 				}
