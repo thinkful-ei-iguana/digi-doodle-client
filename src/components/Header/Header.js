@@ -31,7 +31,7 @@ export default class StandbyView extends Component {
 
         // results mode
         if (this.context.game.status === 'standby' && this.context.roundResults) {
-            header = <h1>{this.context.roundResults}</h1>;
+            header = <h1 style={{color: 'green'}}>{this.context.roundResults}</h1>;
         }
 
         //winning mode
