@@ -21,7 +21,7 @@ export default class GuessingPage extends Component {
 
     static contextType = ColorContext;
 
-    async componentWillMount() {
+    async componentDidMount() {
         let cookie = Cookies.get();
         let data = JSON.parse(cookie['digi-doodle-user']);
         await this.setState({
