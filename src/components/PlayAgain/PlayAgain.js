@@ -1,8 +1,5 @@
 import React from 'react';
-import DigiDoodleApiService from '../../services/digi-doodle-api-service';
-import ColorContext from '../../Context/ColorContext'
 import Cookies from 'js-cookie';
-import { Link } from 'react-router-dom'
 import './PlayAgain.css';
 
 class PlayAgain extends React.Component {

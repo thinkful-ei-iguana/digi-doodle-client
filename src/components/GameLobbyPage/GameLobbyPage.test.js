@@ -4,18 +4,13 @@ import GameLobbyPage from './GameLobbyPage'
 // import ErrorBoundary from '../ErrorBoundary/errorBoundary'
 import { BrowserRouter } from 'react-router-dom'
 
-describe.skip(`GuessingPage Component`, () => {
+describe.skip(`GameLobbyPage Component`, () => {
     it('renders without crashing', () => {
         const div = document.createElement('div');
 
-        ReactDOM.render(
-            <BrowserRouter>
-                {/* <ErrorBoundary> */}
-                <GameLobbyPage />
-                {/* </ErrorBoundary> */}
-            </BrowserRouter>, div);
 
-        ReactDOM.unmountComponentAtNode(div)
+        const wrapper = shallow(<GameLobbyPage />).toJSON();
+        expect(wrapper).toBeDefined();
     })
 
 })
