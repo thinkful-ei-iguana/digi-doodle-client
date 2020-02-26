@@ -6,9 +6,19 @@ import ColorContext from '../../Context/ColorContext';
 class Canvas extends React.Component {
 
 	static contextType = ColorContext;
-	// socket;
+	state = {
+		width: 0
+	}
+
+	setWidth = () => {
+		this.setState({width: window.innerWidth})
+	}
 
 	componentDidMount() {
+		// get initial window width and set event listener
+		this.setWidth();
+		window.addEventListener('resize', this.setWidth);
+
 		socket.on('clear canvas', () => {
 			if (this._sketch && this._sketch.clear) {
 				console.info('clear sketch');
@@ -24,6 +34,10 @@ class Canvas extends React.Component {
 				await this.context.setCanvas(data);
 			}
 		});
+	}
+
+	componentWillUnmount() {
+		window.removeEventListener('resize', this.setWidth);
 	}
 
 	handleSketchChange = () => {
@@ -45,10 +59,20 @@ class Canvas extends React.Component {
 	};
 
 	render() {
+		let width;
+		let height;
+
+		if (this.state.width < 700) {
+			width = Math.floor(this.state.width * 0.9)
+		} else {
+			width = 630;
+		}
+		height = Math.floor(0.6 * width);
+
 		return (
 			<SketchField
-				width="90%"
-				height="325px"
+				width={`${width}px`}
+				height={`${height}px`}
 				tool={Tools.Pencil}
 				lineColor={this.context.color}
 				lineWidth={this.context.eraser}
