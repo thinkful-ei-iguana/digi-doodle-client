@@ -23,6 +23,9 @@ export default class GameLobbyPage extends Component {
         try {
             let cookie = Cookies.get();
             let data = JSON.parse(cookie['digi-doodle-user']);
+            console.log('this is cookie', cookie);
+            console.log('this is data', data);
+            console.log(cookie['digi-doodle-user']);
 
             await this.context.setGameId(data.gameId)
             await this.context.setUserName(data.username)
