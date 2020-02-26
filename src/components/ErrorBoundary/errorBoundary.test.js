@@ -1,11 +1,7 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
-import renderer from 'react-test-renderer'
 import ErrorBoundary from './ErrorBoundary'
-import Enzyme from 'enzyme'
-import Adapter from 'enzyme-adapter-react-16'
-import sinon from 'sinon'
-import { mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
+
 
 function ProblemChild() {
     throw new Error('Error thrown from problem child');
