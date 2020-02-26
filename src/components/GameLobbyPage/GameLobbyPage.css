@@ -1,6 +1,9 @@
-
 ::-webkit-scrollbar {
     width: 8px;
+}
+
+.header-box {
+    margin-top: -15px;
 }
 
 ::-webkit-scrollbar-track {
@@ -24,6 +27,7 @@
 .reminder-instructions {
     font-size: 18px;
     color: #222222;
+    margin-left: 13px;
 }
 
 h1 {
@@ -49,7 +53,23 @@ h1 {
 .play-again-button {
     background-color: #f55440;
     color: #222222;
-    font-size: 18px;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 2px 3px #222222;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    padding-left: 13px;
+    font-weight: 600;
+}
+
+.home-link {
+    color: #f55440;
+    cursor: pointer;
+}
+
+.lobby-message {
+    font-style: italic;
 }
 
 @media screen and (min-width: 280px) {
@@ -103,10 +123,15 @@ h1 {
     .score {
         font-size: 18px;
     }
-}
 
-h1 {
+    .play-again-button {
+        font-size: 20px;
+        width: 35%;
+    }
+
+    h1 {
     font-size: 18px;
+    }
 }
 
 @media screen and (min-width: 370px) {
@@ -146,8 +171,17 @@ h1 {
         font-size: 16px;
     }
 
+    .lobby-message {
+        font-size: 16px;
+    }
+
     .score {
         font-size: 20px;
+    }
+
+    .play-again-button {
+        padding-left: 20px;
+        width: 25%;
     }
 }
 
@@ -180,6 +214,11 @@ h1 {
 
     .score {
         font-size: 22px;
+    }
+
+    .play-again-button {
+        font-size: 22px;
+        width: 20%;
     }
 }
 
@@ -222,7 +261,7 @@ h1 {
 
     .player-ul {
         margin-top: 0.2%;
-        margin-bottom: -2%;
+        margin-bottom: 1%;
     }
 
     .player-li {
@@ -241,10 +280,31 @@ h1 {
         font-size: 30px;
         margin-bottom: 1.5%;
     }
+
+    .play-again-button {
+        width: 15%;
+        margin-top: 75px;
+        font-size: 24px;
+    }
+
+    .reminder-instructions {
+        margin-top: 10px;
+    }
+
+    
 }
 
 @media screen and (min-width: 1300px) {
     .chat-window {
         margin: 15px 30%;
+    }
+
+    .play-again-button {
+        width: 12%;
+        font-size: 26px;
+    }
+
+    .player-message, .lobby-message {
+        font-size: 18px;
     }
 }
