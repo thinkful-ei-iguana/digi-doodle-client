@@ -1,16 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
 import GameLobbyPage from './GameLobbyPage'
-// import ErrorBoundary from '../ErrorBoundary/errorBoundary'
-import { BrowserRouter } from 'react-router-dom'
+import { shallow } from 'enzyme'
 
-describe.skip(`GameLobbyPage Component`, () => {
+jest.mock('js-cookie')
+
+describe(`Gamelobby component`, () => {
     it('renders without crashing', () => {
-        const div = document.createElement('div');
 
+        const context = {
+            username: 'test username'
+        }
 
-        const wrapper = shallow(<GameLobbyPage />).toJSON();
-        expect(wrapper).toBeDefined();
+        const state = {
+            isDrawing: false
+        }
+
+        const gameLobby = shallow(<GameLobbyPage {...state} />, { context })
+        gameLobby.setContext({ context })
+        expect(gameLobby).toMatchSnapshot();
     })
-
 })

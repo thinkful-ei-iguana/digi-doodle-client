@@ -62,7 +62,6 @@ export default class GameLobbyPage extends Component {
         } catch (error) {
             console.error(error);
         }
-
     }
 
     componentWillUnmount() {

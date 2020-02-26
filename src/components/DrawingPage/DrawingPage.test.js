@@ -1,16 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import GuessingPage from './GuessingPage'
+import DrawingPage from './DrawingPage'
 import Canvas from '../../Utils/Canvas/Canvas'
 // import ErrorBoundary from '../ErrorBoundary/errorBoundary'
 import { mount, shallow, render } from 'enzyme'
 import renderer from 'react-test-renderer'
 import { BrowserRouter } from 'react-router-dom'
 
-describe(`Guessing component`, () => {
+describe(`Drawing component`, () => {
     it('renders without crashing', () => {
 
-        window.HTMLCanvasElement.prototype.getContext = () => { }
         const context = {
             game: {
                 id: 'game uuid',
@@ -21,8 +20,8 @@ describe(`Guessing component`, () => {
             }
         }
 
-        const guessPage = shallow(<GuessingPage />, { context })
-        guessPage.setContext({ context })
-        expect(guessPage).toMatchSnapshot();
+        const drawingPage = shallow(<DrawingPage />, { context })
+        drawingPage.setContext({ context })
+        expect(drawingPage).toMatchSnapshot();
     })
 })

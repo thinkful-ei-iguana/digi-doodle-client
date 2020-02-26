@@ -59,7 +59,7 @@ export default class GuessingPage extends Component {
 
         let toggleDisplay;
 
-        if (this.context.game.winner) {
+        if (this.context.game && this.context.game.winner) {
             toggleDisplay = <PlayAgain />
         } else {
             toggleDisplay =
@@ -77,7 +77,7 @@ export default class GuessingPage extends Component {
                     </form>
                     <div className="chat-window">
                         <ul>
-                            {this.context.messages.map((message, index) => {
+                            {this.context.messages && this.context.messages.map((message, index) => {
                                 return (
                                     <li className="player-message" key={index}>{message.player}: {message.message}</li>
                                 )
@@ -94,7 +94,7 @@ export default class GuessingPage extends Component {
                 </div>
                 <div className="players-container">
                     <ul className="player-ul">
-                        {this.context.players.map((player, index) => {
+                        {this.context.players && this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
                                     <span>{player.username}</span><br />
