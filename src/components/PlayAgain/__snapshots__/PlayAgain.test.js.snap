@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayAgain component renders PlayAgain form 1`] = `
+<div
+  className="play-again-container"
+>
+  <form
+    className="play-again-form"
+  >
+    <a
+      className="play-again-button"
+      href="/"
+      onClick={[Function]}
+    >
+      Play Again?
+    </a>
+  </form>
+</div>
+`;
+
+exports[`PlayAgain component renders SignUp form 1`] = `
+<div
+  className="play-again-container"
+>
+  <form
+    className="play-again-form"
+  >
+    <a
+      className="play-again-button"
+      href="/"
+      onClick={[Function]}
+    >
+      Play Again?
+    </a>
+  </form>
+</div>
+`;
