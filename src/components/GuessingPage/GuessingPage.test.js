@@ -21,7 +21,6 @@ describe(`GuessingPage component`, () => {
   })
 
 
-
   it('renders text input with label', () => {
     const wrapper = mount(<GuessingPage />)
     const label = wrapper.find('label')
