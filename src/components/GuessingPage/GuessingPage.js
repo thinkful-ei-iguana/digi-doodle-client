@@ -22,21 +22,29 @@ export default class GuessingPage extends Component {
     static contextType = ColorContext;
 
     async componentDidMount() {
-        let cookie = Cookies.get();
-        let data = JSON.parse(cookie['digi-doodle-user']);
-        await this.setState({
-            username: data.username
-        });
+        try {
+            let cookie = Cookies.get();
+            let data = JSON.parse(cookie['digi-doodle-user']);
+            await this.setState({
+                username: data.username
+            });
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     handleGuessSubmit = async (ev) => {
-        ev.preventDefault();
-        socket.emit('guess', { player: this.state.username, message: this.state.guess });
+        try {
+            ev.preventDefault();
+            socket.emit('guess', { player: this.state.username, message: this.state.guess });
 
-        // console.log('guess response: ', guess);
-        await this.setState({
-            guess: ''
-        });
+            // console.log('guess response: ', guess);
+            await this.setState({
+                guess: ''
+            });
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     handleTextInput = (ev) => {

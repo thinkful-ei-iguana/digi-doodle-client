@@ -74,12 +74,12 @@ export default class GameLobbyPage extends Component {
     render() {
         return (
             <div>
-                {/* <ErrorBoundary> */}
-                <div className="username-display">Hello {this.context.username}<span className="exclamation">!</span></div>
-                <Header isDrawing={this.state.isDrawing} />
-                {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
-                {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
-                {/* </ErrorBoundary> */}
+                <ErrorBoundary>
+                    <div className="username-display">Hello {this.context.username}<span className="exclamation">!</span></div>
+                    <Header isDrawing={this.state.isDrawing} />
+                    {(!this.state.isDrawing) && <GuessingPage isDrawing={this.state.isDrawing} />}
+                    {(this.state.isDrawing) && <DrawingPage isDrawing={this.state.isDrawing} />}
+                </ErrorBoundary>
             </div>
         )
     }
