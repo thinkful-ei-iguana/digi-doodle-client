@@ -11,27 +11,24 @@ import { BrowserRouter } from 'react-router-dom'
 
 describe(`GuessingPage component`, () => {
   it('renders without crashing', () => {
-      const div = document.createElement('div');
+    const div = document.createElement('div');
 
-      ReactDOM.render(
-          <GuessingPage />
-          , div);
+    ReactDOM.render(
+      <GuessingPage />
+      , div);
 
-      ReactDOM.unmountComponentAtNode(div)
+    ReactDOM.unmountComponentAtNode(div)
   })
-  it('renders GuessingPage', () => {
-    const form = renderer.create(<GuessingPage />).toJSON();
-    expect(form).toMatchSnapshot();
-})
 
-})
 
-it('renders text input with label', () => {
-const wrapper = mount(<GuessingPage /> )
-const label = wrapper.find('label')
 
-const input = wrapper.find('input');
-expect(input).toHaveLength(1);
-expect(label).toHaveLength(1);
-expect(input.prop('type')).toEqual('text')
+  it('renders text input with label', () => {
+    const wrapper = mount(<GuessingPage />)
+    const label = wrapper.find('label')
+
+    const input = wrapper.find('input');
+    expect(input).toHaveLength(1);
+    expect(label).toHaveLength(1);
+    expect(input.prop('type')).toEqual('text')
+  })
 })
