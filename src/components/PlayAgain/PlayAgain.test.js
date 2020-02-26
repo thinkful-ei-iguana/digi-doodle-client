@@ -26,15 +26,13 @@ describe(`PlayAgain component`, () => {
     ReactDOM.unmountComponentAtNode(div)
   })
 
-  it('renders PlayAgain form', () => {
+  it('renders submits onClick', () => {
     const form = renderer.create(<PlayAgain />).toJSON();
-    expect(form).toMatchSnapshot();
-  })
-
-  it("Component renders link to /somewhere", () => {
-    expect(document.querySelector("a").getAttribute("href")).toBe(
-      "/somewhere"
-    )
+    const wrapper = mount(
+      <PlayAgain />
+    );
+    expect(wrapper.find('[href="/"]').length).toBe(1);
+    
   })
 })
 

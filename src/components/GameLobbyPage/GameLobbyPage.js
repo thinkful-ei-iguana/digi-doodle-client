@@ -6,7 +6,7 @@ import Cookies from 'js-cookie';
 import socket from '../../services/socket-service';
 import Header from '../Header/Header';
 import './GameLobbyPage.css'
-import ErrorBoundary from '../ErrorBoundary/errorBoundary'
+import ErrorBoundary from '../ErrorBoundary/ErrorBoundary'
 
 
 export default class GameLobbyPage extends Component {
