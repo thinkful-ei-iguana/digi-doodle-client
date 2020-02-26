@@ -114,11 +114,23 @@
     padding-top: 5px;
     background-color: white;
   }
+
+  .color-header {
+    margin-top: 5px;
+    margin-bottom: 1px;
+    font-size: 16px;
+  }
 }
 
 @media screen and (min-width: 350px) {
   .color-buttons {
     width: 85%;
+  }
+
+  .color-header {
+    margin-top: 5px;
+    margin-bottom: 1px;
+    font-size: 18px;
   }
 }
 
@@ -126,17 +138,35 @@
   .color-buttons {
     width: 60%;
   }
+
+  .color-header {
+    margin-top: 5px;
+    margin-bottom: 1px;
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 700px) {
   .color-buttons {
     width: 47%;
   }
+
+  .color-header {
+    margin-top: 10px;
+    margin-bottom: 1px;
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 900px) {
   .color-buttons {
     width: 37%;
+  }
+
+  .color-header {
+    margin-top: 15px;
+    margin-bottom: -10px;
+    font-size: 22px;
   }
 }
 @media screen and (min-width: 1000px) {
