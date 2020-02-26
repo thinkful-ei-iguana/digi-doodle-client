@@ -2,7 +2,10 @@ import React from 'react'
 import GameLobbyPage from './GameLobbyPage'
 import { shallow } from 'enzyme'
 
-jest.mock('js-cookie')
+Object.defineProperty(window.document, 'cookie', {
+    writable: true,
+    value: 'digi-doodle-user'
+});
 
 describe(`Gamelobby component`, () => {
     it('renders without crashing', () => {
