@@ -119,11 +119,13 @@ class SignUpForm extends React.Component {
               required
               maxLength="15"
               spellCheck="false"
+              aria-label="enter username"
+              aria-required
             />
             <br />
-            <button className="start-button" type="submit">Play Game!</button>
+            <button aria-pressed="false" title="Play Game!" className="start-button" type="submit">Play Game!</button>
           </form>
-        </div>   
+        </div>
         <h2 className="welcome-header">Welcome to digi-doodle<span className="exclamation">!</span></h2>
         <div className="rules-container">
           <p className="intro-text">The rules of the game are simple:</p>

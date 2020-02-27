@@ -21,22 +21,30 @@ export default class GuessingPage extends Component {
 
     static contextType = ColorContext;
 
-    async componentWillMount() {
+    async componentDidMount() {
+
         let cookie = Cookies.get();
-        let data = JSON.parse(cookie['digi-doodle-user']);
-        await this.setState({
-            username: data.username
-        });
+        if (cookie && cookie['digi-doodle-user']) {
+            let data = JSON.parse(cookie['digi-doodle-user']);
+            await this.setState({
+                username: data.username
+            });
+        }
+
     }
 
     handleGuessSubmit = async (ev) => {
-        ev.preventDefault();
-        socket.emit('guess', { player: this.state.username, message: this.state.guess });
+        try {
+            ev.preventDefault();
+            socket.emit('guess', { player: this.state.username, message: this.state.guess });
 
-        // console.log('guess response: ', guess);
-        await this.setState({
-            guess: ''
-        });
+            // console.log('guess response: ', guess);
+            await this.setState({
+                guess: ''
+            });
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     handleTextInput = (ev) => {
@@ -59,12 +67,12 @@ export default class GuessingPage extends Component {
 
         let toggleDisplay;
 
-        if (this.context.game.winner) {
+        if (this.context.game && this.context.game.winner) {
             toggleDisplay = <PlayAgain />
         } else {
             toggleDisplay =
                 <div>
-                    <form className="guess-input" >
+                    <form className="guess-input" aria-label="guess input">
                         <label htmlFor="chat-input">Guess goes here: </label>
                         <input type="text" onChange={this.handleTextInput}
                             id="chat-input"
@@ -72,15 +80,23 @@ export default class GuessingPage extends Component {
                             required
                             spellCheck="false"
                             maxLength="35"
+                            aria-label="enter username"
+                            aria-required
                         />
-                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                        <button aria-pressed="false" title="submit guess" className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
                     </form>
                     <div className="chat-window">
                         <ul>
-                            {this.context.messages.map((message, index) => {
+
+                            {this.context.messages && this.context.messages.map((message, index) => {
+                                if (message.player === 'Lobby') {
+                                return (
+                                    <li className="lobby-message" key={index}>{message.message}</li>
+                                    )} else {
                                 return (
                                     <li className="player-message" key={index}>{message.player}: {message.message}</li>
-                                )
+                                    )
+                                }
                             })}
                         </ul>
                     </div>
@@ -94,7 +110,7 @@ export default class GuessingPage extends Component {
                 </div>
                 <div className="players-container">
                     <ul className="player-ul">
-                        {this.context.players.map((player, index) => {
+                        {this.context.players && this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
                                     <span>{player.username}</span><br />

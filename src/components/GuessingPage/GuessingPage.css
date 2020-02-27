@@ -5,12 +5,10 @@
     font-weight: normal;
     font-style: normal;
   }
-  
 .guess-input {
     font-size: 26px;
     margin-top: 7%;
 }
-
 .submit-guess {
     border-radius: 10px;
     font-size: 22px;
@@ -19,7 +17,6 @@
     margin-left: -1%;
     cursor: pointer;
 }
-
 .player-ul {
     display:flex;
     justify-content: space-evenly;
@@ -27,13 +24,11 @@
     margin-left: -3.5%;
     margin-top: 2.2%;
 }
-
 li {
     list-style-type: none;
     font-size: 26px;
     margin-top: 1.5%;
 }
-
 .player-li1 {
     color: green;
 }
@@ -46,26 +41,21 @@ li {
 .player-li4{
     color: purple;
 }
-
 .disabled-canvas {
     pointer-events: none;
 }
-
 .reminder-instructions {
     color: gray;
 }
-
 @media screen and (max-width: 500px) {
     li {
         font-size: 16px;
         padding: 0px 5px;
         margin-right: 25px;
     }
-
     .guess-input {
         font-size: 20px;
     }
-
     input {
         width: 30%;
     }
@@ -73,20 +63,16 @@ li {
         font-size: 18px;
     }
 }
-
 @media screen and (max-width: 350px) {
     li {
         font-size: 14px;
     }
-
     ul {
         margin: 0 8px;
     }
-
     .guess-input {
         font-size: 20px;
     }
-
     input {
         width: 30%;
     }

@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PlayAgain component renders PlayAgain button 1`] = `
+<div
+  className="play-again-container"
+>
+  <form
+    aria-label="play-again-form"
+    className="play-again-form"
+  >
+    <a
+      aria-label="play again?"
+      aria-pressed="false"
+      className="play-again-button"
+      href="/"
+      onClick={[Function]}
+      role="button"
+      title="play again?"
+    >
+      Play Again?
+    </a>
+  </form>
+</div>
+`;

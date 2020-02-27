@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component renders the appropriate header 1`] = `
+<div>
+  <h1>
+    Something went wrong, please go back to 
+    <a
+      className="home-link"
+      href="/"
+      label="back to home page"
+    >
+      Home
+    </a>
+     and try again.
+  </h1>
+</div>
+`;

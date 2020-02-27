@@ -43,18 +43,21 @@ export default class DrawingPage extends Component {
 
     render() {
         let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
-        const standbyMode = this.context.game.status === 'standby'
+        let standbyMode = false;
+        if (this.context.game && this.context.game.status) {
+            standbyMode = this.context.game.status === 'standby'
+        }
         disableAttr = disableAttr || standbyMode
 
         let toggleDisplay;
 
-        if (this.context.game.winner) {
+        if (this.context.game && this.context.game.winner) {
             toggleDisplay = <PlayAgain />
         } else {
             toggleDisplay =
                 <div className="chat-window">
                     <ul>
-                        {this.context.messages.map((message, index) => {
+                        {this.context.messages && this.context.messages.map((message, index) => {
                             return (
                                 <li className="player-message" key={index}>{message.player}: {message.message}</li>
                             )
@@ -71,7 +74,7 @@ export default class DrawingPage extends Component {
                 <Colors />
                 <div className="players-container">
                     <ul className="player-ul">
-                        {this.context.players.map((player, index) => {
+                        {this.context.players && this.context.players.map((player, index) => {
                             return (
                                 <li className="player-li" key={index}>
                                     <span>{player.username}</span><br />
