@@ -5,12 +5,17 @@ exports[`PlayAgain component renders PlayAgain button 1`] = `
   className="play-again-container"
 >
   <form
+    aria-label="play-again-form"
     className="play-again-form"
   >
     <a
+      aria-label="play again?"
+      aria-pressed="false"
       className="play-again-button"
       href="/"
       onClick={[Function]}
+      role="button"
+      title="play again?"
     >
       Play Again?
     </a>
