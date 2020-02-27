@@ -14,8 +14,8 @@ class PlayAgain extends React.Component {
 
         return (
             <div className="play-again-container">
-                <form className="play-again-form">
-                    <a href="/" className="play-again-button" onClick={this.handleDeleteData}>Play Again?</a>
+                <form aria-label="play-again-form" className="play-again-form">
+                    <a href="/" role="button" aria-pressed="false" title="play again?" aria-label="play again?" className="play-again-button" onClick={this.handleDeleteData}>Play Again?</a>
                 </form>
             </div>
         );
