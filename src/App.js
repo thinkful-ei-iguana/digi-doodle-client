@@ -1,9 +1,11 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
+import ErrorBoundary from './components/ErrorBoundary/errorBoundary'
 
 
 class App extends React.Component {
@@ -19,10 +21,15 @@ class App extends React.Component {
   render() {
     return (
       <ColorProvider>
-        <div className="App">
-          <Route exact path='/' component={SignUpForm} />
-          <Route path='/lobby' component={GameLobbyPage} />
-        </div>
+        <ErrorBoundary>
+          <div className="App">
+            <Switch>
+              <Route exact path='/' component={SignUpForm} />
+              <Route path='/lobby' component={GameLobbyPage} />
+              <Route path="*" component={NotFoundPage} />
+            </Switch>
+          </div>
+        </ErrorBoundary>
       </ColorProvider>
     );
   }
