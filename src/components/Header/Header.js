@@ -88,7 +88,7 @@ export default class StandbyView extends Component {
         }
 
         else {
-            header = <h1>Something went wrong with the game data.</h1>
+            header = <h1>Something went wrong, please go back to <a className="home-link" label="back to home page" href="/">Home</a> and try again.</h1>
         }
 
 

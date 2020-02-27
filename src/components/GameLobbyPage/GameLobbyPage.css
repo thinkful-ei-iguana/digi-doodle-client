@@ -1,1 +1,310 @@
+::-webkit-scrollbar {
+    width: 8px;
+}
 
+.header-box {
+    margin-top: -15px;
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #f55440;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #b62c1adc;
+}
+
+.score {
+    font-weight: bold;
+}
+
+.reminder-instructions {
+    font-size: 18px;
+    color: #222222;
+    margin-left: 13px;
+}
+
+h1 {
+    cursor: default;
+}
+
+.username-display {
+    font-size: 16px;
+    text-align: left;
+    padding-top: 5px;
+    padding-left: 5px;
+    font-weight: bold;
+}
+
+.player-ul {
+    display: flex;
+}
+
+.player-li {
+    flex-wrap: wrap;
+}
+
+.play-again-button {
+    background-color: #f55440;
+    color: #222222;
+    text-decoration: none;
+    border-radius: 10px;
+    box-shadow: 2px 3px #222222;
+    text-align: center;
+    display: block;
+    margin: 20px auto;
+    padding-left: 13px;
+    font-weight: 600;
+}
+
+.home-link {
+    color: #f55440;
+    cursor: pointer;
+}
+
+.lobby-message {
+    font-style: italic;
+}
+
+@media screen and (min-width: 280px) {
+    .guess-page-header, .question-mark {
+        font-size: 20px;
+    }
+
+    .player-li {
+        font-size: 15px;
+    }
+
+    #chat-input {
+        width: 40%;
+        font-size: 18px;
+    }
+
+    .submit-guess {
+        font-size: 15px;
+    }
+
+    label {
+        font-size: 17px;
+        margin-left: -5%;
+    }
+
+    .chat-window {
+        display: flex;
+        flex-direction: column-reverse;
+        overflow: auto;
+        border: 1px solid #222222;
+        border-radius: 5px;
+        max-height: 50px;
+        margin: 10px 5px;
+        text-align: left;
+        background-color: #ffffff;
+    }
+
+    .chat-li {
+        text-align: left;
+        font-size: 16px;
+    }
+    .chat-ul {
+        display: block;
+        margin-left: -38px;
+    }
+    
+    .guess-input {
+        margin-top: 3%;
+    }
+
+    .score {
+        font-size: 18px;
+    }
+
+    .play-again-button {
+        font-size: 20px;
+        width: 35%;
+    }
+
+    h1 {
+    font-size: 18px;
+    }
+}
+
+@media screen and (min-width: 370px) {
+    .chat-ul {
+        margin-bottom: 1px;
+    }
+}
+
+@media screen and (min-width: 400px) {
+    .guess-page-header, .question-mark {
+        font-size: 22px;
+    }
+
+    .player-li {
+        font-size: 18px;
+    }
+
+    #chat-input {
+        width: 40%;
+    }
+
+    .submit-guess {
+        font-size: 18px;
+    }
+
+    label {
+        font-size: 20px;
+        margin-left: -5%;
+    }
+
+    .chat-window {
+        max-height: 80px;
+        margin: 10px 20px;
+    }
+
+    .player-message {
+        font-size: 16px;
+    }
+
+    .lobby-message {
+        font-size: 16px;
+    }
+
+    .score {
+        font-size: 20px;
+    }
+
+    .play-again-button {
+        padding-left: 20px;
+        width: 25%;
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .chat-window {
+        max-height: 125px;
+        margin: 10px 100px;
+    }
+
+    .chat-li {
+        margin-left: 10px;
+        font-size: 18px;
+    }
+
+    #chat-input {
+        font-size: 18px;
+    }
+
+    label {
+        font-size: 20px;
+    }
+
+    .player-li {
+        font-size: 18px;
+    }
+
+    .submit-guess {
+        font-size: 18px;
+    }
+
+    .score {
+        font-size: 22px;
+    }
+
+    .play-again-button {
+        font-size: 22px;
+        width: 20%;
+    }
+}
+
+@media screen and (min-width: 700px) {
+    .player-li {
+        font-size: 20px;
+    }
+
+    label {
+        font-size: 22px;
+    }
+    
+    #chat-input {
+        font-size: 20px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 1.5%;
+    }
+    
+    .username-display {
+        font-size: 18px;
+        margin-left: 0.5%;
+    }
+}
+
+@media screen and (min-width: 1000px) {
+    #chat-input {
+        width: 23%;
+    }
+
+    .chat-window {
+        margin: 15px 20%;
+    }
+
+    label {
+        margin-left: 0.5%;
+    }
+
+    .player-ul {
+        margin-top: 0.2%;
+        margin-bottom: 1%;
+    }
+
+    .player-li {
+        font-size: 22px;
+    }
+
+    .submit-guess {
+        font-size: 20px;
+    }
+
+    .score {
+        font-size: 26px;
+    }
+
+    h1 {
+        font-size: 30px;
+        margin-bottom: 1.5%;
+    }
+
+    .play-again-button {
+        width: 15%;
+        margin-top: 75px;
+        font-size: 24px;
+    }
+
+    .reminder-instructions {
+        margin-top: 10px;
+    }
+
+    
+}
+
+@media screen and (min-width: 1300px) {
+    .chat-window {
+        margin: 15px 30%;
+    }
+
+    .play-again-button {
+        width: 12%;
+        font-size: 26px;
+    }
+
+    .player-message, .lobby-message {
+        font-size: 18px;
+    }
+}
