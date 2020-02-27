@@ -20,16 +20,16 @@ export default class GameLobbyPage extends Component {
     static contextType = ColorContext
 
     async componentDidMount() {
-        try {
-            let cookie = Cookies.get();
+
+        let cookie = Cookies.get();
+        if (cookie && cookie['digi-doodle-user']) {
             let data = JSON.parse(cookie['digi-doodle-user']);
-            console.log('this is cookie', cookie);
-            console.log('this is data', data);
-            console.log(cookie['digi-doodle-user']);
+
 
             await this.context.setGameId(data.gameId)
             await this.context.setUserName(data.username)
             await this.context.setUserId(data.userID)
+
 
             socket.emit('sendRoom', { gameId: data.gameId, userId: data.userID, username: data.username });
             socket.emit('start check', 'players in room');
@@ -62,8 +62,7 @@ export default class GameLobbyPage extends Component {
                 }
                 await this.context.setGame(gameData);
             })
-        } catch (error) {
-            console.error(error);
+
         }
     }
 

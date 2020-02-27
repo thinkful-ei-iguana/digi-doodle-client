@@ -11,12 +11,13 @@ let cookieData = {
 
 Cookies.set('digi-doodle-user', cookieData, { expires: 1 });
 
-let cookie = Cookies.get();
-let data = JSON.parse(cookie['digi-doodle-user']);
-
 Object.defineProperty(window.document, 'cookie', {
     writable: true,
     value: 'digi-doodle-user'
+});
+
+beforeEach(() => {
+    jest.spyOn(console, 'warn').mockImplementation(() => { });
 });
 
 describe(`Gamelobby component`, () => {
@@ -34,4 +35,5 @@ describe(`Gamelobby component`, () => {
         gameLobby.setContext({ context })
         expect(gameLobby).toMatchSnapshot();
     })
+
 })

@@ -22,15 +22,15 @@ export default class GuessingPage extends Component {
     static contextType = ColorContext;
 
     async componentDidMount() {
-        try {
-            let cookie = Cookies.get();
+
+        let cookie = Cookies.get();
+        if (cookie && cookie['digi-doodle-user']) {
             let data = JSON.parse(cookie['digi-doodle-user']);
             await this.setState({
                 username: data.username
             });
-        } catch (error) {
-            console.error(error)
         }
+
     }
 
     handleGuessSubmit = async (ev) => {

@@ -31,6 +31,7 @@ describe(`Guessing component`, () => {
         const guessPage = shallow(<GuessingPage />, { context })
         guessPage.setContext({ context })
         expect(guessPage).toMatchSnapshot();
+
     })
 
     // it('renders text input with label', () => {
