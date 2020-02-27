@@ -23,14 +23,12 @@ class Canvas extends React.Component {
 			if (this._sketch && this._sketch.clear) {
 				console.info('clear sketch');
 				this._sketch.clear();
-				this.context.setCanvas([]);
+				this.context.setCanvas({objects: []});
 			}
 		});
 
 		socket.on('sketch return', async (data) => {
-			//
 			// Determine the scale adjustment
-			//
 			let incomingW;
 			let currentW;
 			if (data.width < 700) {
@@ -44,8 +42,19 @@ class Canvas extends React.Component {
 				currentW = 630;
 			}
 			const ratio = currentW / incomingW;
+
+			// if there are no objects in context, scale the entire package,
+			// if there are objects in context, only scale the new object
+			const ctxLength = this.context.canvasData.objects.length;
+			let objects;
+			if (!ctxLength) {
+				objects = data.sketch.objects;
+			} else {
+				objects = [data.sketch.objects[data.sketch.objects.length - 1]]
+			}
 			
-			const objects = data.sketch.objects.map(object => {
+			// scales the object up or down
+			objects = objects.map(object => {
 				object.left = object.left * ratio;
 				object.top = object.top * ratio;
 				object.path = object.path.map(arr => {
@@ -59,9 +68,9 @@ class Canvas extends React.Component {
 				return object;
 			})
 
-			
+			// adds the scaled object(s) to context
 			if (!this.context.isDrawing) {
-				await this.context.setCanvas({objects: objects});
+				await this.context.setCanvas({objects: [...this.context.canvasData.objects, ...objects]});
 			}
 		});
 	}
@@ -81,7 +90,6 @@ class Canvas extends React.Component {
 				const firstDraw = !this.context.canvasData.objects;
 				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
 				if (firstDraw || newDraw) {
-					console.log('sketch is', sketch);
 					socket.emit('sketch', {sketch: sketch, width: this.state.width});
 				}
 			}
