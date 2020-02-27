@@ -60,11 +60,11 @@ export default class StandbyView extends Component {
 
         // guessing mode
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
-            header =
-                <div className="header-box">
-                    <h1>What are they drawing<span className="question">?</span></h1>
-                    <Timer />
-                </div>
+            header = 
+            <div className="header-box">
+                <h1>{player.username} is drawing</h1>
+                <Timer />
+            </div>
         }
 
         // drawing mode
