@@ -44,7 +44,7 @@ export class ColorProvider extends React.Component {
             userId: '',
             setPlayers: () => { },
             players: [],
-            canvasData: {},
+            canvasData: {objects: []},
             swapDrawing: () => { },
             isDrawing: false,
             setGame: () => { },
