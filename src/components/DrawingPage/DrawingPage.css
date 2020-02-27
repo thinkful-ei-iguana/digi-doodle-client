@@ -19,7 +19,7 @@ body {
 }
 
 @media screen and (min-width: 900px) {
-    .color-buttons {
-        margin-top: 1%;
-    }
+  .color-buttons {
+    margin-top: 1%;
+  }
 }

@@ -6,15 +6,15 @@ import { BrowserRouter } from 'react-router-dom'
 
 
 describe(`SignupForm component`, () => {
-    it('renders without crashing', () => {
-        const div = document.createElement('div');
+  it('renders without crashing', () => {
+    const div = document.createElement('div');
 
-        ReactDOM.render(
-          <BrowserRouter>
-            <NotFoundPage />
-            </BrowserRouter>
-            , div);
+    ReactDOM.render(
+      <BrowserRouter>
+        <NotFoundPage />
+      </BrowserRouter>
+      , div);
 
-        ReactDOM.unmountComponentAtNode(div)
-    })
+    ReactDOM.unmountComponentAtNode(div)
   })
+})
