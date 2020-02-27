@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';

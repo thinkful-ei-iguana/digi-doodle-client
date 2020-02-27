@@ -1,16 +1,1 @@
-.timer-container {
-  align-self: center;
-  justify-self: flex-end;
-}
 
-@media screen and (min-width: 280px) {
-  h4 {
-    font-size: 18px;
-  }
-}
-
-@media screen and (min-width: 1000px) {
-  h4 {
-    font-size: 30px;
-  }
-}
