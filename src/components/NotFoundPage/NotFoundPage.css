@@ -1,10 +1,35 @@
 @font-face {
   font-family: "cf_crayonsregular";
   src: url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff2") format("woff2"),
-    url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
+       url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
+
+h1 {
+  display: block;
+  margin-top: 25%;
+}
+
+.return-home {
+  margin-top: 1.5%;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: "cf_crayonsregular", fallback, sans-serif;
+  background-color: #f55440;
+  box-shadow: 2px 3px #222222;
+  padding: 10px;
+  margin-right: 1.5%;
+  font-weight: 600;
+  color: black;
+}
+
+
+
+
+
+
+
 
 body {
   background-image: url("../../Pictures/paper-background.jpg");
@@ -34,17 +59,6 @@ body {
   font-size: 18px;
 }
 
-.start-button {
-  margin-top: 1.5%;
-  border-radius: 10px;
-  font-size: 30px;
-  font-family: "cf_crayonsregular", fallback, sans-serif;
-  background-color: #f55440;
-  box-shadow: 2px 3px #222222;
-  padding-left: 40px;
-  margin-right: 1.5%;
-  font-weight: 600;
-}
 
 input {
   border: none;
@@ -99,7 +113,7 @@ p {
     margin-top: 14%;
   }
 
-  .start-button {
+  .return-home {
     margin-top: 10%;
   }
 
@@ -154,7 +168,7 @@ p {
     font-size: 18px;
     margin-right: 1%;
   }
-
+  
   .rules-container {
     margin-bottom: 5%;
   }
