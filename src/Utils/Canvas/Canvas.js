@@ -48,9 +48,9 @@ class Canvas extends React.Component {
 			const ctxLength = this.context.canvasData.objects.length;
 			let objects;
 			if (!ctxLength) {
-				objects = data.sketch.objects;
+				objects = data.sketch;
 			} else {
-				objects = [data.sketch.objects[data.sketch.objects.length - 1]]
+				objects = [data.sketch[data.sketch.length - 1]]
 			}
 			
 			// scales the object up or down
@@ -90,7 +90,7 @@ class Canvas extends React.Component {
 				const firstDraw = !this.context.canvasData.objects;
 				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
 				if (firstDraw || newDraw) {
-					socket.emit('sketch', {sketch: sketch, width: this.state.width});
+					socket.emit('sketch', {sketch: sketch.objects, width: this.state.width});
 				}
 			}
 		}
