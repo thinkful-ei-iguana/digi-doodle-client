@@ -22,14 +22,10 @@ class App extends React.Component {
     return (
       <ColorProvider>
         <div className="App">
-        
           <Switch>
- 
             <Route exact path='/' component={SignUpForm} />
             <Route path='/lobby' component={GameLobbyPage} />
-            
             <Route path="*" component={NotFoundPage} />
-           
           </Switch>
           
         </div>
