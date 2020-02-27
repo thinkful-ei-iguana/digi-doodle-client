@@ -5,7 +5,7 @@ import { ColorProvider } from './Context/ColorContext';
 import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
-import ErrorBoundary from './components/ErrorBoundary'
+//import ErrorBoundary from './components/ErrorBoundary'
 
 
 class App extends React.Component {
@@ -22,13 +22,16 @@ class App extends React.Component {
     return (
       <ColorProvider>
         <div className="App">
+        
           <Switch>
+ 
             <Route exact path='/' component={SignUpForm} />
             <Route path='/lobby' component={GameLobbyPage} />
-            <BrowserRouter>
+            
             <Route path="*" component={NotFoundPage} />
-            </BrowserRouter>
+           
           </Switch>
+          
         </div>
       </ColorProvider>
     );
