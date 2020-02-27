@@ -1,7 +1,7 @@
 @font-face {
   font-family: "cf_crayonsregular";
   src: url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff2") format("woff2"),
-       url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
+    url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -154,7 +154,7 @@ p {
     font-size: 18px;
     margin-right: 1%;
   }
-  
+
   .rules-container {
     margin-bottom: 5%;
   }
