@@ -4,6 +4,7 @@ import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
 import PrivateRoute from '../src/Utils/PrivateRoute'
 import PublicRoute from '../src/Utils/PublicOnlyRoute'
+import NotFoundPage from './components/NotFoundPage/NotFoundPage';
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
 
@@ -25,6 +26,7 @@ class App extends React.Component {
           <Switch>
             <PublicRoute exact path='/' component={SignUpForm} />
             <PrivateRoute path='/lobby' component={GameLobbyPage} />
+            <Route path="*" component={NotFoundPage} />
           </Switch>
         </div>
       </ColorProvider>
