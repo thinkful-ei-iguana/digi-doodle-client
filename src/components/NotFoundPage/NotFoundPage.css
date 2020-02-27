@@ -1,0 +1,50 @@
+@font-face {
+  font-family: "cf_crayonsregular";
+  src: url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff2") format("woff2"),
+       url("../../Fonts/Crayon/cfcrayons-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rem;
+}
+
+.return-home {
+  margin-top: 1.5%;
+  border-radius: 10px;
+  font-size: 30px;
+  font-family: "cf_crayonsregular", fallback, sans-serif;
+  background-color: #f55440;
+  box-shadow: 2px 3px #222222;
+  padding: 10px;
+  margin-right: 1.5%;
+  font-weight: 600;
+  color: black;
+}
+
+@media screen and (min-width: 400px) { 
+  .not-found-container {
+    margin-top: 18rem;
+  }
+}
+
+@media screen and (min-width: 550px) { 
+  .not-found-container {
+    margin-top: 20rem;
+  }
+}
+
+@media screen and (min-width: 700px) { 
+  .not-found-container {
+    margin-top: 23rem;
+  }
+}
+
+@media screen and (min-width: 1000px) { 
+  .not-found-container {
+    margin-top: 23rem;
+  }
+}

@@ -1,8 +1,7 @@
 import React from 'react'
 import GuessingPage from './GuessingPage'
 import ReactDOM from 'react-dom'
-// import ErrorBoundary from '../ErrorBoundary/errorBoundary'
-import { mount, shallow } from 'enzyme'
+import { shallow } from 'enzyme'
 
 
 describe(`Guessing component`, () => {

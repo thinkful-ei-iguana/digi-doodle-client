@@ -5,6 +5,8 @@ class Colors extends React.Component {
     static contextType = ColorContext;
     render() {
         return (
+          <>
+            <h3 className="color-header">Color Palette</h3>
             <div className="color-buttons">
                 <button aria-pressed="false" aria-label="black" onClick={()=>this.context.changeColor('black')} type="button" className="black"></button>
                 <button aria-pressed="false" aria-label="brown" onClick={()=>this.context.changeColor('brown')} type="button" className="brown"></button>
@@ -16,8 +18,8 @@ class Colors extends React.Component {
                 <button aria-pressed="false" aria-label="green" onClick={()=>this.context.changeColor('green')} type="button" className="green"></button>
                 <button aria-pressed="false" aria-label="white" onClick={()=>this.context.changeColor('white', 30)} type="button" className="eraser"></button>
             </div>
+          </>
         )
+      }
     }
-}
-
 export default Colors;

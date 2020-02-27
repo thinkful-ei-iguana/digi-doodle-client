@@ -87,10 +87,16 @@ export default class GuessingPage extends Component {
                     </form>
                     <div className="chat-window">
                         <ul>
+
                             {this.context.messages && this.context.messages.map((message, index) => {
+                                if (message.player === 'Lobby') {
+                                return (
+                                    <li className="lobby-message" key={index}>{message.message}</li>
+                                    )} else {
                                 return (
                                     <li className="player-message" key={index}>{message.player}: {message.message}</li>
-                                )
+                                    )
+                                }
                             })}
                         </ul>
                     </div>
