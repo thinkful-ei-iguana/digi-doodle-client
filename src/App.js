@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
 import PrivateRoute from '../src/Utils/PrivateRoute'
@@ -26,7 +26,9 @@ class App extends React.Component {
           <Switch>
             <PublicRoute exact path='/' component={SignUpForm} />
             <PrivateRoute path='/lobby' component={GameLobbyPage} />
+            <BrowserRouter>
             <Route path="*" component={NotFoundPage} />
+            </BrowserRouter>
           </Switch>
         </div>
       </ColorProvider>

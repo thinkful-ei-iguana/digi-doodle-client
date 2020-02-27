@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Router, BrowserRouter} from 'react-router-dom';
 import './NotFoundPage.css'
 
 
-const NotFound = () => (
+const NotFoundPage = () => (
   <div>
     <h1>Page Not Found...</h1>
+    <BrowserRouter>
     <center><Link className="return-home" style={{ textDecoration: 'none' }} to="/">Return to Home Page</Link></center>
+    </BrowserRouter>
   </div>
 );
-export default NotFound;
+export default NotFoundPage;
