@@ -5,10 +5,13 @@
   font-weight: normal;
   font-style: normal;
 }
-h1 {
-  display: block;
-  margin-top: 25%;
+
+.not-found-container {
+  display: flex;
+  flex-direction: column;
+  margin-top: 15rem;
 }
+
 .return-home {
   margin-top: 1.5%;
   border-radius: 10px;
@@ -20,4 +23,28 @@ h1 {
   margin-right: 1.5%;
   font-weight: 600;
   color: black;
+}
+
+@media screen and (min-width: 400px) { 
+  .not-found-container {
+    margin-top: 18rem;
+  }
+}
+
+@media screen and (min-width: 550px) { 
+  .not-found-container {
+    margin-top: 20rem;
+  }
+}
+
+@media screen and (min-width: 700px) { 
+  .not-found-container {
+    margin-top: 23rem;
+  }
+}
+
+@media screen and (min-width: 1000px) { 
+  .not-found-container {
+    margin-top: 23rem;
+  }
 }
