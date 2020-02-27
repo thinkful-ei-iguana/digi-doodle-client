@@ -69,7 +69,7 @@ class Canvas extends React.Component {
 			})
 
 			// adds the scaled object(s) to context
-			if (!this.context.isDrawing) {
+			if (!this.props.isDrawing) {
 				await this.context.setCanvas({objects: [...this.context.canvasData.objects, ...objects]});
 			}
 		});
@@ -77,6 +77,8 @@ class Canvas extends React.Component {
 
 	componentWillUnmount() {
 		window.removeEventListener('resize', this.setWidth);
+		socket.off('sketch return');
+		socket.off('clear canvas');
 	}
 
 	handleSketchChange = () => {
