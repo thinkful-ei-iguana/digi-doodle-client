@@ -4,7 +4,7 @@ import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
-import ErrorBoundary from './components/ErrorBoundary'
+import ErrorBoundary from './components/ErrorBoundary/errorBoundary'
 
 
 class App extends React.Component {

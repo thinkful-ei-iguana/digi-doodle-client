@@ -72,7 +72,7 @@ export default class GuessingPage extends Component {
         } else {
             toggleDisplay =
                 <div>
-                    <form className="guess-input" >
+                    <form className="guess-input" aria-label="guess input">
                         <label htmlFor="chat-input">Guess goes here: </label>
                         <input type="text" onChange={this.handleTextInput}
                             id="chat-input"
@@ -80,8 +80,10 @@ export default class GuessingPage extends Component {
                             required
                             spellCheck="false"
                             maxLength="35"
+                            aria-label="enter username"
+                            aria-required
                         />
-                        <button className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
+                        <button aria-pressed="false" title="submit guess" className="submit-guess" type="submit" id="chat-submit" onClick={this.handleGuessSubmit}>&#10004;</button>
                     </form>
                     <div className="chat-window">
                         <ul>
