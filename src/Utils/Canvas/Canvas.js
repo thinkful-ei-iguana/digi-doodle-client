@@ -28,10 +28,40 @@ class Canvas extends React.Component {
 		});
 
 		socket.on('sketch return', async (data) => {
+			//
+			// Determine the scale adjustment
+			//
+			let incomingW;
+			let currentW;
+			if (data.width < 700) {
+				incomingW = Math.floor(data.width * 0.9);
+			} else {
+				incomingW = 630;
+			}
+			if (this.state.width < 700) {
+				currentW = Math.floor(this.state.width * 0.9);
+			} else {
+				currentW = 630;
+			}
+			const ratio = currentW / incomingW;
+			
+			const objects = data.sketch.objects.map(object => {
+				object.left = object.left * ratio;
+				object.top = object.top * ratio;
+				object.path = object.path.map(arr => {
+					return arr.map(el => {
+						if (typeof el === 'number') {
+							return el * ratio;
+						}
+						return el;
+					})
+				})
+				return object;
+			})
+
+			
 			if (!this.context.isDrawing) {
-				console.log('isdrawing is', this.context.isDrawing);
-				console.log('changing state');
-				await this.context.setCanvas(data);
+				await this.context.setCanvas({objects: objects});
 			}
 		});
 	}
@@ -51,8 +81,8 @@ class Canvas extends React.Component {
 				const firstDraw = !this.context.canvasData.objects;
 				const newDraw = this.context.canvasData.objects && sketch.objects.length > this.context.canvasData.objects.length;
 				if (firstDraw || newDraw) {
-					console.log('sketch is', sketch.objects);
-					socket.emit('sketch', sketch);
+					console.log('sketch is', sketch);
+					socket.emit('sketch', {sketch: sketch, width: this.state.width});
 				}
 			}
 		}
