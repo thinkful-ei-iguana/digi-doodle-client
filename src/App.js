@@ -2,10 +2,9 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import GameLobbyPage from './components/GameLobbyPage/GameLobbyPage';
 import { ColorProvider } from './Context/ColorContext';
-import PrivateRoute from '../src/Utils/PrivateRoute'
-import PublicRoute from '../src/Utils/PublicOnlyRoute'
 import './App.css';
 import SignUpForm from './components/SignUpForm/SignUpForm';
+import ErrorBoundary from './components/ErrorBoundary'
 
 
 class App extends React.Component {
@@ -21,12 +20,14 @@ class App extends React.Component {
   render() {
     return (
       <ColorProvider>
-        <div className="App">
-          <Switch>
-            <PublicRoute exact path='/' component={SignUpForm} />
-            <PrivateRoute path='/lobby' component={GameLobbyPage} />
-          </Switch>
-        </div>
+        <ErrorBoundary>
+          <div className="App">
+            <Switch>
+              <Route exact path='/' component={SignUpForm} />
+              <Route path='/lobby' component={GameLobbyPage} />
+            </Switch>
+          </div>
+        </ErrorBoundary>
       </ColorProvider>
     );
   }
