@@ -19,7 +19,6 @@ export default class DrawingPage extends Component {
 
     static contextType = ColorContext
 
-
     handleChatSubmit = async (ev) => {
         ev.preventDefault();
 

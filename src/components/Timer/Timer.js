@@ -3,34 +3,34 @@ import ColorContext from '../../Context/ColorContext'
 import socket from '../../services/socket-service'
 
 class Timer extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
+    this.state = {
       time: 0
     }
   }
   static contextType = ColorContext
 
   componentDidMount() {
-    
+
     socket.on('timer', (time) => {
-    
       this.setState({
         time: time
       });
+    })
+  }
 
-  })
-
+  componentWillUnmount() {
+    socket.off('timer')
   }
 
   render() {
-    return(
+    return (
       <div className="timer-container">
-          {(this.state.time !== 0) && <h4>{this.state.time}</h4>}
+        {(this.state.time !== 0) && <h4>{this.state.time}</h4>}
       </div>
     )
   }
-
 }
 
 export default Timer

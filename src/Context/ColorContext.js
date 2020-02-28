@@ -112,7 +112,6 @@ export class ColorProvider extends React.Component {
         })
     }
 
-
     setRoundResults = (results) => {
         this.setState({
             roundResults: results

@@ -9,9 +9,7 @@ class PlayAgain extends React.Component {
         Cookies.remove('digi-doodle-user', { path: `/` });
     }
 
-
     render() {
-
         return (
             <div className="play-again-container">
                 <form aria-label="play-again-form" className="play-again-form">

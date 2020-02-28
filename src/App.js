@@ -9,14 +9,6 @@ import ErrorBoundary from './components/ErrorBoundary/errorBoundary'
 
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      userID: '',
-      username: '',
-      gameData: '',
-    }
-  }
 
   render() {
     return (
