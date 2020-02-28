@@ -24,6 +24,8 @@ exports[`SignupForm component renders SignUp form 1`] = `
         Enter your username:
       </p>
       <input
+        aria-label="enter username"
+        aria-required={true}
         maxLength="15"
         onChange={[Function]}
         required={true}
@@ -32,7 +34,9 @@ exports[`SignupForm component renders SignUp form 1`] = `
       />
       <br />
       <button
+        aria-pressed="false"
         className="start-button"
+        title="Play Game!"
         type="submit"
       >
         Play Game!
