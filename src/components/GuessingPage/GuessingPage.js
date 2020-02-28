@@ -14,8 +14,6 @@ export default class GuessingPage extends Component {
         this.state = {
             guess: '',
             username: '',
-            players: [],
-            score: 0
         }
     }
 
@@ -37,7 +35,7 @@ export default class GuessingPage extends Component {
         try {
             ev.preventDefault();
             socket.emit('guess', { player: this.state.username, message: this.state.guess });
-            
+
             await this.setState({
                 guess: ''
             });
@@ -58,8 +56,6 @@ export default class GuessingPage extends Component {
         });
     }
 
-
-    //event handler for submit button to validate answer
 
     render() {
         let disableAttr = this.props.isDrawing ? "canvas-container" : "disabled-canvas"
@@ -89,11 +85,12 @@ export default class GuessingPage extends Component {
 
                             {this.context.messages && this.context.messages.map((message, index) => {
                                 if (message.player === 'Lobby') {
-                                return (
-                                    <li className="lobby-message" key={index}>{message.message}</li>
-                                    )} else {
-                                return (
-                                    <li className="player-message" key={index}>{message.player}: {message.message}</li>
+                                    return (
+                                        <li className="lobby-message" key={index}>{message.message}</li>
+                                    )
+                                } else {
+                                    return (
+                                        <li className="player-message" key={index}>{message.player}: {message.message}</li>
                                     )
                                 }
                             })}

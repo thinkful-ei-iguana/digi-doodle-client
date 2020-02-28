@@ -5,22 +5,6 @@ import './Header.css'
 
 export default class StandbyView extends Component {
     static contextType = ColorContext
-    constructor(props) {
-        super(props);
-        this.state = {
-            guess: '',
-            username: '',
-            players: [],
-            score: 0,
-            messages: [{
-                player: 'Lobby',
-                message: 'Welcome to the room!'
-            }],
-            current_drawer: '',
-        }
-    }
-
-    static contextType = ColorContext
 
 
     render() {
@@ -60,11 +44,11 @@ export default class StandbyView extends Component {
 
         // guessing mode
         else if (this.props.isDrawing === false && this.context.game.status === 'drawing') {
-            header = 
-            <div className="header-box">
-                <h1>{player.username} is drawing</h1>
-                <Timer />
-            </div>
+            header =
+                <div className="header-box">
+                    <h1>{player.username} is drawing</h1>
+                    <Timer />
+                </div>
         }
 
         // drawing mode

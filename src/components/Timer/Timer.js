@@ -14,11 +14,6 @@ class Timer extends React.Component {
   componentDidMount() {
     
     socket.on('timer', (time) => {
-    //   if (time === 0) {
-    //     this.setState({
-    //       time: null
-    //     });
-    // } else 
     
       this.setState({
         time: time

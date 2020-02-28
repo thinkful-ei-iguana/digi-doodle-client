@@ -21,8 +21,6 @@ const ColorContext = React.createContext({
     messages: [],
     setCanvas: () => { },
     checkDrawing: () => { },
-    toggleDisableCanvas: () => { },
-    disableAttr: '',
     roundResults: null,
     setRoundResults: () => { },
 })
@@ -44,7 +42,7 @@ export class ColorProvider extends React.Component {
             userId: '',
             setPlayers: () => { },
             players: [],
-            canvasData: {objects: []},
+            canvasData: { objects: [] },
             swapDrawing: () => { },
             isDrawing: false,
             setGame: () => { },
@@ -102,12 +100,6 @@ export class ColorProvider extends React.Component {
         })
     }
 
-    toggleDisableCanvas = () => {
-        this.setState({
-            disableAttr: 'canvas-container'
-        })
-    }
-
     setMessages = (message) => {
         this.setState({
             messages: [...this.state.messages, message]
@@ -149,8 +141,6 @@ export class ColorProvider extends React.Component {
             setMessages: this.setMessages,
             messages: this.state.messages,
             setCanvas: this.setCanvas,
-            toggleDisableCanvas: this.toggleDisableCanvas,
-            disableAttr: this.state.disableAttr,
             roundResults: this.state.roundResults,
             setRoundResults: this.setRoundResults,
         }

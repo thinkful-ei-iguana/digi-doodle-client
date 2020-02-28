@@ -14,9 +14,6 @@ export default class DrawingPage extends Component {
         super(props);
         this.state = {
             guess: '',
-            username: '',
-            players: [],
-            score: 0
         }
     }
 
