@@ -52,7 +52,7 @@ export default class GameLobbyPage extends Component {
             })
 
             socket.on('send game', async (gameData) => {
-                console.log('gamedata from server: ', gameData);
+                // console.log('gamedata from server: ', gameData);
                 gameData = gameData[0];
                 let isDrawing = this.context.userId === gameData.current_drawer && gameData.status === "drawing"
                 this.setState({ isDrawing: isDrawing })
