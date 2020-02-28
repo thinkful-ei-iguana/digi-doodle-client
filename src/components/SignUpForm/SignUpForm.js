@@ -47,13 +47,13 @@ class SignUpForm extends React.Component {
       let userName = this.state.username;
 
       let userID = await DigiDoodleApiService.createUserName(userName);
-      console.log('userId: ', userID);
+
       userID = userID[0];
       await this.setPlayerId(userID);
       await this.context.setUserId(userID);
 
       let gameData = await DigiDoodleApiService.joinGame(this.state.playerId, userName);
-      console.log('gamedata response: ', gameData);
+
       gameData = gameData[0];
       await this.setGameId(gameData);
       await this.context.setGameId(gameData);

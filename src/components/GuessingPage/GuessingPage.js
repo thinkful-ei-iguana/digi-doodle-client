@@ -37,8 +37,7 @@ export default class GuessingPage extends Component {
         try {
             ev.preventDefault();
             socket.emit('guess', { player: this.state.username, message: this.state.guess });
-
-            // console.log('guess response: ', guess);
+            
             await this.setState({
                 guess: ''
             });

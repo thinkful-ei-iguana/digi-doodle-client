@@ -28,7 +28,6 @@ export default class DrawingPage extends Component {
 
         socket.emit('chat message', { player: this.context.username, message: this.state.guess });
 
-        // console.log('guess response: ', guess);
         await this.setState({
             guess: ''
         });
