@@ -20,7 +20,6 @@ const ColorContext = React.createContext({
     setMessages: () => { },
     messages: [],
     setCanvas: () => { },
-    checkDrawing: () => { },
     roundResults: null,
     setRoundResults: () => { },
 })
@@ -33,26 +32,17 @@ export class ColorProvider extends React.Component {
         this.state = {
             color: 'black',
             eraser: 3,
-            changeColor: () => { },
             username: '',
-            setUserName: () => { },
-            setGameId: () => { },
             gameId: '',
-            setUserId: () => { },
             userId: '',
-            setPlayers: () => { },
             players: [],
             canvasData: { objects: [] },
-            swapDrawing: () => { },
             isDrawing: false,
-            setGame: () => { },
             game: {},
-            setMessages: () => { },
             messages: [{
                 player: 'Lobby',
                 message: 'Welcome to the room!'
             }],
-            setCanvas: () => { },
             roundResults: null,
         }
     }
