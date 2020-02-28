@@ -12,6 +12,10 @@
   margin-top: 15rem;
 }
 
+.not-found-header {
+  margin-top: -9%;
+}
+
 .return-home {
   margin-top: 1.5%;
   border-radius: 10px;
@@ -25,9 +29,19 @@
   color: black;
 }
 
+@media screen and (min-width: 250px) {
+  .return-home {
+    font-size: 16px;
+  }
+}
+
 @media screen and (min-width: 400px) { 
   .not-found-container {
     margin-top: 18rem;
+  }
+
+  .return-home {
+    font-size: 18px;
   }
 }
 
@@ -41,10 +55,18 @@
   .not-found-container {
     margin-top: 23rem;
   }
+
+  .return-home {
+    font-size: 20px;
+  }
 }
 
 @media screen and (min-width: 1000px) { 
   .not-found-container {
     margin-top: 23rem;
+  }
+
+  .return-home {
+    font-size: 22px;
   }
 }
