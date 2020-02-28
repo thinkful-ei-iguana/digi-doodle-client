@@ -31,7 +31,6 @@ class SignUpForm extends React.Component {
   handleSubmit = async (event) => {
     let username = this.state.username;
 
-
     if (username.length < 4 || username.length > 10) {
       event.preventDefault();
       return this.setState({

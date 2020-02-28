@@ -4,7 +4,6 @@ import './PlayAgain.css';
 
 class PlayAgain extends React.Component {
 
-
     handleDeleteData = () => {
         Cookies.remove('digi-doodle-user', { path: `/` });
     }
