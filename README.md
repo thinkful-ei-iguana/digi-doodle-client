@@ -15,12 +15,7 @@ OTHER TOOLS - ADOBE PHOTOSHOP | CANVA | LIGHTHOUSE | REACT-SKETCH
 ## Repo & Live Server Links
 
 [Live Server](https://digi-doodle.now.sh/)
-[Client Repo](https://github.com/thinkful-ei-iguana/digi-doodle-client)
-[Server Repo](https://github.com/thinkful-ei-iguana/digi-doodle-server)
 
-### Screenshots
-![home screen](https://github.com/thinkful-ei-iguana/digi-doodle-client/blob/development/src/Pictures/digi4.png?raw=true)
-![guessing turn](https://github.com/thinkful-ei-iguana/digi-doodle-client/blob/development/src/Pictures/digi4.png?raw=true)
-![your turn to draw](https://github.com/thinkful-ei-iguana/digi-doodle-client/blob/development/src/Pictures/digi3.png?raw=true)
-![correct guess](https://github.com/thinkful-ei-iguana/digi-doodle-client/blob/development/src/Pictures/digi1.png?raw=true)
-![winning screen](https://github.com/thinkful-ei-iguana/digi-doodle-client/blob/development/src/Pictures/digi2.png?raw=true)
+[Client Repo](https://github.com/djllap/digi-doodle-client)
+
+[Server Repo](https://github.com/djllap/digi-doodle-server)
